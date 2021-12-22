@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.tools.ToolAlert;
+import com.zftlive.android.tools.ToolNetwork;
 import com.zftlive.android.tools.ToolSMS;
 
 
@@ -47,9 +49,9 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 	}
 
 	@Override
-	public void doBusiness(Context mContext) {
+	public void doBusiness(final Context mContext) {
 		
-		//注册SMSDK
+		//注册SMSDK，可放置Application
 		ToolSMS.initSDK(ToolSMS.APPKEY, ToolSMS.APPSECRET);
 		
 		//验证不可用
@@ -64,8 +66,13 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				if(et_phone.getText().toString() != ""){
-					ToolSMS.getVerificationCode(et_phone.getText().toString());
-					startTimer();
+					if(((MApplication)getApplicationContext()).isNetworkReady()){
+						ToolSMS.getVerificationCode(et_phone.getText().toString());
+						startTimer();
+					}else{
+						ToolAlert.showShort(mContext, "请先开启网络测试");
+					}
+					
 				}else{
 					ToolAlert.showShort("请输入大陆的手机号码");
 				}
