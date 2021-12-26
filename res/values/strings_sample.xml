@@ -20,7 +20,7 @@
     
     
     
-    <string name="sms_timer">获取手机验证码（%1$s）</string>
+    <string name="sms_timer">获取验证码（%1$s）</string>
     
     <!-- 自动获取表单示例（开始） -->
 	<string name="tv_account">帐号：</string>
