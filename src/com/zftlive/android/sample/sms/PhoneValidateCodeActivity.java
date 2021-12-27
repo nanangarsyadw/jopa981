@@ -14,8 +14,8 @@ import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolNetwork;
 import com.zftlive.android.tools.ToolSMS;
+import com.zftlive.android.tools.ToolString;
 
 
 /**
@@ -65,7 +65,7 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View v) {
-				if(et_phone.getText().toString() != ""){
+				if(ToolString.isNoBlankAndNoNull(et_phone.getText().toString().trim())){
 					if(((MApplication)getApplicationContext()).isNetworkReady()){
 						ToolSMS.getVerificationCode(et_phone.getText().toString());
 						startTimer();
