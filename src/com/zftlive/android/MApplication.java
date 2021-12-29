@@ -14,6 +14,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.zftlive.android.tools.ToolNetwork;
 import com.zftlive.android.view.imageindicator.NetworkImageCache;
 
 /**
@@ -55,6 +56,14 @@ public class MApplication extends Application {
 		initImageLoader(getApplicationContext());
 	}
 
+	/**
+	 * 获取网络是否已连接
+	 * @return
+	 */
+	public static boolean isNetworkReady(){
+		return ToolNetwork.getInstance().init(instance).isConnected();
+	}
+	
 	/**
 	 * 获取图片异步加载器
 	 * @return ImageLoader
