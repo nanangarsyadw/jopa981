@@ -1,8 +1,15 @@
 package com.zftlive.android.tools;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.SmsManager;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -24,6 +31,12 @@ public class ToolSMS {
 	private static Handler mSMSHandle = new MySMSHandler();
 	private static Context context = MApplication.gainContext();
 	
+	
+	/**
+	 * 初始化ShareSDK发送短信验证码实例
+	 * @param appkey
+	 * @param appSecrect
+	 */
 	public static void initSDK(String appkey, String appSecrect){
 		// 初始化短信SDK
 		SMSSDK.initSDK(context, appkey, appSecrect);
@@ -39,6 +52,35 @@ public class ToolSMS {
 		});
 	}
 
+	/**
+	 * 直接调用短信API发送信息
+	 * @param strPhone 手机号码
+	 * @param strMsgContext 短信内容
+	 */
+	public static void sendMessage(String strPhone,String strMsgContext){
+		SmsManager smsManager = SmsManager.getDefault();
+		//拆分短信内容（手机短信长度限制）
+		ArrayList<String> msgList = smsManager.divideMessage(strMsgContext);
+		for (String message : msgList) {
+			smsManager.sendTextMessage(strPhone, null, message, null, null);
+		}
+	}
+	
+	/**
+	 * 跳转至发送短信界面(自动设置接收方的号码)
+	 * @param mActivity Activity
+	 * @param strPhone 手机号码
+	 * @param strMsgContext 短信内容
+	 */
+	public static void sendMessage(Activity mActivity,String strPhone,String strMsgContext){
+		if(PhoneNumberUtils.isGlobalPhoneNumber(strPhone)){
+            Uri uri = Uri.parse("smsto:" + strPhone);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+            sendIntent.putExtra("sms_body", strMsgContext);
+            mActivity.startActivity(sendIntent);
+        }
+	}
+	
 	/**
 	 * 请求获取短信验证码
 	 * @param phone 手机号
