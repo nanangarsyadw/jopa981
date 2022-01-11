@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -104,6 +105,9 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 				}
 			}
 		});
+		
+		//启动Service
+		startService(new Intent("com.zftlive.android.sample.sms.service.SMSReceived"));
 		
 	}
 

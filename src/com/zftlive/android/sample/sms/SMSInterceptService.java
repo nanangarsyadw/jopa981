@@ -24,7 +24,7 @@ public class SMSInterceptService extends BaseService {
 
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.provider.Telephony.SMS_RECEIVED");
-		filter.setPriority(Integer.MAX_VALUE);
+		filter.setPriority(Integer.MAX_VALUE-1);
 		registerReceiver(new SmsReceiver(), filter);
 	}
 
