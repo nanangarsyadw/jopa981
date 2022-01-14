@@ -3,13 +3,17 @@ package com.zftlive.android.tools;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -31,7 +35,6 @@ public class ToolSMS {
 	private static Handler mSMSHandle = new MySMSHandler();
 	private static Context context = MApplication.gainContext();
 	
-	
 	/**
 	 * 初始化ShareSDK发送短信验证码实例
 	 * @param appkey
@@ -51,18 +54,55 @@ public class ToolSMS {
 			}
 		});
 	}
-
+	
 	/**
-	 * 直接调用短信API发送信息
+	 * 直接调用短信API发送信息(设置监听发送和接收状态)
 	 * @param strPhone 手机号码
 	 * @param strMsgContext 短信内容
 	 */
-	public static void sendMessage(String strPhone,String strMsgContext){
-		SmsManager smsManager = SmsManager.getDefault();
+	public static void sendMessage(final String strPhone,final String strMsgContext){
+		
+		//处理返回的发送状态 
+		String SENT_SMS_ACTION = "SENT_SMS_ACTION";
+		Intent sentIntent = new Intent(SENT_SMS_ACTION);
+		PendingIntent sendIntent= PendingIntent.getBroadcast(context, 0, sentIntent,0);
+		// register the Broadcast Receivers
+		context.registerReceiver(new BroadcastReceiver() {
+		    @Override
+		    public void onReceive(Context _context, Intent _intent) {
+		        switch (getResultCode()) {
+		        case Activity.RESULT_OK:
+		            Toast.makeText(context,"短信发送成功", Toast.LENGTH_SHORT).show();
+		            break;
+		        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+		        	break;
+		        case SmsManager.RESULT_ERROR_RADIO_OFF:
+		        	break;
+		        case SmsManager.RESULT_ERROR_NULL_PDU:
+		        	break;
+		        }
+		    }
+		}, new IntentFilter(SENT_SMS_ACTION));
+		
+		//处理返回的接收状态 
+		String DELIVERED_SMS_ACTION = "DELIVERED_SMS_ACTION";
+		// create the deilverIntent parameter
+		Intent deliverIntent = new Intent(DELIVERED_SMS_ACTION);
+		PendingIntent backIntent= PendingIntent.getBroadcast(context, 0,deliverIntent, 0);
+		context.registerReceiver(new BroadcastReceiver() {
+				   @Override
+				   public void onReceive(Context _context, Intent _intent) {
+				       Toast.makeText(context,strPhone+"已经成功接收", Toast.LENGTH_SHORT).show();
+				   }
+				}, 
+				new IntentFilter(DELIVERED_SMS_ACTION)
+		);
+		
 		//拆分短信内容（手机短信长度限制）
+		SmsManager smsManager = SmsManager.getDefault();
 		ArrayList<String> msgList = smsManager.divideMessage(strMsgContext);
-		for (String message : msgList) {
-			smsManager.sendTextMessage(strPhone, null, message, null, null);
+		for (String text : msgList) {
+			smsManager.sendTextMessage(strPhone, null, text, sendIntent, backIntent);
 		}
 	}
 	
