@@ -64,7 +64,9 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <!-- 读送短信权限 -->
     <uses-permission android:name="android.permission.READ_SMS"/>
-    <!-- 拦截短信权限 -->  
+    <!-- 写短信权限 -->
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <!-- 接收短信权限 -->  
 	<uses-permission android:name="android.permission.RECEIVE_SMS"/>  
     
 	<permission android:protectionLevel="normal" android:name="oem.permission.SENDMAIL"/>
@@ -332,20 +334,34 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
         </activity>
         
+        <!-- 发送短信/拦截示例 -->
+        <activity
+            android:name=".sample.sms.SMSOperationActivity"
+            android:label="@string/SMSOperationActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>        
+        
 		<!-- 静态注册短信广播接收器 -->
 		<receiver android:name=".sample.sms.SMSBroadcastReceiver">               
             <intent-filter android:priority="2147483647"> 
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />  
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <category android:name="android.intent.category.DEFAULT" />  
             </intent-filter>  
         </receiver>          
         
 		<!-- 动态注册短信拦截Service http://blog.csdn.net/zhujunwang/article/details/7912829 -->
-    	<service android:name=".sample.sms.SMSInterceptService" android:exported="false" android:permission="oem.permission.SENDMAIL" >  
-             <intent-filter >  
-                 <action android:name="com.zftlive.android.sample.sms.service.SMSReceived" />
-                 <category android:name="android.intent.category.default" />  
-             </intent-filter>  
-         </service>
+<!--     	<service android:name=".sample.sms.SMSInterceptService" android:exported="false" android:permission="oem.permission.SENDMAIL" >   -->
+<!--              <intent-filter >   -->
+<!--                  <action android:name="com.zftlive.android.sample.sms.service.SMSReceived" /> -->
+<!--                  <category android:name="android.intent.category.DEFAULT" />  -->
+<!--              </intent-filter>   -->
+<!--          </service> -->
     			
         
     </application>
