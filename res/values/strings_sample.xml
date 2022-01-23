@@ -16,6 +16,7 @@
     <string name="ProgressBarActivity">垂直+水平+圆形进度条</string>
     <string name="AutoGainFormActivity">自动获取表单数据示例</string>
     <string name="AnimationInActivity">Activity切换过场动画示例</string>
+    <string name="SMSOperationActivity">发送短信/拦截示例</string>
     <!-- Android样例锦集label(结束) -->
     
     
@@ -41,4 +42,14 @@
 	<string name="et_account_hint">请输入您的手机号\邮箱\用户名</string>
 	<string name="btn_auto_gaindata">提交表单</string>
     <!-- 自动获取表单示例（结束） -->
+    
+    <!-- 短信操作示例（开始） -->
+	<string name="tv_phonenumber">手机号码：</string>
+	<string name="et_phonenumber_hint">请输入需要拦截/发送的手机号</string>
+	<string name="tv_smscontent">短信内容</string>
+	<string name="tv_content">请输入要发送的短信内容</string>
+	<string name="btn_send">发送短信</string>
+	<string name="btn_bind">绑定拦截</string>
+    <!-- 短信操作示例（结束） -->    
+    
 </resources>
