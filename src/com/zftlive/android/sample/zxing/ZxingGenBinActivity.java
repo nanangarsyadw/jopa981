@@ -1,10 +1,7 @@
 package com.zftlive.android.sample.zxing;
 
-import java.util.UUID;
-
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +13,7 @@ import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolFile;
 import com.zftlive.android.tools.ToolPicture;
+import com.zftlive.android.tools.ToolString;
 
 /**
  * 生成二维码示例
@@ -49,7 +47,7 @@ public class ZxingGenBinActivity extends BaseActivity {
 	public void doBusiness(Context mContext) {
 		//初始化值
 		if("".equals(et_qr_text.getText().toString())){
-			et_qr_text.setText("http://zftlive.qiniudn.com/Android360UI.zip");
+			et_qr_text.setText("https://itunes.apple.com/us/app/zhong-guo-zhai-quan-xin-xi-wang/id956379885?l=zh&ls=1&mt=8");
 		}
 		
 		btn_make_qr.setOnClickListener(new OnClickListener() {
@@ -70,11 +68,11 @@ public class ZxingGenBinActivity extends BaseActivity {
 						qrImage = null;
 					}
 					
-				    qrImage = ToolPicture.makeQRImage(et_qr_text.getText().toString(), 200, 200);
+				    qrImage = ToolPicture.makeQRImage(et_qr_text.getText().toString(), 400, 400);
 					qr_image.setImageBitmap(qrImage);
 					
 					//生成图片
-					String filePath = ToolFile.gainSDCardPath() + "/MyLive/QRImage/"+UUID.randomUUID().toString()+".jpg";
+					String filePath = ToolFile.gainSDCardPath() + "/MyLive/QRImage/"+ToolString.gainUUID()+".jpg";
 					ToolFile.saveAsJPEG(qrImage, filePath);
 					
 					getOperation().closeLoading();
