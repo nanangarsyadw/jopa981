@@ -53,8 +53,15 @@ public class MainActivity extends BaseActivity {
 				 Map<String, Object> map = (Map<String, Object>)parent.getItemAtPosition(position);
 			     Intent intent = (Intent) map.get("intent");
 			     startActivity(intent);
-				 //右往左推出效果
-				 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			     //过场动画
+			     if(position % 2 == 0){
+			    	//右往左推出效果
+					 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			     }else{
+					//左上角展开淡出效果
+					overridePendingTransition(R.anim.scale_translate,R.anim.alpha_out);
+			     }
+				 
 			}
 		});
 		
@@ -125,6 +132,13 @@ public class MainActivity extends BaseActivity {
 			}else{
 				mHolder = (Holder) convertView.getTag();
 			}
+			
+			//设置隔行变色背景
+//			if(position%2==0){
+//				convertView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+//			}else{
+//				convertView.setBackgroundColor(Color.parseColor("#CCCCCC"));
+//			}
 			
 			//设置数据
 			mHolder.label.setText((String)((Map<String,Object>)getItem(position)).get("title"));
