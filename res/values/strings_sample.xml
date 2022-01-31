@@ -52,4 +52,8 @@
 	<string name="btn_bind">绑定拦截</string>
     <!-- 短信操作示例（结束） -->    
     
+    <string name="btn_submit">提交</string>
+    <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
+    
+    
 </resources>
