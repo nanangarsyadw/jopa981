@@ -13,10 +13,7 @@ import android.widget.EditText;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.data.DTO;
 import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolData;
-import com.zftlive.android.tools.ToolHTTP;
 import com.zftlive.android.tools.ToolString;
 
 /**
@@ -41,8 +38,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 		root = (ViewGroup)findViewById(R.id.ll_root);
 		et_message = (EditText)findViewById(R.id.et_message);
 		btn_sumbit = (Button)findViewById(R.id.btn_sumbit);
-		//TODO 需真实数据接口
-//		btn_sumbit.setOnClickListener(this);
+		btn_sumbit.setOnClickListener(this);
 	}
 
 	@Override
@@ -66,7 +62,9 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 		case R.id.btn_sumbit:
 			//提交表单
 			if(validateForm()){
-				ToolHTTP.post(FEED_BACK_URL, ToolData.gainForm(root, new DTO<String,Object>()), getFeedBackHandler());
+				//需要设置表单元素控件的tag属性，作为表单提交的key
+//				DTO<String,Object> form = ToolData.gainForm(root, new DTO<String,Object>());
+//				ToolHTTP.post(FEED_BACK_URL, form, getFeedBackHandler());
 			}
 			break;
 		default:
