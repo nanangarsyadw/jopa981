@@ -50,6 +50,7 @@
 	<string name="tv_content">请输入要发送的短信内容</string>
 	<string name="btn_send">发送短信</string>
 	<string name="btn_bind">绑定拦截</string>
+	<string name="btn_choice">选择</string>
     <!-- 短信操作示例（结束） -->    
     
     <string name="btn_submit">提交</string>
