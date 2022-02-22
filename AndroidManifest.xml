@@ -57,6 +57,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 读写手机状态和身份 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--向外拨打电话的权限  -->  
+    <uses-permission android:name="android.permission.CALL_PHONE"/> 
     <!-- 调用照相机相关权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
