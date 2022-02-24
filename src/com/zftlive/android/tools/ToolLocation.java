@@ -1,7 +1,13 @@
 package com.zftlive.android.tools;
 
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
 import android.content.Context;
+import android.content.Intent;
 import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -39,6 +45,37 @@ public class ToolLocation {
 		}
 	}
 
+	/**
+     * 强制打开GPS
+     * @param context
+     */ 
+    public static void forceOpenGPS(Context context) {
+    	//4.0++
+    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+    		Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE"); 
+    	    intent.putExtra("enabled", true); 
+    	    context.sendBroadcast(intent); 
+    	 
+    	   String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED); 
+    	   if(!provider.contains("gps")){ //if gps is disabled  
+    	       final Intent poke = new Intent(); 
+    	       poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");  
+    	       poke.addCategory(Intent.CATEGORY_ALTERNATIVE); 
+    	       poke.setData(Uri.parse("3"));  
+    	       context.sendBroadcast(poke); 
+    	   } 
+    	}else{
+            Intent GPSIntent = new Intent(); 
+            GPSIntent.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider"); 
+            GPSIntent.addCategory("android.intent.category.ALTERNATIVE"); 
+            GPSIntent.setData(Uri.parse("custom:3")); 
+            try { 
+                PendingIntent.getBroadcast(context, 0, GPSIntent, 0).send(); 
+            } catch (CanceledException e) { 
+            } 
+    	}
+    }
+	
 	/**
 	 * 请求定位，附带地址信息
 	 * @param callback 定位成功回调函数
