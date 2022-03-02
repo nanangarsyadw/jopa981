@@ -347,7 +347,20 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.zftlive.android.SAMPLE_CODE" />
             </intent-filter>
-        </activity>        
+        </activity> 
+        
+        <!-- 基本常用操作测试样例 -->
+        <activity
+            android:name=".sample.basic.BasicTestActivity"
+            android:label="@string/BasicTestActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
         
 		<!-- 静态注册短信广播接收器 -->
 		<receiver android:name=".sample.sms.SMSBroadcastReceiver">               

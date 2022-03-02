@@ -17,6 +17,7 @@
     <string name="AutoGainFormActivity">自动获取表单数据示例</string>
     <string name="AnimationInActivity">Activity切换过场动画示例</string>
     <string name="SMSOperationActivity">发送短信/拦截示例</string>
+    <string name="BasicTestActivity">基本常用操作测试样例</string>
     <!-- Android样例锦集label(结束) -->
     
     
@@ -55,6 +56,10 @@
     
     <string name="btn_submit">提交</string>
     <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
+    
+    
+    <string name="btn_opengps">强制打开GPS</string>
+    <string name="btn_call">直接拨打电话</string>
     
     
 </resources>
