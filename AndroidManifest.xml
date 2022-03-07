@@ -362,6 +362,19 @@
             </intent-filter>
         </activity>
         
+        <!-- DrawerLayout侧滑菜单样例 -->
+        <activity
+            android:name=".sample.menu.DrawerLayoutActivity"
+            android:label="@string/DrawerLayoutActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>        
+        
 		<!-- 静态注册短信广播接收器 -->
 		<receiver android:name=".sample.sms.SMSBroadcastReceiver">               
             <intent-filter android:priority="2147483647"> 

@@ -18,11 +18,12 @@
     <string name="AnimationInActivity">Activity切换过场动画示例</string>
     <string name="SMSOperationActivity">发送短信/拦截示例</string>
     <string name="BasicTestActivity">基本常用操作测试样例</string>
+    <string name="DrawerLayoutActivity">DrawerLayout侧滑菜单</string>
     <!-- Android样例锦集label(结束) -->
     
-    
-    
+    <!-- 短信验证码/拦截示例（开始） -->
     <string name="sms_timer">获取验证码（%1$s）</string>
+    <!-- 短信验证码/拦截示例(结束) -->
     
     <!-- 自动获取表单示例（开始） -->
 	<string name="tv_account">帐号：</string>
@@ -54,12 +55,19 @@
 	<string name="btn_choice">选择</string>
     <!-- 短信操作示例（结束） -->    
     
+    <!-- common意见反馈示例（开始） -->
     <string name="btn_submit">提交</string>
     <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
+    <!-- common意见反馈示例（结束） -->    
     
-    
+    <!-- 基本操作示例（开始） -->
     <string name="btn_opengps">强制打开GPS</string>
     <string name="btn_call">直接拨打电话</string>
+    <!-- 基本操作示例（结束） -->    
     
+    <!-- DrawerLayout抽屉菜单示例（开始） -->
+    <string name="drawer_close">关闭</string>
+    <string name="drawer_open">打开</string>
+    <!-- DrawerLayout抽屉菜单示例（结束） -->    
     
 </resources>
