@@ -108,7 +108,7 @@ public class ImageListviewActivity extends BaseActivity {
 	public void destroy() {
 
 		//清除缓存
-		universalimageloader.clearMemoryCache();
+		ToolImage.clearCache();
 	}
 	
 	public class MyListViewAdapter extends BaseAdapter{
