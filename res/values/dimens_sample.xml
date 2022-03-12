@@ -6,4 +6,11 @@
     <dimen name="line_point_size">6px</dimen>
     <!-- 曲线坐标轴刻度字体大小 -->
     <dimen name="axis_label_text">20sp</dimen>
+    
+    <!-- 债券搜索结果表头字体大小 -->
+    <dimen name="bond_table_header_text">16sp</dimen>
+    <!-- 债券搜索结果表单元格大小 -->
+    <dimen name="bond_table_cell_text">14sp</dimen>
+    <!-- 债券搜索结果列表宽度 -->
+    <dimen name="bond_table_header_width">140dp</dimen> 
 </resources>

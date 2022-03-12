@@ -375,6 +375,18 @@
             </intent-filter>
         </activity>        
         
+        <!-- 水平+垂直滚动+首行首列固定+翻页Listview样例 -->
+        <activity
+            android:name=".sample.fixed.HVScorllListviewActivity"
+            android:label="@string/HVScorllListviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>         
 		<!-- 静态注册短信广播接收器 -->
 		<receiver android:name=".sample.sms.SMSBroadcastReceiver">               
             <intent-filter android:priority="2147483647"> 
