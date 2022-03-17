@@ -5,10 +5,9 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,12 +20,9 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolDateTime;
-import com.zftlive.android.tools.ToolHTTP;
-import com.zftlive.android.tools.ToolNetwork;
+import com.zftlive.android.tools.ToolFile;
 import com.zftlive.android.tools.ToolString;
-import com.zftlive.android.tools.http.JSONHandler;
 import com.zftlive.android.view.ObserverHScrollView;
 import com.zftlive.android.view.ObserverHScrollView.OnScrollChangedListener;
 import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
@@ -74,7 +70,7 @@ public class HVScorllListviewActivity extends BaseActivity {
 		mHorizontalScrollView = (HorizontalScrollView) mListviewHead.findViewById(R.id.horizontalScrollView1); 
 		
 		//实例化listview适配器
-		mListAdapter = new BondSearchResultAdapter();
+		mListAdapter = new BondSearchResultAdapter(this,mPerPageCount);
 		
 		//初始化listview
 		mListView = (PullToRefreshListView) findViewById(R.id.listView1);
@@ -133,91 +129,61 @@ public class HVScorllListviewActivity extends BaseActivity {
 	 * 请求数据
 	 */
 	private void requestData(int pageNo){
-		
 		mPageNo = pageNo;
 		
-		//判断网络状态
-		if(ToolNetwork.getInstance().init(getApplicationContext()).isConnected()){
+		try {
+			//弹出加载对话框
+			getOperation().showLoading("加载中，请稍后...");
 			//正在加载
 			isLoadFinished = false;
-			try {
-				ToolAlert.closeLoading();
-				//弹出加载对话框
-				ToolAlert.showLoading(this, "加载中，请稍后...",new ToolAlert.ILoadingOnKeyListener(){
-					@Override
-					public boolean onKey(DialogInterface dialog, int keyCode,KeyEvent event) {
-						if (keyCode == KeyEvent.KEYCODE_BACK) {
-							dialog.dismiss();
-							ToolHTTP.client.cancelAllRequests(true);//取消网络请求
-				        }
-						return false;
-					}
-				});
-			} catch (Exception e) {
-				this.finish();
-				Log.e(TAG, e.getMessage());
-				return;
-			}
-			// 请求查询数据
+			//模拟数据
+			String data = ToolFile.readAssetsValue(getContext(), "hvc_data.json");
+			parseData(new JSONObject(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-		}else{
+	
+	/**
+	 * 解析数据
+	 * @param jsonObject
+	 */
+	private void parseData(JSONObject jsonObject){
+		try {
+			// 错误信息
+			String errorMessage = jsonObject.getString("errorMsg");
+			if (!ToolString.isNoBlankAndNoNull(errorMessage)) 
+			{
+				// 获取数据
+				JSONArray dataList = jsonObject.getJSONArray("dataList");
+				//下拉刷新情况
+				if(mPageNo == 1){
+					mListAdapter.clear();
+				}
+				for (int i = 0; i < dataList.length(); i++) {
+					mListAdapter.addItem(dataList.getJSONObject(i));
+				}
+				//列头可见
+				mListviewHead.setVisibility(View.VISIBLE);
+				//通知更新数据
+				mListAdapter.notifyDataSetChanged();
+				//结果集中记录数 TODO 
+				totalRecordCount = jsonObject.optInt("dataCount",dataList.length());
+				//刷新完成
+				isLoadFinished = true;
+				mListView.onRefreshComplete();
+			} 
+		} catch (Exception e) {
+			Log.e(TAG, e.getMessage().toString());
 			//刷新完成
 			isLoadFinished = true;
 			mListView.onRefreshComplete();
 		}
+		
+		// 关闭等待对话框
+		getOperation().closeLoading();
 	}
-	
-	/**
-	 * 债券查询回调Handler
-	 */
-	private JSONHandler mBondQueryHandler = new JSONHandler() {
-		@Override
-		public void success(final JSONObject jsonObject) {
-			try {
-				// 错误信息
-				String errorMessage = jsonObject.getString("errorMsg");
-				if (ToolString.isNoBlankAndNoNull(errorMessage)) 
-				{
-					// 获取数据
-					JSONArray dataList = jsonObject.getJSONArray("dataList");
-					//下拉刷新情况
-					if(mPageNo == 1){
-						mListAdapter.clear();
-					}
-					for (int i = 0; i < dataList.length(); i++) {
-						mListAdapter.addItem(dataList.getJSONObject(i));
-						Log.e(TAG, mListAdapter.getPageNo() + "-->i "+dataList.getJSONObject(i).optString("zqdm"));
-					}
-					//列头可见
-					mListviewHead.setVisibility(View.VISIBLE);
-					//通知更新数据
-					mListAdapter.notifyDataSetChanged();
-					//结果集中记录数 TODO 
-					totalRecordCount = jsonObject.optInt("dataCount",dataList.length());
-					//刷新完成
-					isLoadFinished = true;
-					mListView.onRefreshComplete();
-				} 
-				
-			} catch (Exception e) {
-				Log.e(TAG, e.getMessage().toString());
-				//刷新完成
-				isLoadFinished = true;
-				mListView.onRefreshComplete();
-			}
-			
-			// 关闭等待对话框
-			ToolAlert.closeLoading();
-		}
-
-		@Override
-		public void failure(int statusCode, String responseBody, Throwable e) {
-			Log.e(TAG, e.getMessage().toString());
-			//刷新完成
-			isLoadFinished = true;
-		}
-	};
-	
 	
 	/**
 	 * 列头/Listview触摸事件监听器<br>
@@ -260,6 +226,10 @@ public class HVScorllListviewActivity extends BaseActivity {
 	 * 债券查询列表适配器
 	 */
 	public class BondSearchResultAdapter extends com.zftlive.android.base.BaseAdapter{
+		
+		public BondSearchResultAdapter(Activity mContext,int mPerPageSize) {
+			super(mContext, mPerPageSize);
+		}
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
@@ -375,5 +345,4 @@ public class HVScorllListviewActivity extends BaseActivity {
 			HorizontalScrollView scrollView;
 		}
 	}
-
 }
