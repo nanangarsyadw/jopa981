@@ -29,6 +29,12 @@ import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
 import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.Mode;
 import com.zftlive.android.view.pulltorefresh.PullToRefreshListView;
 
+/**
+ * 水平+垂直滚动+首行首列固定+翻页Listview样例 
+ * @author 曾繁添
+ * @version 1.0
+ *
+ */
 public class HVScorllListviewActivity extends BaseActivity {
 
 	/**列表表头容器**/
@@ -39,8 +45,6 @@ public class HVScorllListviewActivity extends BaseActivity {
 	private HorizontalScrollView mHorizontalScrollView;
 	/**列表适配器**/
 	private BondSearchResultAdapter mListAdapter;
-	/**上下文**/
-	private Context mContext;
 	/**总记录数**/
 	private int totalRecordCount = 0;
 	/**每一页请求条数**/
@@ -57,8 +61,6 @@ public class HVScorllListviewActivity extends BaseActivity {
 
 	@Override
 	public void initView(View view) {
-		
-		mContext = this;
 		
 		//初始化列表表头
 		mListviewHead = (RelativeLayout) findViewById(R.id.head);
@@ -236,7 +238,7 @@ public class HVScorllListviewActivity extends BaseActivity {
 			// 查找控件
 			ViewHolder holder = null;
 			if (null == convertView) {
-				convertView = LayoutInflater.from(mContext).inflate(R.layout.activity_hvscorll_listview_item, null);
+				convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_hvscorll_listview_item, null);
 				holder = new ViewHolder();
 				
 				holder.txt1 = (TextView) convertView.findViewById(R.id.textView1);
