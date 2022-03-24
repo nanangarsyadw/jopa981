@@ -209,8 +209,8 @@ public class ToolFile {
 	 * 
 	 * @param context
 	 *            内容上下文
-	 * @param rawFileId
-	 *            raw文件名id
+	 * @param fileName
+	 *            文件名称，包含扩展名
 	 * @return
 	 */
 	public static String readAssetsValue(Context context, String fileName) {
@@ -233,8 +233,8 @@ public class ToolFile {
 	 * 
 	 * @param context
 	 *            内容上下文
-	 * @param rawFileId
-	 *            raw文件名id
+	 * @param fileName
+	 *            文件名称，包含扩展名
 	 * @return
 	 */
 	public static List<String> readAssetsListValue(Context context, String fileName) {
