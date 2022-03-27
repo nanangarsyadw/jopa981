@@ -17,7 +17,7 @@ import com.zftlive.android.tools.ToolPhone;
  */
 public class BasicTestActivity extends BaseActivity implements View.OnClickListener{
 
-	private Button btn_opengps, btn_call;
+	private Button btn_opengps, btn_call,btn_contact,btn_setting,btn_carema,btn_photo;
 	
 	@Override
 	public int bindLayout() {
@@ -28,9 +28,17 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 	public void initView(View view) {
 		btn_opengps = (Button) findViewById(R.id.btn_opengps);
 		btn_opengps.setOnClickListener(this);
-
 		btn_call = (Button) findViewById(R.id.btn_call);
 		btn_call.setOnClickListener(this);
+		btn_contact = (Button) findViewById(R.id.btn_contact);
+		btn_contact.setOnClickListener(this);
+		btn_setting = (Button) findViewById(R.id.btn_setting);
+		btn_setting.setOnClickListener(this);
+		btn_carema = (Button) findViewById(R.id.btn_carema);
+		btn_carema.setOnClickListener(this);
+		btn_photo = (Button) findViewById(R.id.btn_photo);
+		btn_photo.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -56,6 +64,18 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 			break;
 		case R.id.btn_call:
 			ToolPhone.callPhone(this, "10086");
+			break;
+		case R.id.btn_contact:
+			ToolPhone.toChooseContactsList(getContext(), 99);
+			break;
+		case R.id.btn_setting:
+			ToolPhone.toSettingActivity(getContext());
+			break;
+		case R.id.btn_carema:
+			ToolPhone.toCameraActivity(getContext(), 88);
+			break;
+		case R.id.btn_photo:
+			ToolPhone.toImagePickerActivity(getContext(), 77);
 			break;
 		default:
 			break;

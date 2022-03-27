@@ -64,6 +64,10 @@
     <!-- 基本操作示例（开始） -->
     <string name="btn_opengps">强制打开GPS</string>
     <string name="btn_call">直接拨打电话</string>
+    <string name="btn_photo">照片选择界面</string>
+    <string name="btn_carema">启动照相机</string>
+    <string name="btn_setting">到系统设置界面</string>
+    <string name="btn_contact">到联系人选择界面</string>
     <!-- 基本操作示例（结束） -->    
     
     <!-- DrawerLayout抽屉菜单示例（开始） -->
