@@ -1,5 +1,6 @@
 package com.zftlive.android.tools;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -269,4 +270,46 @@ public class ToolPhone {
 		mContext.startActivity(wifiSettingsIntent); 
 	}
 	
+	/**
+	 * 启动本地应用打开PDF
+	 * @param mContext 上下文
+	 * @param filePath 文件路径
+	 */
+	public static void openPDFFile(Context mContext, String filePath) {
+		try {
+			File file = new File(filePath);
+			if (file.exists()) {
+				Uri path = Uri.fromFile(file);
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(path, "application/pdf");
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				mContext.startActivity(intent);
+			}
+		} catch (Exception e) {
+			Toast.makeText(mContext, "未检测到可打开PDF相关软件", Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
+	
+	/**
+	 * 启动本地应用打开PDF
+	 * @param mContext 上下文
+	 * @param filePath 文件路径
+	 */
+	public static void openWordFile(Context mContext, String filePath) {
+		try {
+			File file = new File(filePath);
+			if (file.exists()) {
+				Uri path = Uri.fromFile(file);
+				Intent intent = new Intent("android.intent.action.VIEW");
+			    intent.addCategory("android.intent.category.DEFAULT");
+			    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			    intent.setDataAndType(path, "application/msword");
+				mContext.startActivity(intent);
+			}
+		} catch (Exception e) {
+			Toast.makeText(mContext, "未检测到可打开Word文档相关软件", Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
 }
