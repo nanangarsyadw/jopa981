@@ -49,7 +49,7 @@ public class SMSInterceptService extends BaseService {
 
 				for (SmsMessage message : messages) {
 					System.out.println("SMSInterceptService-->来信号码："+ message.getDisplayOriginatingAddress()+ "\n短信内容：" + message.getDisplayMessageBody());
-					ToolAlert.showLong(context,"SMSInterceptService.SmsReceiver-->拦截到来自【" + message.getDisplayOriginatingAddress()+ "】的短信-->"+ message.getDisplayMessageBody());
+					ToolAlert.toastLong(context,"SMSInterceptService.SmsReceiver-->拦截到来自【" + message.getDisplayOriginatingAddress()+ "】的短信-->"+ message.getDisplayMessageBody());
 				}
 			}
 		}

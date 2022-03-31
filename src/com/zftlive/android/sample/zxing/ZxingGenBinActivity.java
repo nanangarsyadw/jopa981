@@ -56,7 +56,7 @@ public class ZxingGenBinActivity extends BaseActivity {
 				
 				try {
 					if("".equals(et_qr_text.getText().toString())){
-						ToolAlert.showShort("请输入要生成二维码内容！");
+						ToolAlert.toastShort("请输入要生成二维码内容！");
 						return ;
 					}
 					
@@ -77,7 +77,7 @@ public class ZxingGenBinActivity extends BaseActivity {
 					
 					getOperation().closeLoading();
 					
-					ToolAlert.showShort("二维码已经保存在："+filePath);
+					ToolAlert.toastShort("二维码已经保存在："+filePath);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,7 +103,7 @@ public class ZxingGenBinActivity extends BaseActivity {
 				    validateCodeImage = ToolPicture.makeValidateCode(200, 30);
 				    validate_image.setImageBitmap(validateCodeImage);
 					
-					ToolAlert.showShort("验证码值："+ToolPicture.gainValidateCodeValue());
+					ToolAlert.toastShort("验证码值："+ToolPicture.gainValidateCodeValue());
 					
 					getOperation().closeLoading();
 					

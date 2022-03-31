@@ -81,7 +81,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 		if(ToolString.isNoBlankAndNoNull(strMessage)){
 			return true;
 		}else{
-			ToolAlert.showShort(getContext(), "请输入意见内容再提交，谢谢^_^");
+			ToolAlert.toastShort(getContext(), "请输入意见内容再提交，谢谢^_^");
 			return false;
 		}
 	}
@@ -94,12 +94,12 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers,String responseString, Throwable throwable) {
-				ToolAlert.showShort(getContext(), "反馈意见失败，原因："+throwable.getMessage());
+				ToolAlert.toastShort(getContext(), "反馈意见失败，原因："+throwable.getMessage());
 			}
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,JSONObject response) {
-				ToolAlert.showShort(getContext(), "感谢您的意见!");
+				ToolAlert.toastShort(getContext(), "感谢您的意见!");
 				finish();
 			}
 		};

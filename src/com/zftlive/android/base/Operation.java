@@ -133,7 +133,7 @@ public class Operation {
 	 * @param message 提示信息
 	 */
 	public void showLoading(String message){
-		ToolAlert.showLoading(mContext, message);
+		ToolAlert.loading(mContext, message);
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class Operation {
 	 * @param listener 按键监听器
 	 */
 	public void showLoading(String message,ILoadingOnKeyListener listener){
-		ToolAlert.showLoading(mContext, message, listener);
+		ToolAlert.loading(mContext, message, listener);
 	}
 	
 	/**

@@ -58,7 +58,7 @@ public class VersionChecker {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,final JSONObject response) {
 				if(getLocalVersion(mContext) >= response.optDouble(SERVER_VERSION, 0.0)){
-					ToolAlert.showShort(mContext, "已是最新版本");
+					ToolAlert.toastShort(mContext, "已是最新版本");
 				}else{
 					ToolAlert.dialog(mContext, "版本升级", "检测到有新版本，是否马上更新？",
 							new DialogInterface.OnClickListener() {
@@ -109,7 +109,7 @@ public class VersionChecker {
 					pd.dismiss();
 				} catch (Exception e) {
 					pd.dismiss();
-					ToolAlert.showShort(mContext,"下载新版本失败，原因：" + e.getMessage());
+					ToolAlert.toastShort(mContext,"下载新版本失败，原因：" + e.getMessage());
 				}
 			}
 		}.start();

@@ -71,11 +71,11 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 						ToolSMS.getVerificationCode(et_phone.getText().toString());
 						startTimer();
 					}else{
-						ToolAlert.showShort(mContext, "请先开启网络测试");
+						ToolAlert.toastShort(mContext, "请先开启网络测试");
 					}
 					
 				}else{
-					ToolAlert.showShort("请输入大陆的手机号码");
+					ToolAlert.toastShort("请输入大陆的手机号码");
 				}
 			}
 		});
@@ -90,18 +90,18 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 						
 						@Override
 						public void onSucced() {
-							ToolAlert.showShort(PhoneValidateCodeActivity.this, "验证成功");
+							ToolAlert.toastShort(PhoneValidateCodeActivity.this, "验证成功");
 							//释放监听器
 							ToolSMS.release();
 						}
 						
 						@Override
 						public void onFailed(Throwable e) {
-							ToolAlert.showShort(PhoneValidateCodeActivity.this, "验证失败，原因："+e.getMessage());
+							ToolAlert.toastShort(PhoneValidateCodeActivity.this, "验证失败，原因："+e.getMessage());
 						}
 					});
 				}else{
-					ToolAlert.showShort("请输入手机验证码");
+					ToolAlert.toastShort("请输入手机验证码");
 				}
 			}
 		});

@@ -207,7 +207,7 @@ public abstract class ToolHTTP {
 		if(isConnected){
 			return true;
 		}else{
-			ToolAlert.showShort("网络连接失败");
+			ToolAlert.toastShort("网络连接失败");
 			return false;
 		}
 	}

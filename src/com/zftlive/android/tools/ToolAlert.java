@@ -44,9 +44,9 @@ public class ToolAlert {
 	 * @param context 上下文
 	 * @param message 消息
 	 */
-	public static void showLoading(Context context, String message){
+	public static void loading(Context context, String message){
 		
-		showLoading(context,message,true);
+		loading(context,message,true);
 	}
 	
 	/**
@@ -54,9 +54,9 @@ public class ToolAlert {
 	 * @param context 上下文
 	 * @param message 消息
 	 */
-	public static void showLoading(Context context, String message,final ILoadingOnKeyListener listener){
+	public static void loading(Context context, String message,final ILoadingOnKeyListener listener){
 		
-		showLoading(context,message,true,listener);
+		loading(context,message,true,listener);
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class ToolAlert {
 	 * @param message 消息
 	 * @param cancelable 是否可以取消
 	 */
-	public static void showLoading(Context context, String message,boolean cancelable){
+	public static void loading(Context context, String message,boolean cancelable){
 		
 		if (mProgressDialog == null) {
 			mProgressDialog = new ProgressDialog(context,message);
@@ -80,7 +80,7 @@ public class ToolAlert {
 	 * @param context 上下文
 	 * @param message 消息
 	 */
-	public static void showLoading(Context context, String message,boolean cancelable ,final ILoadingOnKeyListener listener){
+	public static void loading(Context context, String message,boolean cancelable ,final ILoadingOnKeyListener listener){
 		
 		if(mProgressDialog == null){
 			mProgressDialog = new ProgressDialog(context,message);
@@ -116,7 +116,7 @@ public class ToolAlert {
 	 * 判断加载对话框是否正在加载
 	 * @return 是否
 	 */
-	public static boolean isShowLoading(){
+	public static boolean isLoading(){
 		
 		if(null != mProgressDialog){
 			return mProgressDialog.isShowing();
@@ -269,7 +269,7 @@ public class ToolAlert {
      * 弹出较短的Toast消息
      * @param msg 消息内容
      */
-    public static void showShort(String msg) {
+    public static void toastShort(String msg) {
         Toast.makeText(MApplication.gainContext(), msg, Toast.LENGTH_SHORT).show();
     }
     
@@ -277,7 +277,7 @@ public class ToolAlert {
      * 弹出较短的Toast消息
      * @param msg 消息内容
      */
-    public static void showShort(Context context,String msg) {
+    public static void toastShort(Context context,String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
@@ -285,7 +285,7 @@ public class ToolAlert {
      * 弹出较长的Toast消息
      * @param msg 消息内容
      */
-    public static void showLong(String msg) {
+    public static void toastLong(String msg) {
         Toast.makeText(MApplication.gainContext(), msg, Toast.LENGTH_LONG).show();
     }
     
@@ -293,7 +293,7 @@ public class ToolAlert {
      * 弹出较长的Toast消息
      * @param msg 消息内容
      */
-    public static void showLong(Context context,String msg) {
+    public static void toastLong(Context context,String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
     
@@ -301,7 +301,7 @@ public class ToolAlert {
      * 弹出自定义时长的Toast消息
      * @param msg 消息内容
      */
-    public static void show(String msg,int duration) {
+    public static void toast(String msg,int duration) {
         Toast.makeText(MApplication.gainContext(), msg, duration).show();
     }
     
@@ -309,7 +309,7 @@ public class ToolAlert {
      * 弹出自定义时长的Toast消息
      * @param msg 消息内容
      */
-    public static void show(Context context,String msg,int duration) {
+    public static void toast(Context context,String msg,int duration) {
         Toast.makeText(context, msg, duration).show();
     }
     
@@ -424,7 +424,7 @@ public class ToolAlert {
      * @param forwardKey 点击消息跳转界面需携带的数据key
      * @param forwardData 点击消息跳转界面需携带的数据value
      */
-    public static void sendNotice(Context mContext,NotificationMessage message){
+    public static void notification(Context mContext,NotificationMessage message){
         
     	//消息管理器
     	NotificationManager mNoticeManager = (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -469,7 +469,7 @@ public class ToolAlert {
      * @param statusBarText 状态栏提示信息文本
      * @param mRemoteViews  自定义不布局通知文件
      */
-    public static void sendNoticeCustomView(Context mContext,NotificationMessage message){
+    public static void notificationCustomView(Context mContext,NotificationMessage message){
     	
     	//消息管理器
     	NotificationManager mNoticeManager = (NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE);

@@ -82,9 +82,9 @@ public class SMSOperationActivity extends BaseActivity implements
 				filter.setPriority(Integer.MAX_VALUE);
 				mSMSBroadcastReceiver = new SMSBroadcastReceiver();
 				registerReceiver(mSMSBroadcastReceiver, filter);
-				ToolAlert.showShort(this, "绑定拦截成功");
+				ToolAlert.toastShort(this, "绑定拦截成功");
 			} else {
-				ToolAlert.showShort(this, "手机号不能为空");
+				ToolAlert.toastShort(this, "手机号不能为空");
 			}
 			break;
 		case R.id.btn_send:
@@ -95,7 +95,7 @@ public class SMSOperationActivity extends BaseActivity implements
 				// ToolSMS.sendMessage(this, phoneNumber,
 				// strContent);//跳转到发送短信界面
 			} else {
-				ToolAlert.showShort(this, "手机号和短信内容两者都不能为空");
+				ToolAlert.toastShort(this, "手机号和短信内容两者都不能为空");
 			}
 			break;
 		default:

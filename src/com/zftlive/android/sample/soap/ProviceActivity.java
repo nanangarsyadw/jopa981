@@ -57,7 +57,7 @@ public class ProviceActivity extends BaseActivity {
 	@Override
 	public void doBusiness(final Context mContext) {
 		//等待对话框
-		ToolAlert.showLoading(this, "数据加载中...");
+		ToolAlert.loading(this, "数据加载中...");
 		
 		//呼叫WebService接口
 		ToolSOAP.callService(ProviceActivity.WEB_SERVER_URL,ProviceActivity.NAME_SPACE,"getSupportProvince", null, new ToolSOAP.WebServiceCallBack() {
@@ -71,7 +71,7 @@ public class ProviceActivity extends BaseActivity {
 					provinceList = parseSoapObject(result);
 					mProvinceList.setAdapter(new ArrayAdapter<String>(ProviceActivity.this, android.R.layout.simple_list_item_1, provinceList));
 				}else{
-					ToolAlert.showShort(mContext, "呼叫WebService-->getSupportProvince失败");
+					ToolAlert.toastShort(mContext, "呼叫WebService-->getSupportProvince失败");
 				}
 			}
 
@@ -80,7 +80,7 @@ public class ProviceActivity extends BaseActivity {
 				//关闭等待对话框
 				ToolAlert.closeLoading();
 				
-				ToolAlert.showShort(mContext, "呼叫WebService-->getSupportProvince失败，原因："+result);
+				ToolAlert.toastShort(mContext, "呼叫WebService-->getSupportProvince失败，原因："+result);
 			}
 		});
 	}

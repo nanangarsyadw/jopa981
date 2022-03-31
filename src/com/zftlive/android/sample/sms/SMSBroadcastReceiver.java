@@ -45,7 +45,7 @@ public class SMSBroadcastReceiver extends BaseBroadcastReceiver {
             	Map<String,String> sms = new HashMap<String,String>();
             	sms.put(message.getDisplayOriginatingAddress(), message.getDisplayMessageBody());
             	smsList.add(sms);
-            	ToolAlert.showLong(context, "SMSBroadcastReceiver-->拦截到来自【"+message.getDisplayOriginatingAddress()+"】的短信-->"+message.getDisplayMessageBody());
+            	ToolAlert.toastLong(context, "SMSBroadcastReceiver-->拦截到来自【"+message.getDisplayOriginatingAddress()+"】的短信-->"+message.getDisplayMessageBody());
             }
 			//取消广播，系统将收不到短信）   
             //abortBroadcast();

@@ -53,7 +53,7 @@ public class CityActivity extends BaseActivity {
 	public void doBusiness(final Context mContext) {
 		
 		//等待对话框
-		ToolAlert.showLoading(this, "数据加载中...");
+		ToolAlert.loading(this, "数据加载中...");
 		
 		//添加参数
 		HashMap<String, String> properties = new HashMap<String, String>();
@@ -69,7 +69,7 @@ public class CityActivity extends BaseActivity {
 					citysList = parseSoapObject(result);
 					mCityListView.setAdapter(new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, citysList));
 				}else{
-					ToolAlert.showShort(mContext, "呼叫WebService-->getSupportCity失败");
+					ToolAlert.toastShort(mContext, "呼叫WebService-->getSupportCity失败");
 				}
 			}
 
@@ -78,7 +78,7 @@ public class CityActivity extends BaseActivity {
 				//关闭等待对话框
 				ToolAlert.closeLoading();
 				
-				ToolAlert.showShort(mContext, "呼叫WebService-->getSupportProvince失败，原因："+result);
+				ToolAlert.toastShort(mContext, "呼叫WebService-->getSupportProvince失败，原因："+result);
 			}
 		});
 	}

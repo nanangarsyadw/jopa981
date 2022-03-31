@@ -36,7 +36,7 @@ public class WeatherActivity extends BaseActivity{
 	@Override
 	public void doBusiness(final Context mContext) {
 		//等待对话框
-		ToolAlert.showLoading(mContext, "数据加载中...");
+		ToolAlert.loading(mContext, "数据加载中...");
 		
 		HashMap<String, String> properties = new HashMap<String, String>();
 		properties.put("theCityName", String.valueOf(getOperation().getParameters("city")));
@@ -55,7 +55,7 @@ public class WeatherActivity extends BaseActivity{
 					}
 					mTextWeather.setText(sb.toString());
 				}else{
-					ToolAlert.showShort(mContext, "呼叫WebService-->getWeatherbyCityName失败");
+					ToolAlert.toastShort(mContext, "呼叫WebService-->getWeatherbyCityName失败");
 				}
 			}
 
@@ -64,7 +64,7 @@ public class WeatherActivity extends BaseActivity{
 				//关闭等待对话框
 				ToolAlert.closeLoading();
 				
-				ToolAlert.showShort(mContext, "呼叫WebService-->getWeatherbyCityName失败，原因："+result);
+				ToolAlert.toastShort(mContext, "呼叫WebService-->getWeatherbyCityName失败，原因："+result);
 			}
 		});
 	}

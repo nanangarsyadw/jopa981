@@ -132,7 +132,7 @@ public class UIWebViewClient extends WebViewClient {
      @Override  
      public void onReceivedError(WebView view, int errorCode,String description, String failingUrl) {  
     	 ToolAlert.closeLoading();
-    	 ToolAlert.showShort("加载数据失败，错误码："+errorCode+ "\n 原因描述："+description);
+    	 ToolAlert.toastShort("加载数据失败，错误码："+errorCode+ "\n 原因描述："+description);
          super.onReceivedError(view, errorCode, description, failingUrl);  
      }  
 }

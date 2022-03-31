@@ -161,7 +161,7 @@ public class DBDemoActivity extends BaseActivity {
 				String username = et_username.getText().toString();
 				String email = et_email.getText().toString();
 				if(!ToolString.isNoBlankAndNoNull(username) || !ToolString.isNoBlankAndNoNull(email)){
-					ToolAlert.showShort(getContext(), "请输入用户名和邮箱");
+					ToolAlert.toastShort(getContext(), "请输入用户名和邮箱");
 					return ;
 				}
 				
@@ -178,7 +178,7 @@ public class DBDemoActivity extends BaseActivity {
 				
 				//提交事务
 				conn.commit(null);
-				ToolAlert.showShort(getContext(), "添加成功");
+				ToolAlert.toastShort(getContext(), "添加成功");
 				
 				//刷新列表
 				queryUserList();
@@ -212,7 +212,7 @@ public class DBDemoActivity extends BaseActivity {
 				String username = et_u_username.getText().toString();
 				String email = et_u_email.getText().toString();
 				if(!ToolString.isNoBlankAndNoNull(username) || !ToolString.isNoBlankAndNoNull(email)){
-					ToolAlert.showShort(getContext(), "请输入更新用户名和邮箱");
+					ToolAlert.toastShort(getContext(), "请输入更新用户名和邮箱");
 					return ;
 				}
 	           
@@ -228,13 +228,13 @@ public class DBDemoActivity extends BaseActivity {
 					//提交事务
 					conn.commit(null);
 					
-					ToolAlert.showShort(getContext(), "修改成功");
+					ToolAlert.toastShort(getContext(), "修改成功");
 					
 					//刷新列表
 					queryUserList();
 					
 	            }else{
-	            	ToolAlert.showShort(getContext(), "没有选择用户");
+	            	ToolAlert.toastShort(getContext(), "没有选择用户");
 	            }
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -317,10 +317,10 @@ public class DBDemoActivity extends BaseActivity {
 									mUserListAdapter.notifyDataSetChanged();
 									try {
 										userDao.delete(rowData);
-										ToolAlert.showShort(getContext(), "删除成功");
+										ToolAlert.toastShort(getContext(), "删除成功");
 									} catch (SQLException e) {
 										e.printStackTrace();
-										ToolAlert.showShort(getContext(), "删除失败，原因："+e.getMessage());
+										ToolAlert.toastShort(getContext(), "删除失败，原因："+e.getMessage());
 									}
 								}
 							},
