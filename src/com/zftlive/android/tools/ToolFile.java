@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -427,6 +428,40 @@ public class ToolFile {
 		} finally {
 			if (fos != null) {
 				fos.close();
+			}
+		}
+	}
+	
+	/**
+	 * 写入文件
+	 * 
+	 * @param inputStream下载文件的字节流对象
+	 * @param filePath文件的存放路径(带文件名称)
+	 * @throws IOException 
+	 */
+	public static File write(InputStream inputStream, String filePath) throws IOException {
+		OutputStream outputStream = null;
+		// 在指定目录创建一个空文件并获取文件对象
+		File mFile = new File(filePath);
+		if (!mFile.getParentFile().exists())
+			mFile.getParentFile().mkdirs();
+		try {
+			outputStream = new FileOutputStream(mFile);
+			byte buffer[] = new byte[4 * 1024];
+			int lenght = 0 ;
+			while ((lenght = inputStream.read(buffer)) > 0) {
+				outputStream.write(buffer,0,lenght);
+			}
+			outputStream.flush();
+			return mFile;
+		} catch (IOException e) {
+			Log.e(TAG, "写入文件失败，原因："+e.getMessage());
+			throw e;
+		}finally{
+			try {
+				inputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
 			}
 		}
 	}
