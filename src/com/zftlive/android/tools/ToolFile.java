@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -107,6 +106,162 @@ public class ToolFile {
 		return "";
 	}
 
+	/**
+	 * 以行为单位读取文件内容，一次读一整行，常用于读面向行的格式化文件
+	 * @param filePath 文件路径
+	 */
+	public static String readFileByLines(String filePath) throws IOException
+	{
+		BufferedReader reader = null;
+		StringBuffer sb = new StringBuffer();
+		try
+		{
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),System.getProperty("file.encoding")));
+			String tempString = null;
+			while ((tempString = reader.readLine()) != null)
+			{
+				sb.append(tempString);
+				sb.append("\n");
+			}
+			reader.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			if (reader != null){reader.close();}
+		}
+
+		return sb.toString();
+
+	}
+	
+	/**
+	 * 以行为单位读取文件内容，一次读一整行，常用于读面向行的格式化文件
+	 * @param filePath 文件路径
+	 * @param encoding 写文件编码
+	 */
+	public static String readFileByLines(String filePath,String encoding) throws IOException
+	{
+		BufferedReader reader = null;
+		StringBuffer sb = new StringBuffer();
+		try
+		{
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),encoding));
+			String tempString = null;
+			while ((tempString = reader.readLine()) != null)
+			{
+				sb.append(tempString);
+				sb.append("\n");
+			}
+			reader.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		} finally
+		{
+			if (reader != null){reader.close();}
+		}
+
+		return sb.toString();
+	}
+	
+	
+	/**
+	 * 保存内容
+	 * @param filePath 文件路径
+	 * @param content 保存的内容
+	 * @throws IOException
+	 */
+	public static void saveToFile(String filePath,String content) throws IOException
+	{
+		saveToFile(filePath,content,System.getProperty("file.encoding"));
+	}
+
+	/**
+	 * 指定编码保存内容
+	 * @param filePath 文件路径
+	 * @param content 保存的内容
+	 * @param encoding 写文件编码
+	 * @throws IOException
+	 */
+	public static void saveToFile(String filePath,String content,String encoding) throws IOException
+	{
+		BufferedWriter writer = null;
+		File file = new File(filePath);
+		try
+		{
+			if(!file.getParentFile().exists())
+			{
+				file.getParentFile().mkdirs();
+			}
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), encoding));
+			writer.write(content);
+
+		} finally
+		{
+			if (writer != null){writer.close();}
+		}
+	}
+	
+	/**
+	 * 追加文本
+	 * @param content 需要追加的内容
+	 * @param file 待追加文件源
+	 * @throws IOException
+	 */
+	public static void appendToFile(String content, File file) throws IOException
+	{
+		appendToFile(content, file, System.getProperty("file.encoding"));
+	}
+
+	/**
+	 * 追加文本
+	 * @param content 需要追加的内容
+	 * @param file 待追加文件源
+	 * @param encoding 文件编码
+	 * @throws IOException
+	 */
+	public static void appendToFile(String content, File file, String encoding) throws IOException
+	{
+		BufferedWriter writer = null;
+		try
+		{
+			if(!file.getParentFile().exists())
+			{
+				file.getParentFile().mkdirs();
+			}
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), encoding));
+			writer.write(content);
+		} finally
+		{
+			if (writer != null){writer.close();}
+		}
+	}
+	
+	/**
+	 * 判断文件是否存在
+	 * @param filePath 文件路径
+	 * @return 是否存在
+	 * @throws Exception
+	 */
+	public static Boolean isExsit(String filePath)
+	{
+		Boolean flag = false ;
+		try
+		{
+			File file = new File(filePath);
+			if(file.exists())
+			{
+				flag = true;
+			}
+		}catch(Exception e){
+			System.out.println("判断文件失败-->"+e.getMessage()); 
+		} 
+		
+		return flag;
+	}
+	
 	/**
 	 * 快速读取程序应用包下的文件内容
 	 * 
