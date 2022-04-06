@@ -1,9 +1,6 @@
 
 package com.zftlive.android.tools;
 
-import java.io.Serializable;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Notification;
@@ -23,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.zftlive.android.MApplication;
@@ -102,7 +98,6 @@ public class ToolAlert {
 	            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
 	                if (keyCode == KeyEvent.KEYCODE_BACK) {
 	                	mProgressDialog.dismiss();
-	                	ToolHTTP.client.cancelAllRequests(true);
 	                }
 	                return false;
 	            }
@@ -132,7 +127,6 @@ public class ToolAlert {
 		if(mProgressDialog != null){
 			mProgressDialog.dismiss();
 			mProgressDialog = null;
-			ToolHTTP.client.cancelAllRequests(true);
 		}
 	}
 	
