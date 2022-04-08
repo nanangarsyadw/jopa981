@@ -27,7 +27,7 @@ import com.zftlive.android.MApplication;
 public abstract class ToolHTTP {
 
 	/**异步的HTTP客户端实例**/
-	public static AsyncHttpClient client = new AsyncHttpClient();
+	protected static AsyncHttpClient client = new AsyncHttpClient();
 	
 	/**默认字符集**/
 	public static String DEFAULT_CHARSET = "UTF-8";
@@ -210,6 +210,21 @@ public abstract class ToolHTTP {
 			ToolAlert.toastShort("网络连接失败");
 			return false;
 		}
+	}
+	
+	/**
+	 * 停止请求
+	 * @param mContext 发起请求的上下文
+	 */
+	public static void stopRequest(Context mContext){
+		client.cancelRequests(mContext, true);
+	}
+	
+	/**
+	 * 停止全部请求
+	 */
+	public static void stopAllRequest(){
+		client.cancelAllRequests(true);
 	}
 	
 }
