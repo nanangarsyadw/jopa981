@@ -203,7 +203,7 @@ public abstract class ToolHTTP {
 	 * @return 网络是否连接
 	 */
 	public static boolean checkNetwork(){
-		boolean isConnected = ToolNetwork.getInstance().init(MApplication.gainContext()).isConnected();
+		boolean isConnected = MApplication.isNetworkReady();
 		if(isConnected){
 			return true;
 		}else{
