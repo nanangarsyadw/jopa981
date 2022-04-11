@@ -81,7 +81,7 @@
         <com.zftlive.android.view.SingleSpinner
             android:id="@+id/sp_school"
             style="@style/accountEditText"
-            android:tag="school" />
+            custom:key="school"/>
     </LinearLayout>
 
     <!-- 性别 -->
@@ -112,9 +112,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:checked="true"
-                android:tag="sex"
                 android:text="@string/sex_male"
                 android:textColor="@color/deepgray"
+                custom:key="sex"
                 custom:value="male" />
 
             <com.zftlive.android.view.RadioButton
@@ -123,9 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:checked="false"
-                android:tag="sex"
                 android:text="@string/sex_female"
                 android:textColor="@color/deepgray"
+                custom:key="sex"
                 custom:value="female" />
         </RadioGroup>
     </LinearLayout>
@@ -151,9 +151,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
-            android:tag="hoby"
             android:text="@string/hoby_sleep"
             android:textColor="@color/deepgray"
+            custom:key="hoby"
             custom:value="sleep" />
 
         <com.zftlive.android.view.CheckBox
@@ -162,9 +162,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
-            android:tag="hoby"
             android:text="@string/hoby_boll"
             android:textColor="@color/deepgray"
+            custom:key="hoby"
             custom:value="boll" />
 
         <com.zftlive.android.view.CheckBox
@@ -173,9 +173,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
-            android:tag="hoby"
             android:text="@string/hoby_read"
             android:textColor="@color/deepgray"
+            custom:key="hoby"
             custom:value="read" />
     </LinearLayout>
 

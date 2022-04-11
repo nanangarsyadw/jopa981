@@ -93,8 +93,9 @@ public class ToolData {
 						data.put((String) view.getTag(),((android.widget.RadioButton) view).getText().toString());
 					}
 				}else if (view.getClass().getName().equals(com.zftlive.android.view.RadioButton.class.getName())) {
-					if (((com.zftlive.android.view.RadioButton) view).isChecked()) {
-						data.put((String) view.getTag(),((com.zftlive.android.view.RadioButton) view).getValue());
+					com.zftlive.android.view.RadioButton mView = (com.zftlive.android.view.RadioButton)view;
+					if (mView.isChecked()) {
+						data.put((String) mView.getKey(),mView.getValue());
 					}
 				} 
 
@@ -113,13 +114,15 @@ public class ToolData {
 					}
 					
 				}else if (view.getClass().getName().equals(com.zftlive.android.view.CheckBox.class.getName())) {
-					if (((com.zftlive.android.view.CheckBox) view).isChecked()) {
-						if (data.containsKey((String) view.getTag())) {
-							Object value = data.get((String) view.getTag());
-							value = value+ "##"+ ((com.zftlive.android.view.CheckBox) view).getValue();
-							data.put((String) view.getTag(), value);
+					
+					com.zftlive.android.view.CheckBox mView = (com.zftlive.android.view.CheckBox)view;
+					if (mView.isChecked()) {
+						if (data.containsKey(mView.getKey())) {
+							Object value = data.get(mView.getKey());
+							value = value+ "##"+ mView.getValue();
+							data.put(mView.getKey(), value);
 						} else {
-							data.put((String) view.getTag(),((com.zftlive.android.view.CheckBox) view).getValue());
+							data.put(mView.getKey(),mView.getValue());
 						}
 					}
 				}
@@ -130,7 +133,8 @@ public class ToolData {
 				else if (view.getClass().getName().equals(android.widget.Spinner.class.getName())) {
 					data.put((String) view.getTag(),((android.widget.Spinner) view).getSelectedItem().toString());
 				}else if (view.getClass().getName().equals(com.zftlive.android.view.SingleSpinner.class.getName())) {
-					data.put((String) view.getTag(),((com.zftlive.android.view.SingleSpinner) view).getSelectedValue());
+					com.zftlive.android.view.SingleSpinner mView = (com.zftlive.android.view.SingleSpinner)view;
+					data.put((String) mView.getKey(),mView.getSelectedValue());
 				}
 			}
 		}
