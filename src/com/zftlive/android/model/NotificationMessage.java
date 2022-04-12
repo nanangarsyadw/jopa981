@@ -1,7 +1,6 @@
 package com.zftlive.android.model;
 
-import java.io.Serializable;
-
+import android.os.Bundle;
 import android.widget.RemoteViews;
 
 /**
@@ -42,16 +41,11 @@ public class NotificationMessage extends Message {
 	 * 点击消息跳转的界面
 	 */
 	private Class forwardComponent;
-
+	
 	/**
-	 * 点击消息跳转界面需携带的数据key
+	 * 点击消息跳转界面需携带的数据
 	 */
-	private String forwardKey;
-
-	/**
-	 * 点击消息跳转界面需携带的数据value
-	 */
-	private Serializable forwardData;
+	private Bundle extras;
 
 	/**
 	 * 自定义消息通知布局View
@@ -98,20 +92,12 @@ public class NotificationMessage extends Message {
 		this.forwardComponent = forwardComponent;
 	}
 
-	public String getForwardKey() {
-		return forwardKey;
+	public Bundle getExtras() {
+		return extras;
 	}
 
-	public void setForwardKey(String forwardKey) {
-		this.forwardKey = forwardKey;
-	}
-
-	public Serializable getForwardData() {
-		return forwardData;
-	}
-
-	public void setForwardData(Serializable forwardData) {
-		this.forwardData = forwardData;
+	public void setExtras(Bundle extras) {
+		this.extras = extras;
 	}
 
 	public RemoteViews getmRemoteViews() {
