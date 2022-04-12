@@ -410,13 +410,7 @@ public class ToolAlert {
     /**
      * 往状态栏发送一条通知消息
      * @param mContext 上下文
-     * @param iconResId 状态栏提示信息图标
-     * @param statusBarText 状态栏提示信息文本
-     * @param msgTitle 消息标题
-     * @param msgContent 消息内容
-     * @param forwardComponent 点击消息跳转的界面
-     * @param forwardKey 点击消息跳转界面需携带的数据key
-     * @param forwardData 点击消息跳转界面需携带的数据value
+     * @param message 消息Bean
      */
     public static void notification(Context mContext,NotificationMessage message){
         
@@ -445,7 +439,7 @@ public class ToolAlert {
         //设置通知显示的参数 
         Intent mIntent = new Intent(mContext, message.getForwardComponent());
         mIntent.setAction(ToolString.gainUUID());
-        mIntent.putExtra(message.getForwardKey(),message.getForwardData());
+        mIntent.putExtras(message.getExtras());
         mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         //自动更新PendingIntent的Extra数据
         PendingIntent pIntent = PendingIntent.getActivity(mContext,0,mIntent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -459,9 +453,7 @@ public class ToolAlert {
     /**
      * 发送自定义布局通知消息
      * @param mContext 上下文
-     * @param iconResId  状态栏提示信息图标
-     * @param statusBarText 状态栏提示信息文本
-     * @param mRemoteViews  自定义不布局通知文件
+     * @param message  消息Bean
      */
     public static void notificationCustomView(Context mContext,NotificationMessage message){
     	
@@ -478,7 +470,7 @@ public class ToolAlert {
         //设置通知显示的参数 
         Intent mIntent = new Intent(mContext, message.getForwardComponent());
         mIntent.setAction(ToolString.gainUUID());
-        mIntent.putExtra(message.getForwardKey(), message.getForwardData());
+        mIntent.putExtras(message.getExtras());
         mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent contentIntent = PendingIntent.getActivity(mContext,0,mIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         mNotify.contentIntent = contentIntent;
