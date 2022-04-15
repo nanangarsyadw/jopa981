@@ -22,6 +22,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.base.BaseAdapter;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.sample.db.entity.User;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolDatabase;
@@ -67,6 +68,10 @@ public class DBDemoActivity extends BaseActivity {
 		btn_end_page = (Button) findViewById(R.id.btn_end_page);
 
 		lv_userlist = (ListView) findViewById(R.id.lv_userlist);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

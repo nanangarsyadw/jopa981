@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.data.DTO;
 import com.zftlive.android.model.Option;
 import com.zftlive.android.tools.ToolAlert;
@@ -56,6 +57,10 @@ public class AutoGainFormActivity extends BaseActivity {
 		SpinnerAdapter mSpinnerAdapter = new SpinnerAdapter(this, R.drawable.view_spinner_drop_list_hover, data);
 		mSpinnerAdapter.setDropDownViewResource(R.drawable.view_spinner_drop_list_ys);
 		sp_school.setAdapter(mSpinnerAdapter);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 

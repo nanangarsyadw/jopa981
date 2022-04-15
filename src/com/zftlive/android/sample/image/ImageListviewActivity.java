@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.base.BaseAdapter;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolImage;
 
 /**
@@ -84,6 +85,10 @@ public class ImageListviewActivity extends BaseActivity {
 		
 		//图片异步加载器
 		universalimageloader = ToolImage.initImageLoader(getApplicationContext());
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

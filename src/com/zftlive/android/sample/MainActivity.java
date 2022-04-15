@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.base.BaseAdapter;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * Sample列表集合界面--自动收集AndroidManifest.xml配置
@@ -69,6 +70,8 @@ public class MainActivity extends BaseActivity {
 		DemoActivityAdapter mAdapter = new DemoActivityAdapter(this);
 		mAdapter.addItem(getListData());
 		mListView.setAdapter(mAdapter);
+		
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
 	}
 
 	@Override

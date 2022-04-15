@@ -2,13 +2,17 @@ package com.zftlive.android.base;
 
 import java.lang.ref.WeakReference;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.zftlive.android.MApplication;
+import com.zftlive.android.R;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -111,5 +115,15 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 	 */
 	public Operation getOperation(){
 		return this.mBaseOperation;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

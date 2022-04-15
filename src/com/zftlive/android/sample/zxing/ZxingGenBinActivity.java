@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolFile;
 import com.zftlive.android.tools.ToolPicture;
@@ -41,6 +42,10 @@ public class ZxingGenBinActivity extends BaseActivity {
 		btn_make_bar = (Button)findViewById(R.id.btn_make_bar);
 		qr_image = (ImageView)findViewById(R.id.qr_image);
 		validate_image = (ImageView)findViewById(R.id.validate_image);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

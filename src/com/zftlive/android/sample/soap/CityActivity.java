@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolSOAP;
 
@@ -47,6 +48,10 @@ public class CityActivity extends BaseActivity {
 				getOperation().forward(WeatherActivity.class);
 			}
 		});
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

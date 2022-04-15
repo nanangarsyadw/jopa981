@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * 动画启动进入界面
@@ -33,6 +34,10 @@ public class AnimationInActivity extends BaseActivity {
 	public void initView(View view) {
         mAnimSp = (Spinner) findViewById(R.id.animation_sp);
         mButton=(Button) findViewById(R.id.other_button);
+        
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

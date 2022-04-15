@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolUnit;
 
 /**
@@ -116,6 +117,9 @@ public class LineChartActivity extends BaseActivity {
 	    mUpRightTipView = LayoutInflater.from(this).inflate(R.layout.chat_tips_up_right, null);
 	    tv_tips_ur = (TextView)mUpRightTipView.findViewById(R.id.tv_tips);
 	    
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

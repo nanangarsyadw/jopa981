@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * 底部弹出泡泡选择菜单样例
@@ -44,6 +45,10 @@ public class PopDialogMenuActivity extends BaseActivity {
 				popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 			}
 		});
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

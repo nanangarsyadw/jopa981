@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * 动画启动退出界面
@@ -21,7 +22,9 @@ public class AnimationOutActivity extends BaseActivity {
 
 	@Override
 	public void initView(View view) {
-
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

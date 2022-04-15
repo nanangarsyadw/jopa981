@@ -26,6 +26,7 @@ import android.widget.ImageView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolPicture;
 
@@ -68,6 +69,10 @@ public class CameraPictureActivity extends BaseActivity {
 				takePic();
 			}
 		});
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolLocation;
 import com.zftlive.android.tools.ToolPhone;
 
@@ -38,6 +39,10 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 		btn_carema.setOnClickListener(this);
 		btn_photo = (Button) findViewById(R.id.btn_photo);
 		btn_photo.setOnClickListener(this);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 
 	}
 

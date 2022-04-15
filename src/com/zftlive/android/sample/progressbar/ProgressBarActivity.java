@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.view.progressbar.RoundProgressBar;
 import com.zftlive.android.view.progressbar.VerticalProgressBar;
 
@@ -43,6 +44,10 @@ public class ProgressBarActivity extends BaseActivity implements OnClickListener
 		
 		btn_go = (Button)findViewById(R.id.btn_go);
 		btn_reset = (Button)findViewById(R.id.btn_reset);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

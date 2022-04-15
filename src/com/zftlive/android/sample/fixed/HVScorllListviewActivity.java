@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolDateTime;
 import com.zftlive.android.tools.ToolFile;
 import com.zftlive.android.tools.ToolString;
@@ -110,6 +111,10 @@ public class HVScorllListviewActivity extends BaseActivity {
 		//等待对话框
 		requestData(1);
 		mListView.getLoadingLayoutProxy().setLastUpdatedLabel("上次更新："+ToolDateTime.formatDateTime(new Date(), "yyyy-MM-dd HH:mm"));
+	
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override

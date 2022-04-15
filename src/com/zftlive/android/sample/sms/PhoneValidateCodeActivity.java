@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolSMS;
 import com.zftlive.android.tools.ToolString;
@@ -47,6 +48,10 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 		et_phone_code = (EditText)findViewById(R.id.et_phone_code);
 		btn_gain_smscode = (Button)findViewById(R.id.btn_gain_smscode);
 		btn_validate = (Button)findViewById(R.id.btn_validate);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override
