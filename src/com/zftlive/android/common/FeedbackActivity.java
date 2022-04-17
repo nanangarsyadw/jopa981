@@ -4,6 +4,8 @@ import org.apache.http.Header;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -39,6 +41,10 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 		et_message = (EditText)findViewById(R.id.et_message);
 		btn_sumbit = (Button)findViewById(R.id.btn_sumbit);
 		btn_sumbit.setOnClickListener(this);
+		
+		//初始化返回按钮
+		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
 	}
 
 	@Override
