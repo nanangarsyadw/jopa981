@@ -102,7 +102,7 @@
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light" >
+        android:theme="@style/CustomAppTheme" >
 
         <!-- 在本应用中导入需要使用的包，放在application里面activity外面 -->
         <uses-library android:name="android.test.runner" />
@@ -120,6 +120,7 @@
         <!-- 程序主界面 -->
         <activity
             android:name=".sample.MainActivity"
+            android:logo="@drawable/ic_list_white_48dp"
             android:label="@string/MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
