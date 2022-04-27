@@ -1,8 +1,10 @@
 package com.zftlive.android.sample.db;
 
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.j256.ormlite.android.AndroidDatabaseConnection;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.support.DatabaseConnection;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.base.BaseAdapter;
@@ -180,6 +183,32 @@ public class DBDemoActivity extends BaseActivity {
 				user.setUsername(username);
 				user.setEmail(email);
 				userDao.create(user);
+				
+				/**
+				 * 
+				//批处理方法一：（需要确保每一个事物的开启与关闭）
+				DatabaseConnection connection = userDao.startThreadConnection();
+				Savepoint savePoint = null;
+				try {
+				    savePoint = conn.setSavePoint(null);
+				    doInserts(userDao);
+				} finally {
+				    // commit at the end
+				    conn.commit(savePoint);
+				    userDao.endThreadConnection(conn);
+				}
+				
+				//批处理方法二：（不需要确保每一个事物的开启与关闭）
+				userDao.callBatchTasks(new Callable<Void>() {
+
+					@Override
+					public Void call() throws Exception {
+						doInserts(dao);
+				        return null;
+					}
+					
+				});
+				**/
 				
 				//提交事务
 				conn.commit(null);
