@@ -2,14 +2,20 @@ package com.zftlive.android.tools;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -312,4 +318,96 @@ public class ToolPhone {
 					.show();
 		}
 	}
+	
+	/**
+	 * 调用WPS打开office文档
+	 * http://bbs.wps.cn/thread-22349340-1-1.html
+	 * @param mContext 上下文
+	 * @param filePath 文件路径
+	 */
+	public static void openOfficeByWPS(Context mContext, String filePath){
+		
+		try {
+			
+			//文件存在性检查
+			File file = new File(filePath);
+			if (!file.exists()) {
+				Toast.makeText(mContext, filePath+"文件路径不存在", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			//检查是否安装WPS
+			String wpsPackageEng = "cn.wps.moffice_eng";//普通版
+			String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
+			
+			/**
+			String wpsPackageEn = "cn.wps.moffice_eng";//英文版
+			String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2";
+			**/
+			
+			Intent intent = new Intent();
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    intent.addCategory(Intent.CATEGORY_DEFAULT);
+		    intent.setClassName(wpsPackageEng,wpsActivity);
+		    
+		    Uri uri = Uri.fromFile(new File(filePath));
+			intent.setData(uri);
+			mContext.startActivity(intent);
+			
+		}catch (ActivityNotFoundException e){
+			Toast.makeText(mContext, "本地未安装WPS", Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			Toast.makeText(mContext, "打开文档失败", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	/**
+	 * 判断是否安装指定包名的APP
+	 * @param mContext 上下文
+	 * @param packageName 包路径
+	 * @return
+	 */
+	public static boolean isInstalledApp(Context mContext, String packageName) {
+		if (packageName == null || "".equals(packageName)) {
+			return false;
+		}
+
+		try {
+			ApplicationInfo info = mContext.getPackageManager()
+					.getApplicationInfo(packageName,
+							PackageManager.GET_UNINSTALLED_PACKAGES);
+			return true;
+		} catch (NameNotFoundException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * 判断是否存在指定的Activity
+	 * @param mContext 上下文
+	 * @param packageName 包名
+	 * @param className activity全路径类名
+	 * @return
+	 */
+	public static boolean isExistActivity(Context mContext, String packageName,String className) {
+		
+		Boolean result = true;
+		Intent intent = new Intent();
+		intent.setClassName(packageName, className);
+
+		if (mContext.getPackageManager().resolveActivity(intent, 0) == null) {
+			result =  false;
+		} else if (intent.resolveActivity(mContext.getPackageManager()) == null) {
+			result =  false;
+		} else {
+			List<ResolveInfo> list = mContext.getPackageManager()
+					.queryIntentActivities(intent, 0);
+			if (list.size() == 0) {
+				result =  false;
+			}
+		}
+
+		return result;
+	}
+	
 }
