@@ -337,18 +337,14 @@ public class ToolPhone {
 			}
 			
 			//检查是否安装WPS
-			String wpsPackageEng = "cn.wps.moffice_eng";//普通版
-			String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
-			
-			/**
-			String wpsPackageEn = "cn.wps.moffice_eng";//英文版
-			String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2";
-			**/
+			String wpsPackageEng = "cn.wps.moffice_eng";//普通版与英文版一样
+//			String wpsActivity = "cn.wps.moffice.documentmanager.PreStartActivity";
+			String wpsActivity2 = "cn.wps.moffice.documentmanager.PreStartActivity2";//默认第三方程序启动
 			
 			Intent intent = new Intent();
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		    intent.addCategory(Intent.CATEGORY_DEFAULT);
-		    intent.setClassName(wpsPackageEng,wpsActivity);
+		    intent.setClassName(wpsPackageEng,wpsActivity2);
 		    
 		    Uri uri = Uri.fromFile(new File(filePath));
 			intent.setData(uri);
