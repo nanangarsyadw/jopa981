@@ -19,7 +19,7 @@
         android:background="@drawable/view_linnerlayout_border"
         android:padding="5dp"
         android:maxLength="1000"
-        android:minLines="6" />
+        android:minLines="15" />
 
     <Button
         android:id="@+id/btn_sumbit"
@@ -30,6 +30,7 @@
         android:padding="10dp"
         android:text="@string/btn_submit"
         android:textColor="@color/white"
+        android:visibility="invisible"
         android:textSize="16sp" />
 
 </LinearLayout>
