@@ -99,4 +99,15 @@
     <string name="bound_search_result_head_qxr">起息日</string>
     <string name="bound_search_result_head_dqr">兑付日</string> 
     
+    <!-- ActionBar按钮 -->
+    <string name="action_about">关于</string>
+    <string name="action_scan">扫一扫</string>
+    <string name="action_search">搜索</string> 
+    <string name="action_setting">设置</string>
+    <string name="action_favrate">收藏</string> 
+    <string name="action_share">分享</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_submit">提交</string>
+    <string name="action_feedback">意见反馈</string> 
+     
 </resources>
