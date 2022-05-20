@@ -34,7 +34,7 @@
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share_white_48dp"
         android:orderInCategory="60"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="@string/action_share"/>
 
 </menu>
