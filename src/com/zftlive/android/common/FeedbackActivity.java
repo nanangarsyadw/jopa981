@@ -7,10 +7,10 @@ import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.zftlive.android.R;
@@ -20,14 +20,12 @@ import com.zftlive.android.tools.ToolString;
 
 /**
  * 意见反馈Activity
- * @author Administrator
+ * @author 曾繁添
  * @version 1.0
  */
-public class FeedbackActivity extends BaseActivity implements OnClickListener {
+public class FeedbackActivity extends BaseActivity{
 
 	private EditText et_message;
-	private Button btn_sumbit;
-	private ViewGroup root;
 	private final static String FEED_BACK_URL = "";
 	
 	@Override
@@ -37,14 +35,11 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void initView(View view) {
-		root = (ViewGroup)findViewById(R.id.ll_root);
 		et_message = (EditText)findViewById(R.id.et_message);
-		btn_sumbit = (Button)findViewById(R.id.btn_sumbit);
-		btn_sumbit.setOnClickListener(this);
 		
 		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		String strCenterTitle = getResources().getString(R.string.FeedbackActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override
@@ -61,21 +56,50 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 	public void destroy() {
 		
 	}
-
+	
 	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btn_sumbit:
-			//提交表单
+	public boolean onCreateOptionsMenu(Menu menu) {
+		//渲染菜单
+		getMenuInflater().inflate(R.menu.actionbar_menu, menu);  
+		
+		//根据业务需要订制菜单
+		ActionBarManager.initActionBarSubmitButton(menu);
+		 
+	     return true;  
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {  
+        case R.id.action_settings:  
+            Toast.makeText(this, "action_settings Menu Item refresh selected",  
+                    Toast.LENGTH_SHORT).show();  
+            break;  
+        case R.id.action_fav:  
+            Toast.makeText(this, "action_fav Menu Item about selected", Toast.LENGTH_SHORT)  
+                    .show();  
+            break;  
+        case R.id.action_about:  
+            Toast.makeText(this, " action_about Menu Item edit selected", Toast.LENGTH_SHORT)  
+                    .show();  
+            break;  
+        case R.id.action_search:  
+            Toast.makeText(this, " action_search Menu Item search selected",  
+                    Toast.LENGTH_SHORT).show();  
+        case R.id.action_submit:  
+        	//提交表单
 			if(validateForm()){
 				//需要设置表单元素控件的tag属性，作为表单提交的key
 //				DTO<String,Object> form = ToolData.gainForm(root, new DTO<String,Object>());
 //				ToolHTTP.post(FEED_BACK_URL, form, getFeedBackHandler());
 			}
-			break;
-		default:
-			break;
-		}
+            break;  
+        default:  
+            break;  
+        }  
+		
+		return super.onOptionsItemSelected(item);
 	}
 	
 	/**
