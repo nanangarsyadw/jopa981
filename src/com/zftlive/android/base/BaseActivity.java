@@ -1,18 +1,21 @@
 package com.zftlive.android.base;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.Window;
 
 import com.zftlive.android.MApplication;
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -38,6 +41,10 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "BaseActivity-->onCreate()");
 		
+		//设置渲染视图View
+		mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
+		setContentView(mContextView);
+		
 		//获取应用Application
 		mApplication = (MApplication)getApplicationContext();
 		
@@ -48,15 +55,14 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 		//实例化共通操作
 		mBaseOperation = new Operation(this);
 		
-		//设置渲染视图View
-		mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
-		setContentView(mContextView);
-		
 		//初始化控件
 		initView(mContextView);
 		
 		//业务操作
 		doBusiness(this);
+		
+		//显示VoerFlowMenu
+		displayOverflowMenu(getContext());
 	}
 	
 	@Override
@@ -100,6 +106,42 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 	}
 	
 	/**
+	 * 显示Actionbar菜单图标
+	 */
+	@Override
+	public boolean onMenuOpened(int featureId, Menu menu) {
+		if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
+			if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+				try {
+					Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+					m.setAccessible(true);
+					m.invoke(menu, true);//显示
+				} catch (Exception e) {
+					Log.e(TAG, "onMenuOpened-->"+e.getMessage());
+				}
+			}
+		}
+		return super.onMenuOpened(featureId, menu);
+	}
+	
+	/**
+	 * 显示OverFlowMenu按钮
+	 * @param mContext 上下文Context
+	 */
+	public void displayOverflowMenu(Context mContext) {
+	     try {
+	        ViewConfiguration config = ViewConfiguration.get(mContext);
+	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+	        if(menuKeyField != null) {
+	            menuKeyField.setAccessible(true);
+	            menuKeyField.setBoolean(config, false);//显示
+	        }
+	    } catch (Exception e) {
+	        Log.e("ActionBar", e.getMessage());
+	    }
+	}
+	
+	/**
 	 * 获取当前Activity
 	 * @return
 	 */
@@ -117,13 +159,13 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 		return this.mBaseOperation;
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				finish();
-				break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//			case android.R.id.home:
+//				finish();
+//				break;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 }
