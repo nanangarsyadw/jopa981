@@ -45,9 +45,9 @@ public class ProgressBarActivity extends BaseActivity implements OnClickListener
 		btn_go = (Button)findViewById(R.id.btn_go);
 		btn_reset = (Button)findViewById(R.id.btn_reset);
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.ProgressBarActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

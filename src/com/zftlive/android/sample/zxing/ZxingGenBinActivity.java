@@ -43,9 +43,9 @@ public class ZxingGenBinActivity extends BaseActivity {
 		qr_image = (ImageView)findViewById(R.id.qr_image);
 		validate_image = (ImageView)findViewById(R.id.validate_image);
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.ZxingGenBinActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

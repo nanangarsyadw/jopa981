@@ -58,9 +58,9 @@ public class AutoGainFormActivity extends BaseActivity {
 		mSpinnerAdapter.setDropDownViewResource(R.drawable.view_spinner_drop_list_ys);
 		sp_school.setAdapter(mSpinnerAdapter);
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.AutoGainFormActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 

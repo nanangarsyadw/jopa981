@@ -43,9 +43,9 @@ public class SMSOperationActivity extends BaseActivity implements
 		btn_choice = (Button) findViewById(R.id.btn_choice);
 		btn_choice.setOnClickListener(this);
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.SMSOperationActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 
 	}
 

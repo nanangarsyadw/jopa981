@@ -71,7 +71,9 @@ public class MainActivity extends BaseActivity {
 		mAdapter.addItem(getListData());
 		mListView.setAdapter(mAdapter);
 		
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.MainActivity);
+		ActionBarManager.initMenuListTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

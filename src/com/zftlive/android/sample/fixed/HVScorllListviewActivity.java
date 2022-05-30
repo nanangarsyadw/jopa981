@@ -112,9 +112,9 @@ public class HVScorllListviewActivity extends BaseActivity {
 		requestData(1);
 		mListView.getLoadingLayoutProxy().setLastUpdatedLabel("上次更新："+ToolDateTime.formatDateTime(new Date(), "yyyy-MM-dd HH:mm"));
 	
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.HVScorllListviewActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

@@ -1,11 +1,9 @@
 package com.zftlive.android.sample.menu;
 
+import android.app.ActionBar;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +13,7 @@ import android.widget.ListView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * 抽屉菜单
@@ -26,7 +25,6 @@ import com.zftlive.android.base.BaseActivity;
 public class DrawerLayoutActivity extends BaseActivity {
 	private String[] mPlanetTitles;
 	private DrawerLayout mDrawerLayout;
-	private ActionBarDrawerToggle mDrawerToggle;
 	private ListView mDrawerList;
 
 	@Override
@@ -41,63 +39,47 @@ public class DrawerLayoutActivity extends BaseActivity {
 		// 绑定Listview
 		mPlanetTitles = getResources().getStringArray(R.array.anim_type);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, mPlanetTitles));
+		mDrawerList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, mPlanetTitles));
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				setTitle(mPlanetTitles[position]);
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				ActionBarManager.updateActionCenterTitle(getContext(),getActionBar(), mPlanetTitles[position]);
 				mDrawerList.setItemChecked(position, true);
 				mDrawerLayout.closeDrawer(mDrawerList);
 			}
 		});
-
-		// 抽屉菜单
-		mDrawerLayout.setDrawerShadow(R.drawable.view_fixheadtable_shadow_left,
-				GravityCompat.START);
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_menu_black_36dp, R.drawable.ic_menu_black_36dp,
-				R.drawable.ic_expand_more_grey600_36dp) {
-			public void onDrawerClosed(View view) {
-				invalidateOptionsMenu();
-			}
-
-			public void onDrawerOpened(View drawerView) {
-				invalidateOptionsMenu();
-			}
-		};
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 
 	@Override
 	public void doBusiness(Context mContext) {
-
-		// ActionBar配置 Note: getActionBar() Added in API level 11
-		getActionBar().setDisplayShowHomeEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-		getActionBar().setDisplayUseLogoEnabled(true);
-		getActionBar().setLogo(R.drawable.ic_menu_black_36dp);
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayShowHomeEnabled(true);
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setLogo(R.drawable.ic_list_white_48dp);
+		actionBar.setDisplayUseLogoEnabled(true);
+		String strCenterTitle = getResources().getString(R.string.DrawerLayoutActivity);
+		ActionBarManager.initTitleCenterActionBar(mContext,actionBar,strCenterTitle);
 	}
-
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		mDrawerToggle.syncState();
-	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// 按钮按下，将抽屉打开
+			if(mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+				mDrawerLayout.closeDrawer(Gravity.LEFT);
+			}else{
+				mDrawerLayout.openDrawer(Gravity.LEFT);
+			}
+			break;
+		default:
+			break;
 		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		mDrawerToggle.onConfigurationChanged(newConfig);
+		
+	    return true;
 	}
 
 	@Override

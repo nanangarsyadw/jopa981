@@ -72,9 +72,9 @@ public class DBDemoActivity extends BaseActivity {
 
 		lv_userlist = (ListView) findViewById(R.id.lv_userlist);
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.DBDemoActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

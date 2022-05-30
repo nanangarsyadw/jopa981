@@ -117,9 +117,9 @@ public class LineChartActivity extends BaseActivity {
 	    mUpRightTipView = LayoutInflater.from(this).inflate(R.layout.chat_tips_up_right, null);
 	    tv_tips_ur = (TextView)mUpRightTipView.findViewById(R.id.tv_tips);
 	    
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.LineChartActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 	}
 
 	@Override

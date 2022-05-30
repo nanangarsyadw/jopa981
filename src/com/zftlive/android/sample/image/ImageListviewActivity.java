@@ -86,9 +86,10 @@ public class ImageListviewActivity extends BaseActivity {
 		//图片异步加载器
 		universalimageloader = ToolImage.initImageLoader(getApplicationContext());
 		
-		//初始化返回按钮
-		ActionBarManager.initActionBar(getApplicationContext(), getActionBar());
-		ActionBarManager.initBackTitle(getApplicationContext(),getActionBar());
+		//初始化带返回按钮的标题栏
+		String strCenterTitle = getResources().getString(R.string.ImageListviewActivity);
+		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+		
 	}
 
 	@Override
