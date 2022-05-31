@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -91,6 +92,19 @@ public class MainActivity extends BaseActivity {
 		
 	}
 
+	/**
+	 * Actionbar点击[左侧图标]关闭事件
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+//				finish();
+				break;
+		}
+		return true;
+	}
+	
 	protected List<Map<String, Object>> getListData(){
 		List<Map<String, Object>> mListViewData = new ArrayList<Map<String, Object>>();
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
