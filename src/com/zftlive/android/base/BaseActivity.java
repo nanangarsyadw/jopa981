@@ -159,13 +159,16 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 		return this.mBaseOperation;
 	}
 	
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//			case android.R.id.home:
-//				finish();
-//				break;
-//		}
-//		return super.onOptionsItemSelected(item);
-//	}
+	/**
+	 * Actionbar点击返回键关闭事件
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
