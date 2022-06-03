@@ -69,7 +69,7 @@ public class ToolToast {
 	 * @return
 	 */
 	private static Toast buildToast(Context context,String msg,int duration){
-		return buildToast(context,msg,duration,"#d83636",16);
+		return buildToast(context,msg,duration,"#000000",16);
 	}
 	
 
