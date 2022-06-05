@@ -48,9 +48,9 @@ public class Launcher extends BaseActivity {
 				//右往左推出效果
 //				overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 				//转动淡出效果1
-//				overridePendingTransition(R.anim.scale_rotate_in,R.anim.alpha_out);
+				overridePendingTransition(R.anim.scale_rotate_in,R.anim.alpha_out);
 				//下往上推出效果
-				overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+//				overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
 			}
 		});
 		view.setAnimation(animation);
