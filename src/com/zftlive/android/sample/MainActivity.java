@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +18,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.base.BaseAdapter;
 import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.tools.ToolToast;
 
 /**
  * Sample列表集合界面--自动收集AndroidManifest.xml配置
@@ -105,6 +108,34 @@ public class MainActivity extends BaseActivity {
 		return true;
 	}
 	
+	long waitTime = 2000;
+    long touchTime = 0;
+	
+	/**
+	 * 监听[返回]键事件
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// 返回键
+		if (KeyEvent.KEYCODE_BACK == keyCode) {
+
+			long currentTime = System.currentTimeMillis();
+			if ((currentTime - touchTime) >= waitTime) {
+				ToolToast.showShort("再按一次，退出程序");
+				touchTime = currentTime;
+			} else {
+				((MApplication) getApplicationContext()).removeAll();
+			}
+
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 初始化列表数据
+	 * @return
+	 */
 	protected List<Map<String, Object>> getListData(){
 		List<Map<String, Object>> mListViewData = new ArrayList<Map<String, Object>>();
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -124,6 +155,12 @@ public class MainActivity extends BaseActivity {
         return mListViewData;
 	}
 	
+	/**
+	 * 构建每一个Item点击Intent
+	 * @param packageName
+	 * @param componentName
+	 * @return
+	 */
     protected Intent buildIntent(String packageName, String componentName) {
         Intent result = new Intent();
         result.setClassName(packageName, componentName);
