@@ -88,21 +88,12 @@
         <attr name="border_inside_color" format="color"/>
     </declare-styleable> 
     <!-- 圆形图片（结束） -->
-    
-    
-    <!-- 等待操作对话框（开始）  -->
-    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-    </style>
-    <style name="CustomProgressDialog" parent="@style/CustomDialog">
-        <item name="android:windowBackground">@drawable/view_progress_dialog_bg</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-    <!-- 等待操作对话框（结束）  -->
+
+
+    <!-- 滑动删除列表 -->
+    <declare-styleable name="swipelistviewstyle">    
+        <attr name="right_width" format="dimension"></attr>  
+    </declare-styleable>
 
     
     <!-- TextView（RadioButton/CheckBox）共通value（开始） -->
