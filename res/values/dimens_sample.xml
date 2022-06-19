@@ -13,4 +13,15 @@
     <dimen name="bond_table_cell_text">14sp</dimen>
     <!-- 债券搜索结果列表宽度 -->
     <dimen name="bond_table_header_width">140dp</dimen> 
+    
+    <!-- 我的收藏界面字体大小配置（开始） -->
+    <!-- 列表Item日期字体大小 -->
+    <dimen name="fav_list_item_date">14sp</dimen>
+    <!-- 列表Item类别字体大小 -->
+    <dimen name="fav_list_item_category">14sp</dimen>
+    <!-- 列表Item标题字体大小 -->
+    <dimen name="fav_list_item_title">16sp</dimen>
+    <!-- 列表Item删除按钮字体大小 -->
+    <dimen name="fav_list_item_delete">16sp</dimen>      
+<!-- 我的收藏界面字体大小配置（结束） -->
 </resources>

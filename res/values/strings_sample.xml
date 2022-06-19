@@ -99,6 +99,13 @@
     <string name="bound_search_result_head_qxr">起息日</string>
     <string name="bound_search_result_head_dqr">兑付日</string> 
     
+    <!-- 数据库增删改查界面 -->
+    <string name="title_favorite">我的收藏</string>
+    <string name="list_publish_date">2014/07/25</string>
+    <string name="list_category">【财经新闻】</string>
+    <string name="list_title">企业市场供给压力不足为惧企业市场供给压力不足为惧企业市场供给压力不足为惧</string>
+    <string name="menu_delete">删除</string>
+    
     <!-- ActionBar按钮 -->
     <string name="action_about">关于</string>
     <string name="action_scan">扫一扫</string>
