@@ -26,6 +26,7 @@ import com.zftlive.android.base.BaseEntity;
  * @version 1.0
  *
  */
+@SuppressWarnings("rawtypes")
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static String databaseName = "default_database";
@@ -166,6 +167,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	 * 获取Dao
 	 * @throws SQLException 
 	 */
+	@SuppressWarnings("unchecked")
 	public synchronized <D extends Dao<T, ?>, T> D getDao(Class<T> clazz) throws SQLException {
 		Dao dao = null;
 		try {
@@ -197,7 +199,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	/**
      * 释放资源
      */
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void close() {
         super.close();
         for (String key : daoMap.keySet()) {
