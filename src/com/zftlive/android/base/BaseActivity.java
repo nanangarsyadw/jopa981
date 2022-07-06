@@ -16,6 +16,7 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 
 import com.zftlive.android.MApplication;
+import com.zftlive.android.R;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -167,6 +168,8 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				finish();
+				//关闭窗体动画显示  
+			    overridePendingTransition(R.anim.activity_close,R.anim.alpha_out);  
 				break;
 		}
 		return super.onOptionsItemSelected(item);
