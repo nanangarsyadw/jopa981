@@ -21,6 +21,8 @@ public abstract class BaseAdapter extends android.widget.BaseAdapter {
 	private Activity mContext;
 	/** 每一页显示条数 **/
 	private int mPerPageSize = 10;
+	/**日志输出标志**/
+	protected final String TAG = this.getClass().getSimpleName();
 
 	public BaseAdapter() {
 		this(null);

@@ -10,4 +10,6 @@ import android.app.Service;
  */
 public abstract class BaseService extends Service {
 
+	/**日志输出标志**/
+	protected final String TAG = this.getClass().getSimpleName();
 }

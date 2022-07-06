@@ -10,4 +10,6 @@ import android.content.BroadcastReceiver;
  */
 public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
 
+	/**日志输出标志**/
+	protected final String TAG = this.getClass().getSimpleName();
 }
