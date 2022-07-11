@@ -17,6 +17,7 @@ import android.view.Window;
 
 import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
+import com.zftlive.android.view.SwipeBackLayout;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -34,6 +35,8 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 	private View mContextView = null;
 	/**共通操作**/
 	private Operation mBaseOperation = null;
+	/**右滑关闭当前Activity顶层容器**/
+	protected SwipeBackLayout rootView;
 	/**日志输出标志**/
 	protected final String TAG = this.getClass().getSimpleName();
 	
@@ -169,9 +172,18 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 			case android.R.id.home:
 				finish();
 				//关闭窗体动画显示  
-			    overridePendingTransition(R.anim.activity_close,R.anim.alpha_out);  
+//			    overridePendingTransition(R.anim.activity_close,R.anim.alpha_out);
+			    overridePendingTransition(0, R.anim.base_slide_right_out);
 				break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		//关闭窗体动画显示  
+//		overridePendingTransition(R.anim.activity_close,R.anim.alpha_out);
+		overridePendingTransition(0, R.anim.base_slide_right_out);
 	}
 }
