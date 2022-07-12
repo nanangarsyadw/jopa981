@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.zftlive.android.MApplication;
+import com.zftlive.android.R;
 import com.zftlive.android.config.SysEnv;
 import com.zftlive.android.data.DTO;
 import com.zftlive.android.tools.ToolAlert;
@@ -39,6 +40,7 @@ public class Operation {
 	public void forward(Class<? extends Activity> activity) {
 		mIntent.setClass(mContext, activity);
 		mContext.startActivity(mIntent);
+		mContext.overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
 	}
 	
 	/**
