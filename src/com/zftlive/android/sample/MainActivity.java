@@ -59,14 +59,7 @@ public class MainActivity extends BaseActivity {
 			     Intent intent = (Intent) map.get("intent");
 			     startActivity(intent);
 			     //过场动画
-			     if(position % 2 == 0){
-			    	//右往左推出效果
-					 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-			     }else{
-					//左上角展开淡出效果
-					overridePendingTransition(R.anim.scale_translate,R.anim.alpha_out);
-			     }
-				 
+				 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 			}
 		});
 		
