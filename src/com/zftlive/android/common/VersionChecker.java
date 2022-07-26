@@ -25,8 +25,8 @@ import android.util.Log;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.zftlive.android.tools.ToolAlert;
 import com.zftlive.android.tools.ToolDateTime;
+import com.zftlive.android.tools.ToolFile;
 import com.zftlive.android.tools.ToolHTTP;
-import com.zftlive.android.tools.ToolString;
 
 /**
  * 共通机能-版本检测/更新
@@ -39,6 +39,7 @@ public class VersionChecker {
 	public static final String SERVER_VERSION = "version";
 	public static final String CHANGE_LOG = "changeLog";
 	public static final String APK_URL = "apkURL";
+	public final static String SD_FOLDER = ToolFile.gainSDCardPath()+"/VersionChecker/";
 	private static VersionChecker mChecker = new VersionChecker();
 	private static final String TAG = VersionChecker.class.getSimpleName();
 	
@@ -109,7 +110,7 @@ public class VersionChecker {
 					pd.dismiss();
 				} catch (Exception e) {
 					pd.dismiss();
-					ToolAlert.toastShort(mContext,"下载新版本失败，原因：" + e.getMessage());
+					Log.e(TAG, "下载新版本失败，原因：" + e.getMessage());
 				}
 			}
 		}.start();
@@ -134,7 +135,7 @@ public class VersionChecker {
 			// 获取到文件的大小
 			pd.setMax(conn.getContentLength());
 			InputStream is = conn.getInputStream();
-			String fileName = ToolString.gainUUID()+"_"+ToolDateTime.formatDateTime(new java.util.Date(),"yyyyMMddHHmm") + ".apk";
+			String fileName = SD_FOLDER+ToolDateTime.formatDateTime(new java.util.Date(),"yyyyMMddHHmm") + ".apk";
 			File file = new File(fileName);
 			// 目录不存在创建目录
 			if (!file.getParentFile().exists())
