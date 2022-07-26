@@ -32,7 +32,7 @@ public class AnimationOutActivity extends BaseActivity {
 		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
 		
 		//追加右滑关闭activity顶层View
-		rootView = (SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.base, null);
+		rootView = (SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.view_swipeback_root, null);
 		rootView.attachToActivity(this);
 	}
 
