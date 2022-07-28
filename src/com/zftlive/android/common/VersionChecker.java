@@ -66,7 +66,7 @@ public class VersionChecker {
 								@Override
 								public void onClick(DialogInterface dialog,int which) {
 									try {
-										downLoadApk(mContext,response.getString("apkDownURL"));
+										downLoadApk(mContext,response.getString("apkURL"));
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
