@@ -39,6 +39,7 @@ public class PullDownRemoveLayout extends FrameLayout {
 	private int viewHeight;
 	private boolean isSilding;
 	private boolean isFinish;
+	private boolean isEnablePull = true;
 	private Drawable mShadowDrawable;
 	private Activity mActivity;
 	private List<ViewPager> mViewPagers = new LinkedList<ViewPager>();
@@ -73,6 +74,14 @@ public class PullDownRemoveLayout extends FrameLayout {
 		decor.addView(this);
 	}
 
+	/**
+	 * 设置是否可以下拉
+	 * @param enable
+	 */
+	public void setEnablePull(Boolean enable){
+		this.isEnablePull = enable;
+	}
+	
 	private void setContentView(View decorChild) {
 		mContentView = (View) decorChild.getParent();
 	}
@@ -87,7 +96,8 @@ public class PullDownRemoveLayout extends FrameLayout {
 		Log.i(TAG, "mViewPager = " + mViewPager);
 		
 		if(mViewPager != null && mViewPager.getCurrentItem() != 0){
-			return super.onInterceptTouchEvent(ev);
+			if(!isEnablePull)
+				return super.onInterceptTouchEvent(ev);
 		}
 
 		switch (ev.getAction()) {
@@ -211,30 +221,36 @@ public class PullDownRemoveLayout extends FrameLayout {
 	 * 滚动出界面
 	 */
 	private void scrollRight() {
-		final int delta = (viewHeight + mContentView.getScrollY());
-		// 调用startScroll方法来设置一些滚动的参数，我们在computeScroll()方法中调用scrollTo来滚动item
-		mScroller.startScroll(0, mContentView.getScrollY(), 0, -delta + 1,Math.abs(delta));
-		postInvalidate();
+		if(isEnablePull){
+			final int delta = (viewHeight + mContentView.getScrollY());
+			// 调用startScroll方法来设置一些滚动的参数，我们在computeScroll()方法中调用scrollTo来滚动item
+			mScroller.startScroll(0, mContentView.getScrollY(), 0, -delta + 1,Math.abs(delta));
+			postInvalidate();
+		}
 	}
 
 	/**
 	 * 滚动到起始位置
 	 */
 	private void scrollOrigin() {
-		int delta = mContentView.getScrollX();
-		mScroller.startScroll(0, mContentView.getScrollX(), 0, -delta,Math.abs(delta));
-		postInvalidate();
+		if (isEnablePull) {
+			int delta = mContentView.getScrollX();
+			mScroller.startScroll(0, mContentView.getScrollX(), 0, -delta,Math.abs(delta));
+			postInvalidate();
+		}
 	}
 
 	@Override
 	public void computeScroll() {
 		// 调用startScroll的时候scroller.computeScrollOffset()返回true，
-		if (mScroller.computeScrollOffset()) {
-			mContentView.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-			postInvalidate();
-
-			if (mScroller.isFinished() && isFinish) {
-				mActivity.finish();
+		if (isEnablePull) {
+			if (mScroller.computeScrollOffset()) {
+				mContentView.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+				postInvalidate();
+	
+				if (mScroller.isFinished() && isFinish) {
+					mActivity.finish();
+				}
 			}
 		}
 	}
