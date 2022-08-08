@@ -1,5 +1,5 @@
 <resources>
-    
+
     <!-- Android样例锦集label(开始) -->
     <string name="MainActivity">Android样例锦集</string>
     <string name="GuideActivity">引导界面</string>
@@ -20,47 +20,53 @@
     <string name="BasicTestActivity">基本常用操作测试样例</string>
     <string name="DrawerLayoutActivity">DrawerLayout侧滑菜单</string>
     <string name="HVScorllListviewActivity">水平/垂直滚动+首行首列固定+翻页Listview</string>
+    <string name="PulldownViewActivity">下拉ScrollView背景回弹效果</string>
     <!-- Android样例锦集label(结束) -->
-    
+
+
     <!-- 短信验证码/拦截示例（开始） -->
     <string name="sms_timer">获取验证码（%1$s）</string>
     <!-- 短信验证码/拦截示例(结束) -->
-    
+
+
     <!-- 自动获取表单示例（开始） -->
-	<string name="tv_account">帐号：</string>
-	<string name="tv_password">密码：</string>
-	<string name="btn_show">显示</string>
-	<string name="tv_school">毕业院校：</string>
-	<string name="rg_sex">性别：</string>
-	<string name="sex_male">男</string>
-	<string name="sex_female">女</string>
-	<string name="tv_hoby">兴趣爱好：</string>
-	<string name="hoby_sleep">睡觉</string>
-	<string name="hoby_boll">打球</string>
-	<string name="hoby_read">看小说</string>
-	<string name="remark">备注</string>
-	<string name="hint_remark">请输入备注内容</string>
-	<string name="auto_gain_form_data">自动获取表单示例</string> 
-	<string name="et_password_hint">请输入密码</string>
-	<string name="et_account_hint">请输入您的手机号\邮箱\用户名</string>
-	<string name="btn_auto_gaindata">提交表单</string>
+    <string name="tv_account">帐号：</string>
+    <string name="tv_password">密码：</string>
+    <string name="btn_show">显示</string>
+    <string name="tv_school">毕业院校：</string>
+    <string name="rg_sex">性别：</string>
+    <string name="sex_male">男</string>
+    <string name="sex_female">女</string>
+    <string name="tv_hoby">兴趣爱好：</string>
+    <string name="hoby_sleep">睡觉</string>
+    <string name="hoby_boll">打球</string>
+    <string name="hoby_read">看小说</string>
+    <string name="remark">备注</string>
+    <string name="hint_remark">请输入备注内容</string>
+    <string name="auto_gain_form_data">自动获取表单示例</string>
+    <string name="et_password_hint">请输入密码</string>
+    <string name="et_account_hint">请输入您的手机号\邮箱\用户名</string>
+    <string name="btn_auto_gaindata">提交表单</string>
     <!-- 自动获取表单示例（结束） -->
-    
+
+
     <!-- 短信操作示例（开始） -->
-	<string name="tv_phonenumber">手机号码：</string>
-	<string name="et_phonenumber_hint">请输入需要拦截/发送的手机号</string>
-	<string name="tv_smscontent">短信内容</string>
-	<string name="tv_content">请输入要发送的短信内容</string>
-	<string name="btn_send">发送短信</string>
-	<string name="btn_bind">绑定拦截</string>
-	<string name="btn_choice">选择</string>
-    <!-- 短信操作示例（结束） -->    
-    
+    <string name="tv_phonenumber">手机号码：</string>
+    <string name="et_phonenumber_hint">请输入需要拦截/发送的手机号</string>
+    <string name="tv_smscontent">短信内容</string>
+    <string name="tv_content">请输入要发送的短信内容</string>
+    <string name="btn_send">发送短信</string>
+    <string name="btn_bind">绑定拦截</string>
+    <string name="btn_choice">选择</string>
+    <!-- 短信操作示例（结束） -->
+
+
     <!-- common意见反馈示例（开始） -->
     <string name="btn_submit">提交</string>
     <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
-    <!-- common意见反馈示例（结束） -->    
-    
+    <!-- common意见反馈示例（结束） -->
+
+
     <!-- 基本操作示例（开始） -->
     <string name="btn_opengps">强制打开GPS</string>
     <string name="btn_call">直接拨打电话</string>
@@ -68,13 +74,15 @@
     <string name="btn_carema">启动照相机</string>
     <string name="btn_setting">到系统设置界面</string>
     <string name="btn_contact">到联系人选择界面</string>
-    <!-- 基本操作示例（结束） -->    
-    
+    <!-- 基本操作示例（结束） -->
+
+
     <!-- DrawerLayout抽屉菜单示例（开始） -->
     <string name="drawer_close">关闭</string>
     <string name="drawer_open">打开</string>
-    <!-- DrawerLayout抽屉菜单示例（结束） -->   
-    
+    <!-- DrawerLayout抽屉菜单示例（结束） -->
+
+
     <!-- 债券查询结果表头 -->
     <string name="bound_search_result_head_zqmc">债券名称</string>
     <string name="bound_search_result_head_zqjc">债券简称</string>
@@ -97,24 +105,32 @@
     <string name="bound_search_result_head_ltr">交易流通起始日</string>
     <string name="bound_search_result_head_jzghr">交易流通终止日</string>
     <string name="bound_search_result_head_qxr">起息日</string>
-    <string name="bound_search_result_head_dqr">兑付日</string> 
-    
+    <string name="bound_search_result_head_dqr">兑付日</string>
+
     <!-- 数据库增删改查界面 -->
     <string name="title_favorite">我的收藏</string>
     <string name="list_publish_date">2014/07/25</string>
     <string name="list_category">【财经新闻】</string>
     <string name="list_title">企业市场供给压力不足为惧企业市场供给压力不足为惧企业市场供给压力不足为惧</string>
     <string name="menu_delete">删除</string>
-    
+
     <!-- ActionBar按钮 -->
     <string name="action_about">关于</string>
     <string name="action_scan">扫一扫</string>
-    <string name="action_search">搜索</string> 
+    <string name="action_search">搜索</string>
     <string name="action_setting">设置</string>
-    <string name="action_favrate">收藏</string> 
+    <string name="action_favrate">收藏</string>
     <string name="action_share">分享</string>
     <string name="action_refresh">刷新</string>
     <string name="action_submit">提交</string>
-    <string name="action_feedback">意见反馈</string> 
-     
+    <string name="action_feedback">意见反馈</string>
+    
+    <!-- 带回弹效果的ScrollView -->
+    <string name="add_attention">加关注</string>
+    <string name="user_post">职位：产品经理</string>
+    <string name="user_book">书单：25本</string>
+    <string name="user_name">Ajava攻城师</string>
+    <string name="user_des">谁能像优乐美一样把我捧在手心，我就能让他的儿子长的更帅女儿长的更漂亮</string>
+    <string name="user_recommend_tip">TA推荐的好书</string>
+
 </resources>
