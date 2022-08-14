@@ -2,7 +2,6 @@ package com.zftlive.android.sample.scrollview;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TableLayout;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 
 /**
  * Stretch ScrollView demo @link https://github.com/MarkMjw/PullScrollView
@@ -30,6 +30,8 @@ public class StretchViewActivity extends BaseActivity {
 	@Override
 	public void initView(View view) {
 		mMainLayout = (TableLayout) findViewById(R.id.table_layout);
+        //初始化带返回按钮的标题栏
+  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.zftlive.android.sample.scrollview;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
+import com.zftlive.android.common.ActionBarManager;
 import com.zftlive.android.view.scrollview.PullScrollView;
 
 import android.app.Activity;
@@ -40,6 +41,8 @@ public class PulldownViewActivity extends BaseActivity implements
 		mMainLayout = (TableLayout) findViewById(R.id.table_layout);
 		mScrollView.setHeader(mHeadImg);
 		mScrollView.setOnTurnListener(this);
+        //初始化带返回按钮的标题栏
+  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
 	}
 
 	@Override
