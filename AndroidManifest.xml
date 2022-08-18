@@ -439,6 +439,80 @@
             </intent-filter>
         </activity>
 
+        <!-- FadingActionBar官方DEMO -->
+        <activity
+            android:name=".sample.fadingactionbar.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/FadingActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sample.fadingactionbar.LightActionBarActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.HeaderOverlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.LightBackgroundActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.ListViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.NavigationDrawerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />                        
+        <activity
+            android:name=".sample.fadingactionbar.NoParallaxActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.SampleFragmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.ScrollViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.ShortContentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.fadingactionbar.WebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" /> 
+                    
         <!-- 静态注册短信广播接收器 -->
         <receiver android:name=".sample.sms.SMSBroadcastReceiver" >
             <intent-filter android:priority="2147483647" >
