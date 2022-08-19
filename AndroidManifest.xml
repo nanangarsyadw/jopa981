@@ -481,7 +481,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TranslucentActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />                        
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".sample.fadingactionbar.NoParallaxActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -511,8 +511,72 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TranslucentActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" /> 
-                    
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <!-- PullToReresh官方DEMO -->
+        <activity
+            android:name=".sample.pulltorefresh.LauncherActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/PullToReresh"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshExpandableListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshGridActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshHorizontalScrollViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshListFragmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshListInViewPagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshScrollViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshViewPagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshWebView2Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".sample.pulltorefresh.PullToRefreshWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
         <!-- 静态注册短信广播接收器 -->
         <receiver android:name=".sample.sms.SMSBroadcastReceiver" >
             <intent-filter android:priority="2147483647" >

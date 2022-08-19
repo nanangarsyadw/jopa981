@@ -51,7 +51,7 @@ public class HeaderOverlayActivity extends Activity {
         listView.setAdapter(adapter);
         
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), "HeaderOverlayActivity");
+  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
     }
 
     /**
