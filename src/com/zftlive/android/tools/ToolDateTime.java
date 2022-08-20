@@ -133,6 +133,15 @@ public class ToolDateTime {
 	public static Date gainCurrentDate() {
 		return new Date();
 	}
+	
+	/**
+	 * 获取系统当前日期
+	 * 
+	 * @return
+	 */
+	public static String gainCurrentDate(String formater) {
+		return formatDateTime(new Date(), formater);
+	}
 
 	/**
 	 * 验证日期是否比当前日期早
