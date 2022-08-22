@@ -23,6 +23,7 @@
     <string name="PulldownViewActivity">下拉ScrollView背景回弹效果</string>
     <string name="FadingActionBar">FadingActionBar官方DEMO</string>
     <string name="PullToReresh">PullToReresh官方DEMO</string>
+    <string name="SquareAutoFitGridviewActivity">正方形Item的网格</string>
     <!-- Android样例锦集label(结束) -->
 
 

@@ -13,4 +13,6 @@
     <dimen name="table_width">135dp</dimen>
     <dimen name="table_height">40dp</dimen>
     <!-- table_fix_headers(end) -->
+    
+    <dimen name="itemSize">140dp</dimen>
 </resources>

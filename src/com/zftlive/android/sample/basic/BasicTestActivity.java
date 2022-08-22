@@ -1,12 +1,14 @@
 package com.zftlive.android.sample.basic;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.zftlive.android.R;
 import com.zftlive.android.base.BaseActivity;
 import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.tools.ToolDateTime;
 import com.zftlive.android.tools.ToolLocation;
 import com.zftlive.android.tools.ToolPhone;
 
@@ -19,6 +21,8 @@ import com.zftlive.android.tools.ToolPhone;
 public class BasicTestActivity extends BaseActivity implements View.OnClickListener{
 
 	private Button btn_opengps, btn_call,btn_contact,btn_setting,btn_carema,btn_photo;
+	private boolean flag = true;
+	private Thread task = null;
 	
 	@Override
 	public int bindLayout() {
@@ -48,7 +52,13 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 
 	@Override
 	public void doBusiness(Context mContext) {
-
+		
+		
+		
+		task = new Thread(new ThreadTask());
+		task.start();
+		
+		
 	}
 
 	@Override
@@ -80,11 +90,28 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 			ToolPhone.toCameraActivity(getContext(), 88);
 			break;
 		case R.id.btn_photo:
-			ToolPhone.toImagePickerActivity(getContext(), 77);
+//			ToolPhone.toImagePickerActivity(getContext(), 77);
+			flag = false;
+			task.interrupt();
 			break;
 		default:
 			break;
 		}
 	}
 
+	
+	public class ThreadTask implements Runnable{
+
+		@Override
+		public void run() {
+			while(flag){
+				Log.e(TAG, "Thread ID "+Thread.currentThread().getId() + "-->"+ToolDateTime.gainCurrentDate("yyyy-MM-dd HH:mm:ss"));
+				try {
+					Thread.sleep(3 * 1000);
+				} catch (InterruptedException e) {
+					Log.e(TAG, "线程被打断!");
+				}
+			}
+		}
+	}
 }
