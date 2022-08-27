@@ -1,6 +1,9 @@
 package com.zftlive.android.tools;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import com.zftlive.android.config.SysEnv;
 
@@ -18,6 +21,28 @@ import com.zftlive.android.config.SysEnv;
 	布局时尽量使用单位dip，少使用px <br>
  */
 public class ToolUnit {
+	
+	/**
+	 * 获取当前分辨率下指定单位对应的像素大小（根据设备信息）
+	 * px,dip,sp -> px
+	 *
+	 * Paint.setTextSize()单位为px
+	 *
+	 * 代码摘自：TextView.setTextSize()
+	 *
+	 * @param unit  TypedValue.COMPLEX_UNIT_*
+	 * @param size
+	 * @return
+	 */
+	public static float getRawSize(Context mContext, int unit, float size) {
+		Resources r;
+		if (mContext == null)
+			r = Resources.getSystem();
+		else
+			r = mContext.getResources();
+		
+		return TypedValue.applyDimension(unit, size, r.getDisplayMetrics());
+	}
 	
 	/**设备显示材质**/
 	private static DisplayMetrics mDisplayMetrics = SysEnv.getDisplayMetrics();
