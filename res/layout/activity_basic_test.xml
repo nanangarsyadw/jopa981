@@ -4,7 +4,9 @@
     android:id="@+id/frame_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/white"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".sample.basic.BasicTestActivity" >
 
@@ -54,6 +56,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@color/cornflowerblue"
-        android:text="@string/btn_photo" />
+        android:text="@string/btn_photo"
+        android:visibility="gone" />
+
+    <com.zftlive.android.view.RoundAngleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/headIV"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/scrollview_header"
+        app:rHeight="40dp"
+        app:rWidth="40dp" />
 
 </LinearLayout>
