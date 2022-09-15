@@ -90,12 +90,14 @@
     </declare-styleable>
     <!-- 圆形图片（结束） -->
 
-	<!-- 圆角图片（开始） -->
+
+    <!-- 圆角图片（开始） -->
     <declare-styleable name="RoundAngleImageView">
         <attr name="rWidth" format="dimension" />
         <attr name="rHeight" format="dimension" />
     </declare-styleable>
     <!-- 圆角图片（结束） -->
+
 
     <!-- 滑动删除列表 -->
     <declare-styleable name="swipelistviewstyle">
@@ -109,10 +111,21 @@
     </declare-styleable>
     <!-- TextView（RadioButton/CheckBox）共通value（结束） -->
 
+
+    <!-- 下拉背景图回弹Scrollview（开始） -->
     <declare-styleable name="PullScrollView">
         <attr name="header" format="reference" />
         <attr name="headerHeight" format="dimension" />
         <attr name="headerVisibleHeight" format="dimension" />
     </declare-styleable>
+    <!-- 下拉背景图回弹Scrollview（结束） -->
+
+
+    <!-- 中英文混排对齐TextView（开始） -->
+    <declare-styleable name="AlignTextView">
+        <attr name="align" format="string" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+    <!-- 中英文混排对齐TextView（结束） -->
 
 </resources>
