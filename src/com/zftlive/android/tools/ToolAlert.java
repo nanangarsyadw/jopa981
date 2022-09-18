@@ -407,6 +407,83 @@ public class ToolAlert {
         return pw;
     }
     
+
+    /**
+     * 方向枚举
+     *
+     */
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT;
+    }
+    
+	/**
+	 * 在控件的上方打开popwindow
+	 * 
+	 * @param pw PopupWindow
+	 * @param anchor 打开popw的目标控件
+	 * @param popView popview布局view
+	 * @param direction 在目标控件的方向：上(Direction.UP)、右(Direction.RIGHT)、下(Direction.DOWN)、左(Direction.LEFT)
+	 * @return
+	 */
+	private static PopupWindow popwindowLoction(PopupWindow pw, View anchor,View popView,Direction direction) {
+
+		int[] location = new int[2];
+		anchor.getLocationOnScreen(location);
+		if (pw == null) {
+			pw = new PopupWindow(popView, LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT, true);
+			pw.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+			pw.setOutsideTouchable(false);
+		}
+		
+		switch (direction) {
+		case UP:
+			if (pw.isShowing()) {
+				pw.update(location[0], location[1] - pw.getHeight(),
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			} else {
+				pw.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0],
+						location[1] - pw.getHeight());
+			}
+			break;
+		case DOWN:
+			if (pw.isShowing()) {
+				pw.update(location[0], location[1] + pw.getHeight(),
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			} else {
+				pw.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0],
+						location[1] + pw.getHeight());
+			}
+			break;
+		case LEFT:
+			if (pw.isShowing()) {
+				pw.update(location[0]-pw.getWidth(), location[1],
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			} else {
+				pw.showAtLocation(anchor, Gravity.NO_GRAVITY,location[0]-pw.getWidth(), location[1]);
+			}
+			break;
+		case RIGHT:
+			if (pw.isShowing()) {
+				pw.update(location[0]+anchor.getWidth(), location[1],LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			} else {
+				pw.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0]+anchor.getWidth(), location[1]);
+			}
+			break;
+
+		default:
+			if (pw.isShowing()) {
+				pw.update(location[0], location[1] - pw.getHeight(),
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			} else {
+				pw.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0],
+						location[1] - pw.getHeight());
+			}
+			break;
+		}
+
+		return pw;
+	} 
+    
     /**
      * 往状态栏发送一条通知消息
      * @param mContext 上下文
