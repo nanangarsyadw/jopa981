@@ -114,7 +114,7 @@ public class ToolPicture {
 	 */
 	public static Bitmap makeQRImage(String content, int width, int height)
 			throws WriterException {
-		// 判断URL合法性
+		// 判断生成二维码数据合法性
 		if (!ToolString.isNoBlankAndNoNull(content))
 			return null;
 
@@ -151,12 +151,16 @@ public class ToolPicture {
 	 * @param strContent 二维码内容
 	 * @param qrWH 二维码的宽高
 	 * @param mLogoBitmap Logo图片
-	 * @param logoWH LOGO的宽高(注意：LOGO的宽高不能最多只能是生成二维码图片的0.2)
+	 * @param logoWH LOGO的宽高(注意：LOGO的宽高最多只能是二维码图片宽高的0.2，否则生成的二维码无法扫描识别)
 	 * @return
 	 * @throws WriterException 生成二维码失败异常
 	 */
 	public Bitmap makeQRImageWithLogo(String strContent,int qrWH,Bitmap mLogoBitmap,int logoWH) throws WriterException {
 
+		// 判断生成二维码数据合法性
+		if (!ToolString.isNoBlankAndNoNull(strContent))
+			return null;
+		
 		//缩放Logo图片
 		Matrix logoMatrix = new Matrix();
 		float sx = (float) 2 * logoWH / mLogoBitmap.getWidth();
