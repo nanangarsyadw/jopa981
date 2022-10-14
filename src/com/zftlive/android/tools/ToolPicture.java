@@ -155,7 +155,7 @@ public class ToolPicture {
 	 * @return
 	 * @throws WriterException 生成二维码失败异常
 	 */
-	public Bitmap makeQRImageWithLogo(String strContent,int qrWH,Bitmap mLogoBitmap,int logoWH) throws WriterException {
+	public static Bitmap makeQRImageWithLogo(String strContent,int qrWH,Bitmap mLogoBitmap,int logoWH) throws WriterException {
 
 		// 判断生成二维码数据合法性
 		if (!ToolString.isNoBlankAndNoNull(strContent))
