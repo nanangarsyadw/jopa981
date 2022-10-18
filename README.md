@@ -1,10 +1,14 @@
 <h4>
 如果你和我一样热爱编程，愿意与大家分享日常开发所用到的知识点，不妨加入zftlive吧，可以联系zftlive@163.com
 <br>
+<br>
+<br>
 ===========================201506优化变更================================<br>
 最近抽空优化了zftlive，将共通的基类、工具类、自定义控件以及资源文件按照命名规范抽取<a href="http://git.oschina.net/zftlive/AjavaAndroidLib" target="_blank">类库AjavaAndroidLib</a>和<a href="http://git.oschina.net/zftlive/AjavaAndroidSample" target="_blank">样例AjavaAndroidSample</a>，目的是方便后续维护以及开发者使用。另外针对zftlive集成的第三方jar罗列了一个清单，开发者可以根据自己的需要删减对于的jar，开发者可以以类库引用或者导入<a href="http://git.oschina.net/zftlive/AjavaAndroidLib/attach_files" target="_blank">发布jar/res</a>形式开发自己的APP，并粗略整理了安卓实际项目开发中的<a href="http://git.oschina.net/zftlive/AjavaAndroidLib/tree/master/doc" target="_blank">架构雏形/命名规范以及注意事项</a>。<br>
 =========================================================================<br>
 zftlive会很少维护，以后的类库、样例代码均收录在AjavaAndroidLib、AjavaAndroidSample
+<br>
+<br>
 </h4>
 
 <hr>
