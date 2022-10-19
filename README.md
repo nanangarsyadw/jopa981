@@ -1,3 +1,13 @@
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d59f932dafd1bd00480fff28052840f7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 <h4>
 如果你和我一样热爱编程，愿意与大家分享日常开发所用到的知识点，不妨加入zftlive吧，可以联系zftlive@163.com
 <br>
