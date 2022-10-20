@@ -1,6 +1,9 @@
 package com.zftlive.android.tools;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Hashtable;
@@ -30,6 +33,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.media.ExifInterface;
 import android.util.Log;
 import android.view.View;
+import android.view.View.MeasureSpec;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -76,13 +80,9 @@ public class ToolPicture {
 
 		Bitmap bmp = activity.getWindow().getDecorView().getDrawingCache();
 		
-		
 		View view = activity.getWindow().getDecorView();
-
 		Bitmap bmp2 = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
-
 		//view.draw(new Canvas(bmp2));
-
 		//bmp就是截取的图片了，可通过bmp.compress(CompressFormat.PNG, 100, new FileOutputStream(file));把图片保存为文件。
 		
 		//1、得到状态栏高度
@@ -97,13 +97,97 @@ public class ToolPicture {
 		System.out.println("标题栏高度:" + titleBarHeight);
 		
 //		//把两个bitmap合到一起
-//		Bitmap bmpall=Biatmap.createBitmap(width,height,Config.ARGB_8888);
+//		Bitmap bmpall = Biatmap.createBitmap(width,height,Config.ARGB_8888);
 //		Canvas canvas=new Canvas(bmpall);
 //		canvas.drawBitmap(bmp1,x,y,paint);
 //		canvas.drawBitmap(bmp2,x,y,paint);
 		
         return bmp;  
     }
+	
+	/**
+	 * 截取View内容，返回bitmap
+	 * @param mView 需要截屏的目标View
+	 * @return
+	 */
+	public static Bitmap takeViewScreenShot(View mView){
+		Bitmap result = null;
+        try {
+        	mView.setDrawingCacheEnabled(true);
+        	result = mView.getDrawingCache();
+            mView.setDrawingCacheEnabled(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+	
+	/**
+	 * 截取指定View内容，保存到指定的文件目录
+	 * @param mView 截屏目标View
+	 * @param filePath jpg文件路径+文件名
+	 * @return
+	 */
+	public static File takeViewScreenShot(View mView,String filePath){
+        return takeViewScreenShot(mView,filePath,80);
+	}
+	
+	/**
+	 * 截取指定View内容，保存到指定的文件目录
+	 * @param mView 截屏目标View
+	 * @param filePath jpg文件路径+文件名
+	 * @param quality 0-100压缩率
+	 * @return
+	 */
+	public static File takeViewScreenShot(View mView,String filePath,int quality){
+		File myCaptureFile = new File(filePath);
+		mView.setDrawingCacheEnabled(true);
+        try {
+            
+            BufferedOutputStream bos = new BufferedOutputStream(
+                    new FileOutputStream(myCaptureFile));
+            mView.getDrawingCache()
+                    .compress(Bitmap.CompressFormat.JPEG, quality, bos);
+            bos.flush();
+            bos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mView.setDrawingCacheEnabled(false);
+        return myCaptureFile;
+	}
+	
+	/**
+	 * 获取View内容，转成bitmap
+	 * @param v 目标View
+	 * @return
+	 */
+    public static Bitmap loadBitmapFromView(View v) {  
+        if (v == null) {  
+            return null;  
+        }  
+        Bitmap screenshot;  
+        screenshot = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);  
+        Canvas c = new Canvas(screenshot);  
+        c.translate(-v.getScrollX(), -v.getScrollY());  
+        v.draw(c);  
+        return screenshot;  
+    }  
+	
+	/**
+	 * 将View转成Bitmap
+	 * @param view 目标View
+	 * @return
+	 */
+	public static Bitmap gainViewBitmap(View view) {
+		view.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+				MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+		view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+		view.buildDrawingCache();
+		Bitmap bitmap = view.getDrawingCache();
+
+		return bitmap;
+	}
 	
 	/**
 	 * 根据指定内容生成自定义宽高的二维码图片 

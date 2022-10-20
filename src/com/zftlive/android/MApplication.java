@@ -8,12 +8,19 @@ import java.util.Stack;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.http.RequestManager;
 import com.android.volley.toolbox.ImageLoader;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.tencent.stat.MtaSDkException;
+import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatService;
+import com.zftlive.android.tools.ToolChannel;
+import com.zftlive.android.tools.ToolData;
 import com.zftlive.android.tools.ToolNetwork;
 import com.zftlive.android.view.imageindicator.NetworkImageCache;
 
@@ -36,6 +43,23 @@ public class MApplication extends Application {
 	private final NetworkImageCache imageCacheMap = new NetworkImageCache();
 	/***寄存整个应用Activity**/
 	private final Stack<WeakReference<Activity>> activitys = new Stack<WeakReference<Activity>>();
+	/**日志输出标志**/
+	protected final String TAG = this.getClass().getSimpleName();
+	/**
+	 * 渠道号
+	 */
+	private static String channelId = "Ajava";
+	
+	/**
+	 * 设备号
+	 */
+	private static String deveiceId = "未知";
+	
+	/**
+	 * MTA APPKEY
+	 */
+	public static final String MAT_APPKEY = "A1D5J6XB1XMY";
+	
 	
 	/**
 	 * 对外提供Application Context
@@ -54,6 +78,8 @@ public class MApplication extends Application {
 		mImageLoader = new ImageLoader(RequestManager.getInstance().getRequestQueue(), imageCacheMap);
 		//初始化图片加载器
 		initImageLoader(getApplicationContext());
+		
+		initMTA();
 	}
 
 	/**
@@ -86,6 +112,81 @@ public class MApplication extends Application {
 				.build();
 		// Initialize ImageLoader with configuration.
 		com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(config);
+	}
+	
+	/**
+	 * 获取渠道号
+	 * @return
+	 */
+	public static String gainChannelId(){
+		//META-INF文件夹写入的渠道号
+		String strMetaInfChannel = ToolChannel.gainChannel(gainContext(), ToolChannel.CHANNEL_KEY);
+		if(!TextUtils.isEmpty(strMetaInfChannel)){
+			channelId = strMetaInfChannel;
+			return channelId;
+		}
+		
+		//AndroidManifest.xml配置的渠道号
+		String strManifestChannel = ToolData.gainMetaData(gainContext(), MApplication.class, "InstallChannel");
+		if(!TextUtils.isEmpty(strManifestChannel)){
+			channelId = strManifestChannel;
+			return channelId;
+		}
+		
+		return channelId;
+	}
+	
+	/**
+	 * 获取设备号
+	 * @return
+	 */
+	public static String gainDeviceId(){
+		return deveiceId == null?"未知":deveiceId;
+	}
+	
+	/**
+	 * 初始化MTA云监控配置
+	 */
+	private void initMTA(){
+		
+		// 根据情况，决定是否开启MTA对app未处理异常的捕获
+		StatConfig.setAutoExceptionCaught(true);
+		//设置渠道号
+		StatConfig.setInstallChannel(gainChannelId());
+		//设置APPKEY
+		StatConfig.setAppKey(this,MAT_APPKEY);
+		//设置统计功能开关（默认为true）
+		StatConfig.setEnableStatService(true);
+		//设置session内产生的消息数量（默认为0，即无限制）
+		StatConfig.setMaxSessionStatReportCount(0);
+		//设置每天/每个进程时间产生的会话数量（默认为20）
+		StatConfig.setMaxDaySessionNumbers (20);
+		//设置单个事件最大长度（默认为4k，单位：bytes）
+		StatConfig.setMaxReportEventLength (4 * 1024);
+		//用户自定义时间类型事件的最大并行数量（默认1024）
+		StatConfig.setMaxParallelTimmingEvents(24);
+		//消息失败重发次数（默认3）
+		StatConfig.setMaxSendRetryCount(3);
+		//会话时长（默认30000ms，30000ms回到应用的用户视为同一次会话）
+		StatConfig.setSessionTimoutMillis(30000);
+		
+		/***数据上报相关的设置(开始)****/
+		//设置最大缓存未发送消息个数（默认1024）
+		StatConfig.setMaxStoreEventCount(1024);
+		//缓存消息的数量超过阈值时，最早的消息会被丢弃。（默认30）
+		StatConfig.setMaxBatchReportCount(30);
+		//（仅在发送策略为PERIOD时有效）设置间隔时间（默认为24*60，即1天）
+		StatConfig.setSendPeriodMinutes(24*60);
+		//开启SDK LogCat开关（默认false）
+		StatConfig.setDebugEnable(true);
+		/***数据上报相关的设置(结束)****/
+		
+		//开启统计
+		try {
+			StatService.startStatService(this,StatConfig.getAppKey(this),com.tencent.stat.common.StatConstants.VERSION);
+		} catch (MtaSDkException e) {
+			Log.e(TAG, "初始化MTA统计失败，原因："+e.getMessage());
+		}
 	}
 	
 	/*******************************************************Application数据操作API（开始）********************************************************/
