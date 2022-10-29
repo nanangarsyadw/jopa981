@@ -9,8 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 
-import com.zftlive.android.base.BaseBroadcastReceiver;
-import com.zftlive.android.tools.ToolAlert;
+import com.zftlive.android.library.base.BaseBroadcastReceiver;
+import com.zftlive.android.library.tools.ToolAlert;
 
 /**
  * 短信广播接收器（可用于短信拦截）

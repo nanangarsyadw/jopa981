@@ -19,18 +19,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import android.annotation.SuppressLint;
 import android.app.ExpandableListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnRefreshListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshExpandableListView;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnRefreshListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshExpandableListView;
 
 public final class PullToRefreshExpandableListActivity extends ExpandableListActivity {
 	private static final String KEY = "key";
@@ -42,6 +41,7 @@ public final class PullToRefreshExpandableListActivity extends ExpandableListAct
 	private SimpleExpandableListAdapter mAdapter;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

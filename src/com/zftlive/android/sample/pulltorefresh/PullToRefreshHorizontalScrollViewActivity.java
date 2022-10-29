@@ -15,16 +15,16 @@
  *******************************************************************************/
 package com.zftlive.android.sample.pulltorefresh;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.HorizontalScrollView;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnRefreshListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshHorizontalScrollView;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnRefreshListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshHorizontalScrollView;
 
 public final class PullToRefreshHorizontalScrollViewActivity extends Activity {
 
@@ -32,6 +32,7 @@ public final class PullToRefreshHorizontalScrollViewActivity extends Activity {
 	HorizontalScrollView mScrollView;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

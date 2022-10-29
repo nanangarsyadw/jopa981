@@ -1,12 +1,14 @@
 package com.zftlive.android.sample.zxing;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
 import com.zftlive.android.zxing.CaptureActivity;
 
 /**
@@ -21,7 +23,18 @@ public class ZxingSacnnerActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_zxing_scanner;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		//初始化带返回按钮的标题栏

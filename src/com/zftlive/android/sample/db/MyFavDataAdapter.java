@@ -2,20 +2,19 @@ package com.zftlive.android.sample.db;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseAdapter;
+import com.zftlive.android.library.base.BaseMAdapter;
 
 /**
  * 我的收藏列表适配器
@@ -23,7 +22,7 @@ import com.zftlive.android.base.BaseAdapter;
  * @version 1.0
  *
  */
-public class MyFavDataAdapter extends BaseAdapter {
+public class MyFavDataAdapter extends BaseMAdapter {
 
 	private final static String TAG = "MyFavDataAdapter";
 	

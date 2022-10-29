@@ -4,15 +4,17 @@ import java.util.HashMap;
 
 import org.ksoap2.serialization.SoapObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolSOAP;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolSOAP;
 
 /**
  * 调用WebService接口获取天气信息Activity
@@ -28,7 +30,18 @@ public class WeatherActivity extends BaseActivity{
 	public int bindLayout() {
 		return R.layout.activity_soap_weather;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		mTextWeather = (TextView) findViewById(R.id.weather);

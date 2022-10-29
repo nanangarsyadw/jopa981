@@ -65,6 +65,37 @@
     <!-- view_pull_refresh(end) -->
 
 
+    <!-- SlidingMenu(start) -->
+    <declare-styleable name="SlidingMenu">
+        <attr name="mode">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="viewAbove" format="reference" />
+        <attr name="viewBehind" format="reference" />
+        <attr name="behindOffset" format="dimension" />
+        <attr name="behindWidth" format="dimension" />
+        <attr name="behindScrollScale" format="float" />
+        <attr name="touchModeAbove">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="touchModeBehind">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="shadowDrawable" format="reference" />
+        <attr name="shadowWidth" format="dimension" />
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="fadeDegree" format="float" />
+        <attr name="selectorEnabled" format="boolean" />
+        <attr name="selectorDrawable" format="reference" />
+    </declare-styleable>
+    <!-- SlidingMenu(end) -->
+
+
     <!-- 圆角进度条（开始） -->
     <declare-styleable name="RoundProgressBar">
         <attr name="roundColor" format="color" />
@@ -127,5 +158,35 @@
         <attr name="text" format="string" />
     </declare-styleable>
     <!-- 中英文混排对齐TextView（结束） -->
+
+
+    <!-- 自定义软键盘（开始） -->
+    <declare-styleable name="keyboard">
+        <attr name="xml" format="reference" />
+        <attr name="randomkeys" format="reference|boolean"></attr>
+    </declare-styleable>
+    <!-- 自定义软键盘（结束） -->
+
+
+    <!-- 带数字的进度条（开始） -->
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer" />
+        <attr name="progress_max" format="integer" />
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_offset" format="dimension" />
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="Themes">
+        <attr name="numberProgressBarStyle" format="reference" />
+    </declare-styleable>
+    <!-- 带数字的进度条（结束） -->
 
 </resources>

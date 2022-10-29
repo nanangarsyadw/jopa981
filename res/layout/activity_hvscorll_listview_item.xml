@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/demo_list_selector"
+    android:background="@drawable/selector_demo_list"
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
@@ -19,7 +19,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/bond_table_header_text" />
 
-    <com.zftlive.android.view.ObserverHScrollViewIntercept
+    <com.zftlive.android.library.widget.ObserverHScrollViewIntercept
         android:id="@+id/scroollContainter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:layout_toRightOf="@id/textView1"
         android:focusable="false" >
 
-        <com.zftlive.android.view.ObserverHScrollView
+        <com.zftlive.android.library.widget.ObserverHScrollView
             android:id="@+id/horizontalScrollView1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/bond_table_header_text" />
             </LinearLayout>
-        </com.zftlive.android.view.ObserverHScrollView>
-    </com.zftlive.android.view.ObserverHScrollViewIntercept>
+        </com.zftlive.android.library.widget.ObserverHScrollView>
+    </com.zftlive.android.library.widget.ObserverHScrollViewIntercept>
 
 </RelativeLayout>

@@ -1,7 +1,9 @@
 package com.zftlive.android.sample.scrollview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TableLayout;
@@ -10,8 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
 
 /**
  * Stretch ScrollView demo @link https://github.com/MarkMjw/PullScrollView
@@ -26,7 +28,18 @@ public class StretchViewActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_stretch_view;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		mMainLayout = (TableLayout) findViewById(R.id.table_layout);

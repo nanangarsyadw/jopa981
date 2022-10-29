@@ -3,18 +3,22 @@ package com.zftlive.android.sample.image;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.base.BaseAdapter;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolImage;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.base.BaseMAdapter;
+import com.zftlive.android.library.base.BaseViewHolder;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.common.BasicDataAdapter;
+import com.zftlive.android.library.third.universalimageloader.core.ImageLoader;
+import com.zftlive.android.library.tools.ToolImage;
 
 /**
  * 异步加载图片示例DEMO，防止图片错位
@@ -25,7 +29,7 @@ import com.zftlive.android.tools.ToolImage;
 public class ImageListviewActivity extends BaseActivity {
 
 	private ListView mListView;
-	private MyListViewAdapter mMyListViewAdapter;
+	private BaseMAdapter mMyListViewAdapter;
 	private String imageURLs[] = new String[]{
 			"http://www.daqianduan.com/wp-content/uploads/2014/12/kanjian.jpg",
 			"http://www.daqianduan.com/wp-content/uploads/2014/11/capinfo.jpg",
@@ -70,21 +74,26 @@ public class ImageListviewActivity extends BaseActivity {
 			"多途网络科技 15K 招聘前端开发工程师",
 			"携程无线前端团队招聘 直接内部推荐（携程上海总部）"
 	};
-	private com.nostra13.universalimageloader.core.ImageLoader universalimageloader;
 	
 	@Override
 	public int bindLayout() {
 		return R.layout.activity_image_listview;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
 	@Override
-	public void initView(View view) {
-
-		mMyListViewAdapter = new MyListViewAdapter();
-		mListView = (ListView)findViewById(R.id.lv_list);
+	public void initParms(Bundle parms) {
 		
-		//图片异步加载器
-		universalimageloader = ToolImage.initImageLoader(getApplicationContext());
+	}
+	
+	@SuppressLint("NewApi")
+	@Override
+	public void initView(View view) {
+		mListView = (ListView)findViewById(R.id.lv_list);
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.ImageListviewActivity);
@@ -94,6 +103,8 @@ public class ImageListviewActivity extends BaseActivity {
 
 	@Override
 	public void doBusiness(Context mContext) {
+		
+		mMyListViewAdapter = new BasicDataAdapter(new ImageListViewHolder(mContext));
 		//构造数据
 		for (int i = 0; i < 20; i++) {
 			Map<String,Object> rowData = new LinkedHashMap<String,Object>();
@@ -102,7 +113,6 @@ public class ImageListviewActivity extends BaseActivity {
 			mMyListViewAdapter.addItem(rowData);
 		}
 		mListView.setAdapter(mMyListViewAdapter);
-		mMyListViewAdapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -115,39 +125,5 @@ public class ImageListviewActivity extends BaseActivity {
 
 		//清除缓存
 		ToolImage.clearCache();
-	}
-	
-	public class MyListViewAdapter extends BaseAdapter{
-		
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			
-			ViewHolder mViewHolder;
-			if(null == convertView){
-				convertView = getLayoutInflater().inflate(R.layout.activity_image_listview_item, null);
-				mViewHolder = new ViewHolder();
-				mViewHolder.iv_icon = (ImageView)convertView.findViewById(R.id.iv_icon);
-				mViewHolder.tv_title = (TextView)convertView.findViewById(R.id.tv_title);
-				convertView.setTag(mViewHolder);
-			}else{
-				mViewHolder = (ViewHolder)convertView.getTag();
-			}
-			//设置数据
-			Map<String,Object> rowData =  (Map)getItem(position);
-			//异步加载图片防止错位方法一：com.android.volley.toolbox.ImageLoader
-//			ImageLoader mImageLoader = MApplication.getImageLoader();
-//			ImageListener mImageListener = mImageLoader.getImageListener(mViewHolder.iv_icon, R.drawable.default_icon, R.drawable.ic_launcher);
-//			mImageLoader.get((String)rowData.get("imageUrl"), mImageListener);
-			
-			//异步加载图片防止错位方法二：com.nostra13.universalimageloader.core.ImageLoader
-			universalimageloader.displayImage((String)rowData.get("imageUrl"), mViewHolder.iv_icon, ToolImage.getFadeOptions(R.drawable.default_icon,R.drawable.ic_launcher,R.drawable.ic_launcher));
-			mViewHolder.tv_title.setText((String)rowData.get("title"));
-			return convertView;
-		}
-		
-		class ViewHolder{
-			ImageView iv_icon;
-			TextView tv_title;
-		}
 	}
 }

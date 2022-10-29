@@ -6,7 +6,7 @@
 
 <!--     The PullToRefreshListView replaces a standard ListView widget. -->
 
-    <com.zftlive.android.view.pulltorefresh.PullToRefreshListView
+    <com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView
         android:id="@+id/pull_refresh_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

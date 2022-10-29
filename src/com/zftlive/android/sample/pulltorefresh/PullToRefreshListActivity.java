@@ -17,7 +17,7 @@ package com.zftlive.android.sample.pulltorefresh;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,16 +31,15 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnLastItemVisibleListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnRefreshListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.State;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshListView;
-import com.zftlive.android.view.pulltorefresh.extras.SoundPullEventListener;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnLastItemVisibleListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnRefreshListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.State;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView;
+import com.zftlive.android.library.widget.pulltorefresh.extras.SoundPullEventListener;
 
 public final class PullToRefreshListActivity extends ListActivity {
 
@@ -54,6 +53,7 @@ public final class PullToRefreshListActivity extends ListActivity {
 	private ArrayAdapter<String> mAdapter;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

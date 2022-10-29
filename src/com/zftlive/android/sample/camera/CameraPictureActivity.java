@@ -2,7 +2,6 @@ package com.zftlive.android.sample.camera;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
@@ -13,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -25,10 +25,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolPicture;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolPicture;
 
 /**
  * 直接启动摄像机硬件拍照，不启动系统拍照程序样例
@@ -50,7 +50,18 @@ public class CameraPictureActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_camera_demo;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		surfaceView = (SurfaceView) findViewById(R.id.camera_preview);

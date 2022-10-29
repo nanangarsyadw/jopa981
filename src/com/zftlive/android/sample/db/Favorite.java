@@ -1,9 +1,9 @@
 package com.zftlive.android.sample.db;
 
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-import com.zftlive.android.base.BaseEntity;
+import com.zftlive.android.library.base.BaseEntity;
+import com.zftlive.android.library.third.ormlite.field.DatabaseField;
+import com.zftlive.android.library.third.ormlite.table.DatabaseTable;
 
 /**
  * [我的收藏]实体

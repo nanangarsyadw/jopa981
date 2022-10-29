@@ -3,22 +3,24 @@ package com.zftlive.android.sample.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.data.DTO;
-import com.zftlive.android.model.Option;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolData;
-import com.zftlive.android.view.SingleSpinner;
-import com.zftlive.android.view.SpinnerAdapter;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.data.DTO;
+import com.zftlive.android.library.data.widget.Option;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolData;
+import com.zftlive.android.library.widget.SingleSpinner;
+import com.zftlive.android.library.widget.SpinnerAdapter;
 
 /**
  * 自动获取表单示例
@@ -44,7 +46,18 @@ public class AutoGainFormActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_auto_gain_form;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		btn_login = (Button)findViewById(R.id.btn_login);

@@ -3,7 +3,7 @@
     android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/my_favorite_list_selector"
+    android:background="@drawable/selector_my_favorite_list"
     android:orientation="horizontal" >
 
     <RelativeLayout
@@ -61,7 +61,7 @@
             android:layout_alignParentRight="true"
             android:paddingRight="5dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/my_favorite_list_go_selector"
+            android:src="@drawable/selector_my_favorite_list_go"
             android:contentDescription="@string/app_name" />
     </RelativeLayout>
 

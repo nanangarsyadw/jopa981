@@ -5,8 +5,10 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,16 +21,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolDateTime;
-import com.zftlive.android.tools.ToolFile;
-import com.zftlive.android.tools.ToolString;
-import com.zftlive.android.view.ObserverHScrollView;
-import com.zftlive.android.view.ObserverHScrollView.OnScrollChangedListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshListView;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.base.BaseMAdapter;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolDateTime;
+import com.zftlive.android.library.tools.ToolFile;
+import com.zftlive.android.library.tools.ToolString;
+import com.zftlive.android.library.widget.ObserverHScrollView;
+import com.zftlive.android.library.widget.ObserverHScrollView.OnScrollChangedListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView;
 
 /**
  * 水平+垂直滚动+首行首列固定+翻页Listview样例 
@@ -59,7 +62,18 @@ public class HVScorllListviewActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_hvscorll_listview;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		
@@ -232,7 +246,7 @@ public class HVScorllListviewActivity extends BaseActivity {
 	/**
 	 * 债券查询列表适配器
 	 */
-	public class BondSearchResultAdapter extends com.zftlive.android.base.BaseAdapter{
+	public class BondSearchResultAdapter extends BaseMAdapter{
 		
 		public BondSearchResultAdapter(Activity mContext,int mPerPageSize) {
 			super(mContext, mPerPageSize);

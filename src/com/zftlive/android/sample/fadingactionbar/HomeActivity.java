@@ -17,10 +17,7 @@ package com.zftlive.android.sample.fadingactionbar;
 
 import java.util.Arrays;
 import java.util.List;
-
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -28,6 +25,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.zftlive.android.R;
+import com.zftlive.android.library.common.ActionBarManager;
 
 public class HomeActivity extends ListActivity {
     private List<ActivityInfo> activitiesInfo = Arrays.asList(
@@ -42,7 +41,8 @@ public class HomeActivity extends ListActivity {
             new ActivityInfo(WebViewActivity.class, R.string.activity_title_webview),
             new ActivityInfo(ShortContentActivity.class, R.string.activity_title_short_content));
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);

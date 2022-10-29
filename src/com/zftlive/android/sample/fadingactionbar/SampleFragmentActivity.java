@@ -15,16 +15,17 @@
  */
 package com.zftlive.android.sample.fadingactionbar;
 
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import com.zftlive.android.R;
+import com.zftlive.android.library.common.ActionBarManager;
 
 public class SampleFragmentActivity extends Activity {
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);

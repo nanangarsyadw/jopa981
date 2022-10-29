@@ -1,20 +1,281 @@
-# To enable ProGuard in your project, edit project.properties
-# to define the proguard.config property as described in that file.
-#
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in ${sdk.dir}/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# This is a configuration file for ProGuard.
+# http://proguard.sourceforge.net/index.html#manual/usage.html
+####################注释说明（开始）###############################
+#忽略警告
+#-ignorewarnings 
+#抑制错误警告-->找不到com.xx.bbb.**包里面的类的相关引用等等
+# -dontwarn
+#所有类和所有方法不混淆  																		
+# -keep class
+#指明lib包的在工程中的路径 																		
+# -libraryjars
+#是否使用大小写混合 																		
+# -dontusemixedcaseclassnames
+#指定代码的压缩级别0 ~ 7 														
+# -optimizationpasses 5
+#是否使用大小写混合  															
+# -dontusemixedcaseclassnames
+#是否混淆第三方jar 如果应用程序引入的有jar包,并且想混淆jar包里面的class                                                      	
+# -dontskipnonpubliclibraryclasses   
+#混淆时是否做预校验                                               
+# -dontpreverify
+#混淆时是否记录日志                                                                  	
+# -verbose
+#混淆时所采用的算法                                                                       	
+# -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*          
+####################注释说明（结束）###############################
 
-# Add any project specific keep options here:
+#忽略警告
+-ignorewarnings
+#是否使用大小写混合 
+-dontusemixedcaseclassnames
+#是否混淆第三方jar 如果应用程序引入的有jar包,并且想混淆jar包里面的class 
+-dontskipnonpubliclibraryclasses
+#指定代码的压缩级别0 ~ 7
+-optimizationpasses 5
+#混淆时是否记录日志
+-verbose
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Optimization is turned off by default. Dex does not like code run
+# through the ProGuard optimize and preverify steps (and performs some
+# of these optimizations on its own).
+-dontoptimize #是否对类内部代码进行优化，默认优化
+-dontpreverify
+# Note that if you want to enable optimization, you cannot just
+# include optimization flags in your own project configuration file;
+# instead you will need to point to the
+# "proguard-android-optimize.txt" file instead of this one from your
+# project.properties file.
+
+-keepattributes *Annotation*
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+
+# For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# keep setters in Views so that animations can still work.
+# see http://proguard.sourceforge.net/manual/examples.html#beans
+-keepclassmembers public class * extends android.view.View {
+   void set*(***);
+   *** get*();
+}
+
+# We want to keep methods in Activity that could be used in the XML attribute onClick
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+# For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# The support library contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version.  We know about them, and they are safe.
+-dontwarn android.support.**
+
+
+#一些基本的类不进行混淆
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.SherlockActivity
+-keep public class * extends android.app.Fragment
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+
+#Application不进行混淆
+-keep public class * com.zftlive.android.GlobalApplication
+
+#过滤R文件的混淆
+-keep public class com.zftlive.android.library.R
+-keep class com.zftlive.android.library.R$* {   *;  }
+-keepclassmembers class com.zftlive.android.library.R$* {
+    public static <fields>;
+}
+-keep public class com.zftlive.android.R
+-keep class com.zftlive.android.R$* {   *;  }
+-keepclassmembers class com.zftlive.android.library.R$* {
+    public static <fields>;
+}
+
+#android辅助包
+-libraryjars libs/android-support-v4.jar
+-dontwarn android.support.v4.**
+-keep class android.support.v4.**
+-keep interface android.support.v4.app.** {*;}
+
+#网络检测类（防止找不到构造方法）
+-keep public class com.zftlive.android.library.tools.ToolNetwork
+-keepclassmembers class com.zftlive.android.library.tools.ToolNetwork{
+    public *;
+}
+
+#分享工具类（防止找不到构造方法）
+-keep public class com.zftlive.android.library.tools.ToolShareSDK
+-keepclassmembers class com.zftlive.android.library.tools.ToolShareSDK{
+    public *;
+}
+
+#数据库操作类（防止找不到构造方法）
+-keep public class com.zftlive.android.library.tools.ToolDatabase
+-keepclassmembers class com.zftlive.android.library.tools.ToolDatabase{
+    public *;
+}
+
+####################zftlive-core-1.0.jar（开始）#########################
+#-libraryjars libs/ajavaandroidlib.jar
+-keep class com.zftlive.android.library.** {*;}
+
+#忽略实体、四大组件
+#-keep class com.zftlive.android.library.model.** {*;}
+#-keep class com.zftlive.android.library.entity.** {*;}
+#-keep class com.zftlive.android.library.** {*;}
+#-keep class com.zftlive.android.library.service.** {*;}
+#-keep class com.zftlive.android.library.widget.** {*;} 
+####################zftlive-core-1.0.jar（结束）#########################
+
+
+####################网络通信相关jar（开始）###########################
+#-libraryjars libs/android-async-http-1.4.5.jar
+#-dontwarn com.loopj.android.http.**
+#-keep class com.loopj.android.http.** {*;}
+####################网络通信相关jar（结束）############################
+
+
+####################ActionBarSherlock相关jar（开始）####################
+#-dontwarn com.actionbarsherlock.**
+#-keep class com.actionbarsherlock.** {*;}
+####################ActionBarSherlock相关jar（结束）####################
+
+
+####################滑动菜单SlidingMenu相关jar（开始）##################
+#-dontwarn com.jeremyfeinstein.slidingmenu.lib.**
+#-keep class com.jeremyfeinstein.slidingmenu.lib.** {*;}
+####################滑动菜单SlidingMenu相关jar（结束）###################
+
+
+####################ShareSdk相关jar（开始）###########################
+#-libraryjars libs/sharesdk-core-2.3.11.jar
+#-libraryjars libs/sharesdk-sinaweibo-2.3.11.jar
+#-libraryjars libs/sharesdk-tencentweibo-2.3.11.jar
+#-libraryjars libs/sharesdk-wechat-2.3.11.jar
+#-libraryjars libs/sharesdk-wechat-core-2.3.11.jar
+#-dontwarn cn.sharesdk.**
+#-keep class cn.sharesdk.** {*;}
+
+#发送短信验证码jar
+#-dontwarn cn.smssdk.**
+#-keep class cn.smssdk.** {*;}
+####################ShareSdk相关jar（结束）###########################
+
+
+####################ormlite数据库操作相关jar（开始）#####################
+#-libraryjars libs/ormlite-android-4.48.jar
+#-libraryjars libs/ormlite-core-4.48.jar
+#-dontwarn com.j256.ormlite.**
+#-keep class com.j256.ormlite.** {*;}
+####################ormlite数据库操作相关jar（结束）#####################
+
+
+####################谷歌zxing二维码相关jar（开始）#####################
+#-dontwarn com.google.zxing.**
+#-keep class com.google.zxing.** {*;}
+####################谷歌zxing二维码相关jar（结束）#####################
+
+
+####################谷歌  RoboGuice2框架相关jar（开始）#####################
+#-dontwarn com.google.inject.**
+#-keep class com.google.inject.** {*;}
+#-dontwarn roboguice.**
+#-keep class roboguice.** {*;}
+#-dontwarn javax.annotation.**
+#-keep class javax.annotation.** {*;}
+#-dontwarn javax.inject.**
+#-keep class javax.inject.** {*;}
+####################谷歌  RoboGuice2框架相关jar（结束）#####################
+
+
+####################表单验证插件 android-validation-komensky0.9.3.jar（开始）#####################
+#-dontwarn eu.inmite.android.lib.**
+#-keep class eu.inmite.android.lib.** {*;}
+####################表单验证插件 android-validation-komensky0.9.3.jar（结束）#####################
+
+
+####################百度地图、定位相关jar（开始）#####################
+#-dontwarn com.baidu.**
+#-keep class com.baidu.** {*;}
+####################百度地图、定位相关jar（结束）#####################
+
+
+####################图片异步加载universal-image-loader-1.8.4.jar（开始）#####################
+#-dontwarn com.nostra13.universalimageloader.**
+#-keep class com.nostra13.universalimageloader.** {*;}
+####################图片异步加载universal-image-loader-1.8.4.jar（结束）#####################
+
+
+####################SOAP访问第三方jar ksoap2-android.jar（开始）#####################
+#-dontwarn org.kobjects.**
+#-keep class org.kobjects.** {*;}
+#-dontwarn org.ksoap2.**
+#-keep class org.ksoap2.** {*;}
+#-dontwarn org.kxml2.**
+#-keep class org.kxml2.** {*;}
+#-dontwarn org.xmlpull.**
+#-keep class org.xmlpull.** {*;}
+####################SOAP访问第三方jar ksoap2-android.jar（结束）#####################
+
+
+####################XStream操作xml与Bean之间转换jar（开始）#####################
+#-dontwarn com.thoughtworks.xstream.**
+#-keep class com.thoughtworks.xstream.** {*;}
+####################XStream操作xml与Bean之间转换jar（结束）#####################
+
+####################asmack操作相关jar（开始）#####################
+#-dontwarn com.kenai.jbosh.**
+#-keep class com.kenai.jbosh.** {*;}
+#-dontwarn com.novell.sasl.client.**
+#-keep class com.novell.sasl.client.** {*;}
+#-dontwarn de.measite.smack.**
+#-keep class de.measite.smack.** {*;}
+#-dontwarn org.xbill.DNS.**
+#-keep class org.xbill.DNS.** {*;}
+#-dontwarn org.jivesoftware.smack.**
+#-keep class org.jivesoftware.smack.** {*;}
+#-dontwarn org.jivesoftware.smackx.**
+#-keep class org.jivesoftware.smackx.** {*;}
+#-dontwarn org.apache.qpid.management.common.sasl.**
+#-keep class org.apache.qpid.management.common.sasl.** {*;}
+#-dontwarn org.apache.harmony.javax.security.**
+#-keep class org.apache.harmony.javax.security.** {*;}
+####################asmack操作相关jar（结束）#####################
+
+####################poi辅助包（开始）#####################
+#-libraryjars libs/poi-3.9-20121203.jar
+#-libraryjars libs/poi-scratchpad-3.9-20121203.jar
+#-dontwarn org.apache.poi.**
+#-keep class org.apache.poi.** {*;}
+####################poi辅助包（结束）#####################
+
+####################信鸽推送（开始）#####################
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep class com.tencent.android.tpush.**  {*;}
+-keep class com.tencent.mid.**  {*;}
+####################信鸽推送（结束）#####################

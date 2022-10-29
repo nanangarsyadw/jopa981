@@ -17,19 +17,18 @@ package com.zftlive.android.sample.pulltorefresh;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.extras.listfragment.PullToRefreshListFragment;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnRefreshListener;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshListView;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnRefreshListener;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView;
+import com.zftlive.android.library.widget.pulltorefresh.extras.listfragment.PullToRefreshListFragment;
 
 public final class PullToRefreshListFragmentActivity extends FragmentActivity implements OnRefreshListener<ListView> {
 
@@ -40,6 +39,7 @@ public final class PullToRefreshListFragmentActivity extends FragmentActivity im
 	private PullToRefreshListView mPullRefreshListView;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

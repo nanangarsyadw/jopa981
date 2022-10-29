@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/frag_ptr_list"
-        android:name="com.zftlive.android.view.pulltorefresh.extras.listfragment.PullToRefreshListFragment"
+        android:name="com.zftlive.android.library.widget.pulltorefresh.extras.listfragment.PullToRefreshListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -3,7 +3,9 @@ package com.zftlive.android.sample.gridview;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,11 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.base.BaseAdapter;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolImage;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.base.BaseMAdapter;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolImage;
 
 /**
  * 正方形Item的gridview样例
@@ -78,7 +80,18 @@ public class SquareAutoFitGridviewActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_block_gridview;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		gv_square = (GridView) findViewById(R.id.gv_square);
@@ -92,7 +105,7 @@ public class SquareAutoFitGridviewActivity extends BaseActivity {
 			}
 		});
 		mAdapter = new MyGridAdapter();
-		ToolImage.initImageLoader(getContext());
+		ToolImage.init(getContext());
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.SquareAutoFitGridviewActivity);
@@ -104,8 +117,8 @@ public class SquareAutoFitGridviewActivity extends BaseActivity {
 		//构造数据
 		for (int i = 0; i < 20; i++) {
 			Map<String,Object> rowData = new LinkedHashMap<String,Object>();
-			rowData.put("imageUrl", imageURLs[i]);
-			rowData.put("title", titles[i]);
+			rowData.put("imageUrl", "http://www.daqianduan.com/wp-content/uploads/2013/09/exmail.jpg");
+			rowData.put("title", "Ajava攻城师");
 			mAdapter.addItem(rowData);
 		}
 		gv_square.setAdapter(mAdapter);
@@ -126,7 +139,7 @@ public class SquareAutoFitGridviewActivity extends BaseActivity {
 	 * 网格适配器
 	 *
 	 */
-	protected class MyGridAdapter extends BaseAdapter{
+	protected class MyGridAdapter extends BaseMAdapter{
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {

@@ -1,11 +1,13 @@
 package com.zftlive.android.common;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.view.imageindicator.ImageIndicatorView;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.widget.imageindicator.ImageIndicatorView;
 
 /**
  * 引导界面
@@ -20,7 +22,18 @@ public class GuideActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_guide;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		imageIndicatorView = (ImageIndicatorView) findViewById(R.id.guide_indicate_view);

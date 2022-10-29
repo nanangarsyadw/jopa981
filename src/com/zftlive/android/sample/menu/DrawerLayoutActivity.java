@@ -1,7 +1,9 @@
 package com.zftlive.android.sample.menu;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -12,8 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
 
 /**
  * 抽屉菜单
@@ -31,7 +33,18 @@ public class DrawerLayoutActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_drawerlayout;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,6 +63,7 @@ public class DrawerLayoutActivity extends BaseActivity {
 		});
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public void doBusiness(Context mContext) {
 		ActionBar actionBar = getActionBar();

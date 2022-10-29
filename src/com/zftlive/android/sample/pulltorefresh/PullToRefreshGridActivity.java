@@ -17,7 +17,7 @@ package com.zftlive.android.sample.pulltorefresh;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,13 +28,12 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshBase.OnRefreshListener2;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshGridView;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.OnRefreshListener2;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshGridView;
 
 public final class PullToRefreshGridActivity extends Activity {
 
@@ -46,6 +45,7 @@ public final class PullToRefreshGridActivity extends Activity {
 	private ArrayAdapter<String> mAdapter;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

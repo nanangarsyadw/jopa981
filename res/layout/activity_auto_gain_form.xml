@@ -78,7 +78,7 @@
             android:text="@string/tv_school"
             android:textColor="@color/grey" />
 
-        <com.zftlive.android.view.SingleSpinner
+        <com.zftlive.android.library.widget.SingleSpinner
             android:id="@+id/sp_school"
             style="@style/accountEditText"
             custom:key="school"/>
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <com.zftlive.android.view.RadioButton
+            <com.zftlive.android.library.widget.RadioButton
                 android:id="@+id/radioMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 custom:key="sex"
                 custom:value="male" />
 
-            <com.zftlive.android.view.RadioButton
+            <com.zftlive.android.library.widget.RadioButton
                 android:id="@+id/radioFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
             android:text="@string/tv_hoby"
             android:textColor="@color/grey" />
 
-        <com.zftlive.android.view.CheckBox
+        <com.zftlive.android.library.widget.CheckBox
             android:id="@+id/cb_sleep"
             style="@style/CustomCheckboxTheme"
             android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
             custom:key="hoby"
             custom:value="sleep" />
 
-        <com.zftlive.android.view.CheckBox
+        <com.zftlive.android.library.widget.CheckBox
             android:id="@+id/cb_boll"
             style="@style/CustomCheckboxTheme"
             android:layout_width="wrap_content"
@@ -167,7 +167,7 @@
             custom:key="hoby"
             custom:value="boll" />
 
-        <com.zftlive.android.view.CheckBox
+        <com.zftlive.android.library.widget.CheckBox
             android:id="@+id/cb_read"
             style="@style/CustomCheckboxTheme"
             android:layout_width="wrap_content"

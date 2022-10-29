@@ -1,12 +1,14 @@
 package com.zftlive.android.sample.db;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.view.SwipeListView;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.widget.SwipeListView;
 
 public class DBOpreationActivity extends BaseActivity {
 
@@ -17,7 +19,18 @@ public class DBOpreationActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_db_fav_list;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		mListView = (SwipeListView) findViewById(R.id.fav_listview);

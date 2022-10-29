@@ -15,20 +15,21 @@
  *******************************************************************************/
 package com.zftlive.android.sample.pulltorefresh;
 
-import com.zftlive.android.common.ActionBarManager;
-
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.zftlive.android.library.common.ActionBarManager;
 
 public class LauncherActivity extends ListActivity {
 
 	public static final String[] options = { "ListView", "ExpandableListView", "GridView", "WebView", "ScrollView",
 			"Horizontal ScrollView", "ViewPager", "ListView Fragment", "WebView Advanced", "ListView in ViewPager" };
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,13 +20,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.zftlive.android.MApplication;
+import com.zftlive.android.GlobalApplication;
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.base.BaseAdapter;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolToast;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.base.BaseMAdapter;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.config.SysEnv;
+import com.zftlive.android.library.tools.ToolAlert;
 
 /**
  * Sample列表集合界面--自动收集AndroidManifest.xml配置
@@ -47,7 +52,18 @@ public class MainActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_main;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		mListView = (ListView)findViewById(R.id.lv_demos);
@@ -57,9 +73,7 @@ public class MainActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				 Map<String, Object> map = (Map<String, Object>)parent.getItemAtPosition(position);
 			     Intent intent = (Intent) map.get("intent");
-			     startActivity(intent);
-			     //过场动画
-				 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			     getOperation().forward(intent.getComponent().getClassName(), LEFT_RIGHT);
 			}
 		});
 		
@@ -75,7 +89,21 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	public void doBusiness(Context mContext) {
-		
+		try {
+			//获取运行环境
+			boolean isEmulator = SysEnv.isEmulator(getContext());
+			ToolAlert.toastLong("当前运行环境："+(isEmulator? "模拟器"+"("+SysEnv.OS_VERSION+")" :(SysEnv.MODEL_NUMBER+"("+SysEnv.OS_VERSION+")") ));
+			
+			//获取渠道号
+//			String manifestChannel = ToolData.gainMetaData(mContext, GlobalApplication.class,"InstallChannel");
+//			manifestChannel = ToolData.gainMetaData(mContext, MainActivity.class,"InstallChannel");
+//			manifestChannel = ToolData.gainMetaData(mContext, SMSInterceptService.class,"InstallChannel");
+//			manifestChannel = ToolData.gainMetaData(mContext, SMSBroadcastReceiver.class,"InstallChannel");
+			
+			ToolAlert.toastShort("应用渠道号："+GlobalApplication.channelId);
+			
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
@@ -101,28 +129,25 @@ public class MainActivity extends BaseActivity {
 		return true;
 	}
 	
-	long waitTime = 2000;
-    long touchTime = 0;
-	
-	/**
-	 * 监听[返回]键事件
-	 */
+	private boolean isQuit;
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// 返回键
-		if (KeyEvent.KEYCODE_BACK == keyCode) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-			long currentTime = System.currentTimeMillis();
-			if ((currentTime - touchTime) >= waitTime) {
-				ToolToast.showShort("再按一次，退出程序");
-				touchTime = currentTime;
+			if (isQuit == false) {
+				isQuit = true;
+				Toast.makeText(getBaseContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						isQuit = false;
+					}
+				}, 2000);
 			} else {
-				((MApplication) getApplicationContext()).removeAll();
+				((GlobalApplication)getApplication()).exit();
 			}
-
-			return true;
 		}
-		return false;
+		return true;
 	}
 	
 	/**
@@ -163,7 +188,7 @@ public class MainActivity extends BaseActivity {
 	/**
 	 * 列表适配器
 	 */
-	protected class DemoActivityAdapter extends BaseAdapter{
+	protected class DemoActivityAdapter extends BaseMAdapter{
 
 		public DemoActivityAdapter(Activity mContext) {
 			super(mContext);

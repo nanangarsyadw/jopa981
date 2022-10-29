@@ -1,7 +1,9 @@
 package com.zftlive.android.sample.zxing;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -9,12 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolFile;
-import com.zftlive.android.tools.ToolPicture;
-import com.zftlive.android.tools.ToolString;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolFile;
+import com.zftlive.android.library.tools.ToolPicture;
+import com.zftlive.android.library.tools.ToolString;
 
 /**
  * 生成二维码示例
@@ -34,7 +36,18 @@ public class ZxingGenBinActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_gen_qr_image;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		et_qr_text = (EditText)findViewById(R.id.et_qr_text);
@@ -52,7 +65,7 @@ public class ZxingGenBinActivity extends BaseActivity {
 	public void doBusiness(Context mContext) {
 		//初始化值
 		if("".equals(et_qr_text.getText().toString())){
-			et_qr_text.setText("https://itunes.apple.com/us/app/zhong-guo-zhai-quan-xin-xi-wang/id956379885?l=zh&ls=1&mt=8");
+			et_qr_text.setText("http://a.app.qq.com/o/simple.jsp?pkgname=com.zftlive.android");
 		}
 		
 		btn_make_qr.setOnClickListener(new OnClickListener() {

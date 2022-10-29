@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.telephony.SmsMessage;
 
-import com.zftlive.android.base.BaseBroadcastReceiver;
-import com.zftlive.android.base.BaseService;
-import com.zftlive.android.tools.ToolAlert;
+import com.zftlive.android.library.base.BaseBroadcastReceiver;
+import com.zftlive.android.library.base.BaseService;
+import com.zftlive.android.library.tools.ToolAlert;
 
 public class SMSInterceptService extends BaseService {
 

@@ -16,9 +16,7 @@
  */
 package com.zftlive.android.sample.fadingactionbar;
 
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -33,6 +31,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.zftlive.android.R;
+import com.zftlive.android.library.common.ActionBarManager;
 
 public class NavigationDrawerActivity extends Activity implements AdapterView.OnItemClickListener {
 
@@ -45,7 +45,8 @@ public class NavigationDrawerActivity extends Activity implements AdapterView.On
     private String[] mCityNames;
     private int[] mCityImages;
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
@@ -125,7 +126,8 @@ public class NavigationDrawerActivity extends Activity implements AdapterView.On
         selectItem(position);
     }
 
-    private void selectItem(int position) {
+    @SuppressLint("NewApi")
+	private void selectItem(int position) {
         // update the main content by replacing fragments
         Fragment fragment = new SampleFragment();
         Bundle args = new Bundle();
@@ -142,7 +144,8 @@ public class NavigationDrawerActivity extends Activity implements AdapterView.On
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getActionBar().setTitle(mTitle);

@@ -3,16 +3,17 @@ package com.zftlive.android.sample.animation;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
 
 /**
  * 动画启动进入界面
@@ -20,21 +21,35 @@ import com.zftlive.android.common.ActionBarManager;
  * @version 1.0
  *
  */
-public class AnimationInActivity extends BaseActivity {
+public class AnimationInActivity extends BaseActivity implements View.OnClickListener {
 
 	private Spinner mAnimSp;
-	private Button mButton;
+	private Button mButton1,mButton2;
 	
 	@Override
 	public int bindLayout() {
 		return R.layout.activity_animation_in;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
         mAnimSp = (Spinner) findViewById(R.id.animation_sp);
-        mButton=(Button) findViewById(R.id.other_button);
-        
+        mButton1=(Button) findViewById(R.id.other_button1);
+        mButton2=(Button) findViewById(R.id.other_button2);
+		mButton1.setOnClickListener(this);
+		mButton2.setOnClickListener(this);
+		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.AnimationInActivity);
 		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
@@ -51,76 +66,6 @@ public class AnimationInActivity extends BaseActivity {
 		animType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mAnimSp.setAdapter(animType);
 		mAnimSp.setSelection(0);
-		
-		mButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				
-				//跳转界面
-				getOperation().forward(AnimationOutActivity.class);
-
-				/**
-				 * 设置过场动画:注意此方法只能在startActivity和finish方法之后调用
-				 * 第一个参数为第一个Activity离开时的动画，第二参数为所进入的Activity的动画效果
-				 */
-				switch (mAnimSp.getSelectedItemPosition()) {
-				case 0:
-					//淡入淡出效果
-					overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-					//Android内置的
-					//overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-					break;
-				case 1:
-					//放大淡出效果
-					overridePendingTransition(R.anim.scale_in,R.anim.alpha_out);
-					break;
-				case 2:
-					//转动淡出效果1
-					overridePendingTransition(R.anim.scale_rotate_in,R.anim.alpha_out);
-					break;
-				case 3:
-					//转动淡出效果2
-					overridePendingTransition(R.anim.scale_translate_rotate,R.anim.alpha_out);
-					break;
-				case 4:
-					//左上角展开淡出效果
-					overridePendingTransition(R.anim.scale_translate,R.anim.alpha_out);
-					break;
-				case 5:
-					//压缩变小淡出效果
-					overridePendingTransition(R.anim.hyperspace_in,R.anim.hyperspace_out);
-					break;
-				case 6:
-					//右往左推出效果
-					overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
-					//Android内置的
-					//overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
-					break;
-				case 7:
-					//下往上推出效果
-					overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
-					break;
-				case 8:
-					//左右交错效果
-					overridePendingTransition(R.anim.slide_left,
-							R.anim.slide_right);
-					break;
-				case 9:
-					//放大淡出效果
-					overridePendingTransition(R.anim.wave_scale,R.anim.alpha_out);
-					break;
-				case 10:
-					//缩小效果
-					overridePendingTransition(R.anim.zoom_enter,
-							R.anim.zoom_exit);
-					break;
-				case 11:
-					//上下交错效果
-					overridePendingTransition(R.anim.slide_up_in,R.anim.slide_down_out);
-					break;
-				}
-			}
-		});
 	}
 
 	@Override
@@ -133,4 +78,84 @@ public class AnimationInActivity extends BaseActivity {
 
 	}
 
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+		case R.id.other_button1:
+			//跳转界面 
+			getOperation().forward(AnimationOutActivity.class);
+			break;
+		case R.id.other_button2:
+			//跳转界面 
+			getOperation().forward(AnimationOutPullActivity.class);
+			break;
+		default:
+			break;
+		}
+		settingAnimation();
+	}
+	
+	private void settingAnimation(){
+		/**
+		 * 设置过场动画:注意此方法只能在startActivity和finish方法之后调用
+		 * 第一个参数为第一个Activity离开时的动画，第二参数为所进入的Activity的动画效果
+		 */
+		switch (mAnimSp.getSelectedItemPosition()) {
+		case 0:
+			//淡入淡出效果
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+			//Android内置的
+			//overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+			break;
+		case 1:
+			//放大淡出效果
+			overridePendingTransition(R.anim.scale_in,R.anim.alpha_out);
+			break;
+		case 2:
+			//转动淡出效果1
+			overridePendingTransition(R.anim.scale_rotate_in,R.anim.alpha_out);
+			break;
+		case 3:
+			//转动淡出效果2
+			overridePendingTransition(R.anim.scale_translate_rotate,R.anim.alpha_out);
+			break;
+		case 4:
+			//左上角展开淡出效果
+			overridePendingTransition(R.anim.scale_translate,R.anim.alpha_out);
+			break;
+		case 5:
+			//压缩变小淡出效果
+			overridePendingTransition(R.anim.hyperspace_in,R.anim.hyperspace_out);
+			break;
+		case 6:
+			//右往左推出效果
+			overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+			//Android内置的
+			//overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+			break;
+		case 7:
+			//下往上推出效果
+			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			break;
+		case 8:
+			//左右交错效果
+			overridePendingTransition(R.anim.slide_left,
+					R.anim.slide_right);
+			break;
+		case 9:
+			//放大淡出效果
+			overridePendingTransition(R.anim.wave_scale,R.anim.alpha_out);
+			break;
+		case 10:
+			//缩小效果
+			overridePendingTransition(R.anim.zoom_enter,
+					R.anim.zoom_exit);
+			break;
+		case 11:
+			//上下交错效果
+			overridePendingTransition(R.anim.slide_up_in,R.anim.slide_down_out);
+			break;
+		}
+	}
 }

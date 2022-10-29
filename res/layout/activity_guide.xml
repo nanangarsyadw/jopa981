@@ -5,7 +5,7 @@
     android:background="@color/white"
     tools:context=".Launcher" >
 
-    <com.zftlive.android.view.imageindicator.ImageIndicatorView
+    <com.zftlive.android.library.widget.imageindicator.ImageIndicatorView
         android:id="@+id/guide_indicate_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

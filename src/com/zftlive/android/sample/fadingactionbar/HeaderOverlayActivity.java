@@ -20,20 +20,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.fadingactionbar.FadingActionBarHelper;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.zftlive.android.R;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.fadingactionbar.FadingActionBarHelper;
 
 public class HeaderOverlayActivity extends Activity {
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

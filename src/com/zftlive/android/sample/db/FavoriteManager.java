@@ -2,16 +2,14 @@ package com.zftlive.android.sample.db;
 
 import java.sql.Savepoint;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import android.content.Context;
-import android.content.ServiceConnection;
 import android.util.Log;
 
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.support.DatabaseConnection;
+import com.zftlive.android.library.third.ormlite.dao.Dao;
+import com.zftlive.android.library.third.ormlite.support.DatabaseConnection;
+import com.zftlive.android.library.tools.db.DatabaseHelper;
 import com.zftlive.android.sample.IContant;
-import com.zftlive.android.tools.db.DatabaseHelper;
 
 /**
  * 信息搜藏业务控制

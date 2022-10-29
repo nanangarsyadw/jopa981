@@ -1,6 +1,8 @@
 package com.zftlive.android.sample.progressbar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -8,10 +10,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.progressbar.RoundProgressBar;
-import com.zftlive.android.view.progressbar.VerticalProgressBar;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.progressbar.RoundProgressBar;
+import com.zftlive.android.library.widget.progressbar.VerticalProgressBar;
 
 /**
  * 进度条示例（水平进度条+垂直进度条+圆形进度条）
@@ -30,7 +32,18 @@ public class ProgressBarActivity extends BaseActivity implements OnClickListener
 	public int bindLayout() {
 		return R.layout.activity_progressbar;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		

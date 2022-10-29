@@ -1,13 +1,13 @@
 package com.zftlive.android.sample.db;
 
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +18,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.j256.ormlite.android.AndroidDatabaseConnection;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.support.DatabaseConnection;
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.base.BaseAdapter;
-import com.zftlive.android.common.ActionBarManager;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.base.BaseMAdapter;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.third.ormlite.android.AndroidDatabaseConnection;
+import com.zftlive.android.library.third.ormlite.dao.Dao;
+import com.zftlive.android.library.third.ormlite.stmt.QueryBuilder;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolDatabase;
+import com.zftlive.android.library.tools.ToolString;
 import com.zftlive.android.sample.db.entity.User;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolDatabase;
-import com.zftlive.android.tools.ToolString;
 
 /**
  * 数据库操作示例
@@ -54,7 +53,18 @@ public class DBDemoActivity extends BaseActivity {
 	public int bindLayout() {
 		return R.layout.activity_db_demo;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		et_username = (EditText) findViewById(R.id.et_username);
@@ -302,7 +312,7 @@ public class DBDemoActivity extends BaseActivity {
 	 * 用户列表适配器
 	 * 
 	 */
-	public class UserListAdapter extends BaseAdapter {
+	public class UserListAdapter extends BaseMAdapter {
 
 		@Override
 		public View getView(final int position, View convertView,

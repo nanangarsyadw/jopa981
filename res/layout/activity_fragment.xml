@@ -8,6 +8,6 @@
         android:tag="sampleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.manuelpeinado.fadingactionbar.demo.SampleFragment" />
+        class="com.zftlive.android.sample.fadingactionbar.SampleFragment" />
 
 </FrameLayout>

@@ -8,5 +8,5 @@
           android:paddingRight="16dp"
           android:textColor="#fff"
           android:fontFamily="sans-serif-light"
-          android:background="@drawable/activated_background_indicator"
+          android:background="@drawable/selector_activated_bg_indicator"
           android:minHeight="48dp"/>

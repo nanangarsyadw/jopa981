@@ -3,21 +3,26 @@ package com.zftlive.android.sample.sms;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import cn.smssdk.SMSSDK;
 
-import com.zftlive.android.MApplication;
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolSMS;
-import com.zftlive.android.tools.ToolString;
+import com.zftlive.android.library.MApplication;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolString;
+import com.zftlive.android.library.tools.sms.SMSReceiver;
+import com.zftlive.android.library.tools.sms.ToolSMS;
 
 
 /**
@@ -36,12 +41,24 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 	private static int period = 1 * 1000;  //1s
 	private static int count = 60;  
 	private static final int UPDATE_TEXTVIEW = 99;
+	private BroadcastReceiver smsReceiver;
 	
 	@Override
 	public int bindLayout() {
 		return R.layout.activity_phonevalidate_code;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+	
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		et_phone = (EditText)findViewById(R.id.et_phone);
@@ -58,7 +75,7 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 	public void doBusiness(final Context mContext) {
 		
 		//注册SMSDK，可放置Application
-		ToolSMS.initSDK(ToolSMS.APPKEY, ToolSMS.APPSECRET);
+		ToolSMS.initSDK("843e7d4ff9a9", "f2eabd82678cdf3ad78aa3e5f726b3f8");
 		
 		//验证不可用
 		et_phone_code.setEnabled(false);
@@ -111,8 +128,22 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 			}
 		});
 		
-		//启动Service
-		startService(new Intent("com.zftlive.android.sample.sms.service.SMSReceived"));
+		//自动读取验证码
+		smsReceiver = new SMSReceiver(new SMSSDK.VerifyCodeReadListener(){
+
+			@Override
+			public void onReadVerifyCode(final String verifyCode) {
+				
+				getContext().runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						et_phone_code.setText(verifyCode);
+					}
+				});
+			}
+		});
+		getContext().registerReceiver(smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
 		
 	}
 
@@ -123,7 +154,7 @@ public class PhoneValidateCodeActivity extends BaseActivity {
 
 	@Override
 	public void destroy() {
-		
+		unregisterReceiver(smsReceiver);
 	}
 	
 	/**

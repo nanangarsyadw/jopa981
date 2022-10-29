@@ -3,20 +3,21 @@ package com.zftlive.android.common;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.zftlive.android.R;
-import com.zftlive.android.base.BaseActivity;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.tools.ToolString;
+import com.zftlive.android.library.base.BaseActivity;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.third.asynchttp.JsonHttpResponseHandler;
+import com.zftlive.android.library.tools.ToolAlert;
+import com.zftlive.android.library.tools.ToolString;
 
 /**
  * 意见反馈Activity
@@ -32,7 +33,18 @@ public class FeedbackActivity extends BaseActivity{
 	public int bindLayout() {
 		return R.layout.activity_feedback;
 	}
+	
+	@Override
+	public View bindView() {
+		return null;
+	}
 
+	@Override
+	public void initParms(Bundle parms) {
+		
+	}
+
+	@SuppressLint("NewApi")
 	@Override
 	public void initView(View view) {
 		et_message = (EditText)findViewById(R.id.et_message);

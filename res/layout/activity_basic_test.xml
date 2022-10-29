@@ -1,71 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/white"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".sample.basic.BasicTestActivity" >
 
-    <Button
-        android:id="@+id/btn_opengps"
+    <LinearLayout
+        android:id="@+id/frame_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/orange"
-        android:text="@string/btn_opengps" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_call"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/cornflowerblue"
-        android:text="@string/btn_call" />
+        <Button
+            android:id="@+id/btn_opengps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/orange"
+            android:text="@string/btn_opengps" />
 
-    <Button
-        android:id="@+id/btn_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/cornflowerblue"
-        android:text="@string/btn_contact" />
+        <Button
+            android:id="@+id/btn_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/cornflowerblue"
+            android:text="@string/btn_call" />
 
-    <Button
-        android:id="@+id/btn_setting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/cornflowerblue"
-        android:text="@string/btn_setting" />
+        <Button
+            android:id="@+id/btn_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/cornflowerblue"
+            android:text="@string/btn_contact" />
 
-    <Button
-        android:id="@+id/btn_carema"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/cornflowerblue"
-        android:text="@string/btn_carema" />
+        <Button
+            android:id="@+id/btn_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/cornflowerblue"
+            android:text="@string/btn_setting" />
 
-    <Button
-        android:id="@+id/btn_photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@color/cornflowerblue"
-        android:text="@string/btn_photo"
-        android:visibility="gone" />
+        <Button
+            android:id="@+id/btn_carema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/cornflowerblue"
+            android:text="@string/btn_carema" />
 
-    <com.zftlive.android.view.RoundAngleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/headIV"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/scrollview_header"
-        app:rHeight="40dp"
-        app:rWidth="40dp" />
+        <com.zftlive.android.library.widget.RoundAngleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/headIV"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/scrollview_header"
+            app:rHeight="40dp"
+            app:rWidth="40dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_hanziyingwen1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/btn_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/cornflowerblue"
+            android:text="@string/btn_photo"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_hanziyingwen2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp" />
+
+        <com.zftlive.android.library.widget.AlignTextView
+            android:id="@+id/tv_align"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <com.zftlive.android.library.widget.CKeyboardEditText
+            xmlns:ckb="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ckb_accuont"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            ckb:randomkeys="true"
+            ckb:xml="@xml/amountinputkeyboard" />
+    </LinearLayout>
+
+</ScrollView>

@@ -15,18 +15,19 @@
  */
 package com.zftlive.android.sample.fadingactionbar;
 
-import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.fadingactionbar.FadingActionBarHelper;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import com.zftlive.android.R;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.fadingactionbar.FadingActionBarHelper;
 
 
 public class NoParallaxActivity extends Activity {
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

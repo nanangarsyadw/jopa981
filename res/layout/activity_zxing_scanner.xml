@@ -38,7 +38,7 @@
                 android:layout_gravity="center_vertical"
                 android:clickable="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/zxing_scan_flashlight" />
+                android:src="@drawable/selector_zxing_scan_flashlight" />
         </LinearLayout>
 
         <TextView
@@ -67,7 +67,7 @@
                 android:layout_gravity="center_vertical"
                 android:clickable="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/zxing_scan_photo" />
+                android:src="@drawable/selector_zxing_scan_photo" />
         </LinearLayout>
     </LinearLayout>
 

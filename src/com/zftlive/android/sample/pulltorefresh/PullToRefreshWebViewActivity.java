@@ -15,14 +15,14 @@
  *******************************************************************************/
 package com.zftlive.android.sample.pulltorefresh;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import com.zftlive.android.R;
-import com.zftlive.android.common.ActionBarManager;
-import com.zftlive.android.view.pulltorefresh.PullToRefreshWebView;
+import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshWebView;
 
 public final class PullToRefreshWebViewActivity extends Activity {
 
@@ -30,6 +30,7 @@ public final class PullToRefreshWebViewActivity extends Activity {
 	WebView mWebView;
 
 	/** Called when the activity is first created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

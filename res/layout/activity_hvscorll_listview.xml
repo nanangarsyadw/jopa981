@@ -8,7 +8,7 @@
         android:id="@+id/head"
         layout="@layout/activity_hvscorll_listview_item" />
 
-    <com.zftlive.android.view.pulltorefresh.PullToRefreshListView
+    <com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
@@ -22,6 +22,6 @@
         android:listSelector="@android:color/transparent"
         android:scrollbars="none"
         ptr:ptrAnimationStyle="rotate" >
-    </com.zftlive.android.view.pulltorefresh.PullToRefreshListView>
+    </com.zftlive.android.library.widget.pulltorefresh.PullToRefreshListView>
 
 </LinearLayout>

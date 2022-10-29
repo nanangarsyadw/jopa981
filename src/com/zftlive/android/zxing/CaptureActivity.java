@@ -23,18 +23,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-import com.zftlive.android.R;
-import com.zftlive.android.tools.ToolAlert;
-import com.zftlive.android.zxing.camera.CameraManager;
-import com.zftlive.android.zxing.common.BitmapUtils;
-import com.zftlive.android.zxing.decode.BitmapDecoder;
-import com.zftlive.android.zxing.decode.CaptureActivityHandler;
-import com.zftlive.android.zxing.view.ViewfinderView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
 import com.google.zxing.client.result.ResultParser;
+import com.zftlive.android.R;
+import com.zftlive.android.zxing.camera.CameraManager;
+import com.zftlive.android.zxing.common.BitmapUtils;
+import com.zftlive.android.zxing.decode.BitmapDecoder;
+import com.zftlive.android.zxing.decode.CaptureActivityHandler;
+import com.zftlive.android.zxing.view.ViewfinderView;
 
 /**
  * This activity opens the camera and does the actual scanning on a background
