@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zftlive.android.view.fadingactionbar.view.RootLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zftlive.android.library.widget.fadingactionbar.view.RootLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <include layout="@layout/fab__header_container" />
 
-    <com.zftlive.android.view.fadingactionbar.view.ObservableScrollView
+    <com.zftlive.android.library.widget.fadingactionbar.view.ObservableScrollView
         android:id="@+id/fab__scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,6 +23,6 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent" />
         </LinearLayout>
-    </com.zftlive.android.view.fadingactionbar.view.ObservableScrollView>
+    </com.zftlive.android.library.widget.fadingactionbar.view.ObservableScrollView>
 
-</com.zftlive.android.view.fadingactionbar.view.RootLayout>
+</com.zftlive.android.library.widget.fadingactionbar.view.RootLayout>
