@@ -491,18 +491,6 @@
         </activity>
 
         <!-- 下拉ScrollView背景回弹效果样例(开始) -->
-        <!-- 下拉头部背景图片放大界面 -->
-        <activity
-            android:name=".sample.scrollview.PulldownViewActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/PulldownViewActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <!-- <category android:name="com.zftlive.android.SAMPLE_CODE" /> -->
-            </intent-filter>
-        </activity>
         <!-- 下拉Scrollview回弹效果样例界面 -->
         <activity
             android:name=".sample.scrollview.StretchViewActivity"
@@ -926,14 +914,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- 调用新浪原生SDK，需要注册的activity -->
-        <activity
-            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
 
         <!-- 调用新浪原生SDK，需要注册的回调activity -->
         <activity
