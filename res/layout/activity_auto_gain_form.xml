@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res/com.zftlive.android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame_root"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".sample.data.AutoGainFormActivity" >
 
     <!-- 账号 -->
+
     <LinearLayout
         android:id="@+id/ll_account"
         style="@style/accountInputBorder"
@@ -81,7 +82,7 @@
         <com.zftlive.android.library.widget.SingleSpinner
             android:id="@+id/sp_school"
             style="@style/accountEditText"
-            custom:key="school"/>
+            custom:key="school" />
     </LinearLayout>
 
     <!-- 性别 -->
