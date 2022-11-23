@@ -41,8 +41,13 @@ public class GuideActivity extends BaseActivity {
 		imageIndicatorView.setOnItemChangeListener(new ImageIndicatorView.OnItemChangeListener() {
 			@Override
 			public void onPosition(int position, int totalCount) {
-				if(position==totalCount){
-					finish();
+				if(position+1==totalCount){
+					imageIndicatorView.postDelayed(new Runnable(){
+						@Override
+						public void run() {
+							finish();
+						}
+					}, 300);
 				}
 			}
 		});
