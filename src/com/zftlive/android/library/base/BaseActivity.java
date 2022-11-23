@@ -94,6 +94,11 @@ public abstract class BaseActivity extends Activity implements IBaseActivity{
 	}
 	
 	@Override
+	public View bindView() {
+		return null;
+	}
+
+	@Override
 	protected void onRestart() {
 		super.onRestart();
 		Log.d(TAG, "BaseActivity-->onRestart()");
