@@ -47,7 +47,7 @@ public class GuideActivity extends BaseActivity {
 						public void run() {
 							finish();
 						}
-					}, 300);
+					}, 2000);
 				}
 			}
 		});
