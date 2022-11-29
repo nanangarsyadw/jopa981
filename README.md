@@ -2,23 +2,37 @@
 
 这是一个集成目前Android主流优秀第三方组件、优秀好用的自定义控件、实用工具类封装、以及一些APP共通模块（比如：版本更新、意见反馈、引导界面、基础的本地数据库操作、网络通信、图片加载等功能）的开发包，帮助程序员快速开发自己的APP
 
+#如何使用
+
+ 1. 环境准备：Eclipse Kepler  + ADT23 + Android SDK 4.4.2 (19) + git 
+   请确保本地含有Android SDK4.4.2，如果没有可以更新SDK，更新资源使用代理或者翻墙。[国内Android开发相关资源][15]，可以不用翻墙。懒得搭建环境的同学，可以去下载[作者的集成环境][16]，下载解压查看readme.txt安装 
+
+ 2. 安装编译
+    - 说明：
+    - - zftlive最新版本将共性的base/tools/widget抽取成独立类库【AjavaAndroidLib】，主要是方便使用以及维护，sample引用该工程使用。开发者可以直接签出类库工程即可，查看具体如何使用以及相关写法可下载sample
+    - 最新代码托管在OSC：
+    - - zftlive这个是最初始版本，维护不是那么及时，请根据自己环境下载[Eclipse版本][17]，[AndroidStudio版本][18]；
+    - - AjavaAndroidLib，依赖该类库，在应用**AndroidManifest.xml**配置*MApplication或其子类*即可使用，根据自己环境下载 [Eclipse版本][19]，[AndroidStudio版本][20]；
+    - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版本][21]，[AndroidStudio版本][22]。
+    - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
+
 #集成组件
 
- - [√] 网络异步请求[android-async-http][1]
- - [√] 图片异步加载[universal-image-loader][2]
- - [√] 本地数据库操作[ormlite-android][3]
- - [√] 消息推送-[腾讯信鸽][4]
- - [x] 即时通讯-[环信][5]
- - [x] 地图基础+定位+LBS [百度地图][6]
- - [√] App埋点/崩溃异常跟踪/日活统计[腾讯MTA][7]
- - [√] 社会化分享/第三方账号联合登录/短信验证码[ShareSDK][8]
- - [√] 快速生成渠道包[MultiChannelBuildTool][9]
- - [√] 二维码/条形码扫描和生成[Zxing二维码库][10]
- - [√] 低版本动画兼容库[nineoldandroids][11]
- - [√] IOC注入布局layout/控件/事件/Android四大组件[RoboGuice][12]
- - [√] WebService异步请求接口调用库[ksoap2][13]
- - [√] JSON/Bean互转组件 [gson][14]
- - [√] 折线图/饼图/柱状图/图表控件AChartEngine
+ - [x] 网络异步请求[android-async-http][1]
+ - [x] 图片异步加载[universal-image-loader][2]
+ - [x] 本地数据库操作[ormlite-android][3]
+ - [x] 消息推送-[腾讯信鸽][4]
+ - [ ] 即时通讯-[环信][5]
+ - [ ] 地图基础+定位+LBS [百度地图][6]
+ - [x] App埋点/崩溃异常跟踪/日活统计[腾讯MTA][7]
+ - [x] 社会化分享/第三方账号联合登录/短信验证码[ShareSDK][8]
+ - [x] 快速生成渠道包[MultiChannelBuildTool][9]
+ - [x] 二维码/条形码扫描和生成[Zxing二维码库][10]
+ - [x] 低版本动画兼容库[nineoldandroids][11]
+ - [x] IOC注入布局layout/控件/事件/Android四大组件[RoboGuice][12]
+ - [x] WebService异步请求接口调用库[ksoap2][13]
+ - [x] JSON/Bean互转组件 [gson][14]
+ - [x] 折线图/饼图/柱状图/图表控件AChartEngine
 
 #样例锦集
 
@@ -78,15 +92,6 @@
  - XML操作工具类（ToolXml.java）,基于DOM/XMLPullPaser模式解析、生成XML操作
  - 适配字体工具类（ToolAutoFit.java）,代码根据设备密度自动缩放View的字体大小
  - LOG相关工具类（ToolLog.java） 
-
-#如何使用
-
- 1. 环境准备：Eclipse Kepler  + ADT23 + Android SDK 4.4.2 (19) + git 
-   请确保本地含有Android SDK4.4.2，如果没有可以更新SDK，更新资源使用代理或者翻墙。[国内Android开发相关资源][15]，可以不用翻墙。懒得搭建环境的同学，可以去下载[作者的集成环境][16]，下载解压查看readme.txt安装 
-
- 2. 安装编译
-    - 说明：zftlive最新版本将共性的base/tools/widget抽取成独立类库【AjavaAndroidLib】，主要是方便使用以及维护，sample引用该工程使用。开发者可以直接签出类库工程即可，查看具体如何使用以及相关写法可下载sample
-    - 最新代码托管在OSC：zftlive这个是最初始版本，维护不是那么及时，[Eclipse版本][17]，[AndroidStudio版本][18]；AjavaAndroidLib，依赖该类库，在应用**AndroidManifest.xml**配置*MApplication或其子类*即可使用，[Eclipse版本][19]，[AndroidStudio版本][20]；AjavaAndroidLib使用Sample工程下载地址：[Eclipse版本][21]，[AndroidStudio版本][22]。直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
 
 ----------
 #关于作者
