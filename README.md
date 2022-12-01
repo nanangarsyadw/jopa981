@@ -1,6 +1,6 @@
 # zftlive
 
-这是一个集成目前Android主流优秀第三方组件、优秀好用的自定义控件、实用工具类封装、以及一些APP共通模块（比如：版本更新、意见反馈、引导界面、基础的本地数据库操作、网络通信、图片加载等功能）的开发包，帮助程序员快速开发自己的APP
+这是一个集成目前Android主流优秀第三方组件、优秀好用的自定义控件、实用工具类封装、以及一些APP共通模块（比如：版本更新、意见反馈、引导界面、基础的本地数据库操作、网络通信、图片加载等功能）的开发包，帮助程序员快速开发自己的APP。最新源码已推送[github][24]，最新apk可以在[应用宝][25]、[360手机市场][26]下载安装
 
 #如何使用
 
@@ -15,24 +15,24 @@
     - - AjavaAndroidLib，依赖该类库，在应用**AndroidManifest.xml**配置*MApplication或其子类*即可使用，根据自己环境下载 [Eclipse版本][19]，[AndroidStudio版本][20]；
     - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版本][21]，[AndroidStudio版本][22]。
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
-
+    - - 项目具体文档、API以及相关截图，[请点击这里][27]
 #集成组件
 
- - [x] 网络异步请求[android-async-http][1]
- - [x] 图片异步加载[universal-image-loader][2]
- - [x] 本地数据库操作[ormlite-android][3]
- - [x] 消息推送-[腾讯信鸽][4]
- - [ ] 即时通讯-[环信][5]
- - [ ] 地图基础+定位+LBS [百度地图][6]
- - [x] App埋点/崩溃异常跟踪/日活统计[腾讯MTA][7]
- - [x] 社会化分享/第三方账号联合登录/短信验证码[ShareSDK][8]
- - [x] 快速生成渠道包[MultiChannelBuildTool][9]
- - [x] 二维码/条形码扫描和生成[Zxing二维码库][10]
- - [x] 低版本动画兼容库[nineoldandroids][11]
- - [x] IOC注入布局layout/控件/事件/Android四大组件[RoboGuice][12]
- - [x] WebService异步请求接口调用库[ksoap2][13]
- - [x] JSON/Bean互转组件 [gson][14]
- - [x] 折线图/饼图/柱状图/图表控件AChartEngine
+ - [√] 网络异步请求[android-async-http][1]
+ - [√] 图片异步加载[universal-image-loader][2]
+ - [√] 本地数据库操作[ormlite-android][3]
+ - [√] 消息推送-[腾讯信鸽][4]
+ - [x] 即时通讯-[环信][5]
+ - [√] 地图基础+定位+LBS （LBS暂未完成）[百度地图][6]
+ - [√] App埋点/崩溃异常跟踪/日活统计[腾讯MTA][7]
+ - [√] 社会化分享/第三方账号联合登录/短信验证码[ShareSDK][8]
+ - [√] 快速生成渠道包[MultiChannelBuildTool][9]
+ - [√] 二维码/条形码扫描和生成[Zxing二维码库][10]
+ - [√] 低版本动画兼容库[nineoldandroids][11]
+ - [√] IOC注入布局layout/控件/事件/Android四大组件[RoboGuice][12]
+ - [√] WebService异步请求接口调用库[ksoap2][13]
+ - [√] JSON/Bean互转组件 [gson][14]
+ - [√] 折线图/饼图/柱状图/图表控件AChartEngine
 
 #样例锦集
 
@@ -135,3 +135,7 @@ var Author = {
 [21]: http://git.oschina.net/zftlive/AjavaAndroidSample
 [22]: http://git.oschina.net/zftlive/gradle-ajavasample
 [23]: http://yun.baidu.com/share/link?shareid=1394255543&uk=705493881
+[24]: https://github.com/zengfantian/zftlive
+[25]: http://android.myapp.com/myapp/detail.htm?apkName=com.zftlive.android
+[26]: http://zhushou.360.cn/detail/index/soft_id/3022355?recrefer=SE_D_ajavasample
+[27]: http://git.oschina.net/zftlive/zftlive/tree/master/doc
