@@ -5,17 +5,17 @@
 #如何使用
 
  1. 环境准备：Eclipse Kepler  + ADT23 + Android SDK 4.4.2 (19) + git 
-   请确保本地含有Android SDK4.4.2，如果没有可以更新SDK，更新资源使用代理或者翻墙。[国内Android开发相关资源][15]，可以不用翻墙。懒得搭建环境的同学，可以去下载[作者的集成环境][16]，下载解压查看readme.txt
+   请确保本地含有Android SDK4.4.2，如果没有可以更新SDK，更新资源使用代理或者翻墙。[国内Android开发相关资源][15]，可以不用翻墙。懒得搭建环境的同学，可以去下载作者的[集成环境][16]，下载解压查看readme.txt
 
  2. 安装编译
     - 说明：
     - - zftlive最新版本将共性的base/tools/widget抽取成独立类库【AjavaAndroidLib】，主要是方便使用以及维护，sample引用该工程使用。开发者可以直接签出类库工程即可，查看具体如何使用以及相关写法可下载sample
     - 最新代码托管在OSC：
     - - zftlive这个是最初始版本，维护不是那么及时，请根据自己环境下载[Eclipse版本][17]，[AndroidStudio版本][18]；
-    - - AjavaAndroidLib，依赖该类库，在应用**AndroidManifest.xml**配置*MApplication或其子类*即可使用，根据自己环境下载 [Eclipse版本][19]，[AndroidStudio版本][20]；
-    - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版本][21]，[AndroidStudio版本][22]。
+    - - AjavaAndroidLib，工程引入该类库并且在**AndroidManifest.xml**配置自定义Application为*MApplication或其子类*即可使用，根据自己环境下载 [Eclipse版][19]，[AndroidStudio版][20]；
+    - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版][21]，[AndroidStudio版][22]。
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
-    - - 项目具体文档、API以及相关截图，[请点击这里][27]
+    - 项目具体文档、API以及相关截图，[请点击这里][27]
 
 #集成组件
 
