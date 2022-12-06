@@ -11,5 +11,6 @@
 可以自行修改MultiChannelBuildTool.py第54行代码.总之，如果要和python脚本代码保持一致（其实就一个key，没必要修改，以免造成不必要的麻烦）
 
 参考资料：
+python下载地址 https://www.python.org/downloads/
 windows系统下Python环境的搭建 http://www.cnblogs.com/windinsky/archive/2012/09/20/2695520.html
 Eclipse配置PyDev插件 http://www.cnblogs.com/halfacre/archive/2012/07/22/2603848.html
