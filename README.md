@@ -9,13 +9,13 @@
 
  2. 安装编译
     - 说明：
-    - - zftlive最新版本将共性的base/tools/widget抽取成独立类库【AjavaAndroidLib】，主要是方便使用以及维护，sample引用该工程使用。开发者可以直接签出类库工程即可，查看具体如何使用以及相关写法可下载sample
+    - - zftlive最新版本将base/tools/widget等共性的内容(com.zftlive.android.library包下的内容)抽取成独立类库【AjavaAndroidLib】，主要是方便使用以及维护，sample引用该工程使用。开发者可以直接签出类库工程即可，查看具体如何使用以及相关写法可下载sample
     - 最新代码托管在OSC：
     - - zftlive这个是最初始版本，维护不是那么及时，请根据自己环境下载[Eclipse版本][17]，[AndroidStudio版本][18]；
     - - AjavaAndroidLib，工程引入该类库并且在**AndroidManifest.xml**配置自定义Application为*MApplication或其子类*即可使用，根据自己环境下载 [Eclipse版][19]，[AndroidStudio版][20]；
     - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版][21]，[AndroidStudio版][22]。
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
-    - 项目具体文档、API以及相关截图，[请点击这里][27]
+    - 更多项目文档/API/相关截图 [请点击这里][27]
 
 #集成组件
 
@@ -70,6 +70,7 @@
  - 样例-dialog各种特效DEMO
  - 样例-带数字的进度条
  - 样例-百度地图定位演示
+ - 未完/待续，敬请关注...
 
 #封装工具类
 
@@ -93,6 +94,7 @@
  - XML操作工具类（ToolXml.java）,基于DOM/XMLPullPaser模式解析、生成XML操作
  - 适配字体工具类（ToolAutoFit.java）,代码根据设备密度自动缩放View的字体大小
  - LOG相关工具类（ToolLog.java） 
+ - 未完/待续，敬请关注...
 
 ----------
 #关于作者
