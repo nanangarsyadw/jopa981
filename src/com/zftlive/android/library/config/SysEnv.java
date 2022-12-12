@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -188,4 +189,55 @@ public final class SysEnv {
 		}
 		return false;
 	}
+	
+	/**
+	 * 获取可用内存
+	 * @param mContext 上下文
+	 * @return
+	 */
+    public static long gainUnusedMemory(Context mContext) {
+        long MEM_UNUSED = 0L;
+        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        am.getMemoryInfo(mi);
+        MEM_UNUSED = mi.availMem / 1024;
+        return MEM_UNUSED;
+    }
+
+    /**
+     * 获取总内存
+     * @return
+     */
+    public static long gainTotalMemory() {
+        long mTotal = 0;
+        // /proc/meminfo读出的内核信息进行解析
+        String path = "/proc/meminfo";
+        String content = null;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(path), 8);
+            String line;
+            if ((line = br.readLine()) != null) {
+                content = line;
+            }
+            // beginIndex
+            int begin = content.indexOf(':');
+            // endIndex
+            int end = content.indexOf('k');
+            // 截取字符串信息
+
+            content = content.substring(begin + 1, end).trim();
+            mTotal = Integer.parseInt(content);
+        } catch (Exception e) {
+        	Log.e(TAG, "获取总内存失败，原因："+e.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return mTotal;
+    }
 }
