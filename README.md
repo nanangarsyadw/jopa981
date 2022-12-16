@@ -1,7 +1,7 @@
 # zftlive
 
 这是一个集成目前Android主流优秀第三方组件、优秀好用的自定义控件、实用工具类封装、以及一些APP共通模块（比如：版本更新、意见反馈、引导界面、基础的本地数据库操作、网络通信、图片加载等功能）的开发包，帮助程序员快速开发自己的APP。最新源码已推送[github][24]，最新apk请移步至[应用宝][25]、[360手机市场][26]
-
+![安卓架构雏形图](http://git.oschina.net/zftlive/zftlive/raw/master/doc/snapshot/Android架构图-曾繁添.jpg "安卓架构雏形图")
 #如何使用
 
  1. 环境准备：Eclipse Kepler  + ADT23 + Android SDK 4.4.2 (19) + git 
