@@ -96,6 +96,15 @@
  - LOG相关工具类（ToolLog.java） 
  - 未完/待续，敬请关注...
 
+#版权声明
+
+本项目源代码开源共享，收集开源项目源代码，融入了个人的理解并给与加工封装，最新正版源代码托管在OSC，最近同步推送至github一份，除此之外其他任何渠道方式获取的源代码均不是作者本人共享，并不保证是原著，如需转载请标明出处。另外，项目中涉及第三方平台接入相关key（短信验证码、MTA统计、信鸽推送、百度地图、社会化分享等），由于免费试用的次数有限，为了方便更多的使用者体验，请自行到各自接入平台申请替换
+
+#捐赠共勉
+
+如果您觉得本项目的源代码对您的学习有所帮助，您可以支付宝(左)或微信(右)打赏作者，金额随意
+![支付宝](http://git.oschina.net/uploads/images/2015/1007/130818_eb22faa0_132591.png "支付宝捐赠")     ![微信](http://git.oschina.net/uploads/images/2015/1007/130906_30154790_132591.png "微信捐赠")
+
 ----------
 #关于作者
 
@@ -110,7 +119,7 @@ var Author = {
     blog : 'http://www.cnblogs.com/fly100',
     github : 'https://github.com/zengfantian',
     oschina : 'http://git.oschina.net/zftlive',
-    tags : '90后、IT男、技术控、代码洁癖',
+    tags : '90后、IT男、J2EE、Web前端、Android、Flex、管理、技术控、代码洁癖',
     description : '爱技术、爱开源、也爱赚钱，对代码书写有严格规范要求洁癖，平时喜欢看看开源项目、SDK相关源代码'
 }
 ```
@@ -142,3 +151,4 @@ var Author = {
 [25]: http://android.myapp.com/myapp/detail.htm?apkName=com.zftlive.android
 [26]: http://zhushou.360.cn/detail/index/soft_id/3022355?recrefer=SE_D_ajavasample
 [27]: http://git.oschina.net/zftlive/zftlive/tree/master/doc
+[28]: http://jr.jd.com/
