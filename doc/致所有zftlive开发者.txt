@@ -1,7 +1,0 @@
-致所有zftlive开发者：
-
-1、首先一定要了解zftlive的项目结构，每一个包对应的职责
-2、所有的sample代码都书写在/zftlive/src/com/zftlive/android/sample包下，activity注册参照任何一个样例，MainActivity会自动扫描入口，并装填到主界面的列表中
-3、代码的命名规范见doc目录《Android开发命名规范以及注意事项.pdf》
-4、再次强调大家按照约定的命名规范来协同工作，项目中既存的一些代码未按照规范来，作者会陆续更正。
-5、有什么问题保持联系
