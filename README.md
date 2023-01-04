@@ -129,6 +129,8 @@ var Author = {
 }
 ```
 
+使用过程中有什么问题大家可以加QQ交流群：497671525 ， 加我的QQ也可以，加的时候备注一下，好友有限。看到问题我会及时解答
+
 [1]: https://github.com/loopj/android-async-http
 [2]: https://github.com/nostra13/Android-Universal-Image-Loader
 [3]: http://ormlite.com/
