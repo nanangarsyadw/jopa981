@@ -33,6 +33,7 @@
     <string name="DialogEffectActivity">dialog各种特效DEMO</string>
     <string name="NumberPbActivity">带数字的进度条样例</string>
     <string name="BaiduLocationActivity">百度地图定位演示DEMO</string>
+    <string name="AlipayDemoActivity">支付宝支付DEMO</string>
     <!-- Android样例锦集label(结束) -->
 
 
