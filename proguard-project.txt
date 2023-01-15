@@ -262,6 +262,16 @@
 -keep class org.xmlpull.** {*;}
 ####################SOAP访问第三方jar ksoap2-android.jar（结束）#####################
 
+####################支付宝支付jar alipay-sdk-20150818.jar（开始）#####################
+-libraryjars libs/alipay-sdk-20150818.jar
+-keep class com.alipay.android.app.IAlixPay{*;}
+-keep class com.alipay.android.app.IAlixPay$Stub{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
+-keep class com.alipay.sdk.app.PayTask{ public *;}
+-keep class com.alipay.sdk.app.AuthTask{ public *;}
+####################支付宝支付jar ksoap2-android.jar（结束）#####################
+
 ####################nineoldandroids（开始）#####################
 -dontwarn com.nineoldandroids.**
 -keep class com.nineoldandroids.** {*;}
