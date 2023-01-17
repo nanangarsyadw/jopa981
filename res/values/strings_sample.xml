@@ -34,6 +34,7 @@
     <string name="NumberPbActivity">带数字的进度条样例</string>
     <string name="BaiduLocationActivity">百度地图定位演示DEMO</string>
     <string name="AlipayDemoActivity">支付宝支付DEMO</string>
+    <string name="Lock9DemoActivity">九宫格手势锁示例</string>
     <!-- Android样例锦集label(结束) -->
 
 
@@ -178,5 +179,10 @@
     <string name="msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
     <string name="button_ok">确定</string>
     <!-- zxing(end) -->
+
+    <!-- 九宫格锁屏控件（开始） -->
+    <string name="normal_demo">Normal Demo</string>
+    <string name="android_l_style">Android L Style</string>
+    <!-- 九宫格锁屏控件（结束） -->
 
 </resources>
