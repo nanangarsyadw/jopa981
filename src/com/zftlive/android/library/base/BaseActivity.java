@@ -230,10 +230,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
         overridePendingTransition(0, R.anim.base_slide_right_out);
         break;
       case IBaseActivity.TOP_BOTTOM:
-        overridePendingTransition(0, R.anim.push_up_out);
+        overridePendingTransition(0, R.anim.base_push_up_out);
         break;
       case IBaseActivity.FADE_IN_OUT:
-        overridePendingTransition(0, R.anim.fade_out);
+        overridePendingTransition(0, R.anim.base_fade_out);
         break;
       default:
         break;

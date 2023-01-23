@@ -63,10 +63,10 @@ public class Operation {
 			mContext.overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
 			break;
 		case IBaseActivity.TOP_BOTTOM:
-			mContext.overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			mContext.overridePendingTransition(R.anim.base_push_up_in,R.anim.base_push_up_out);
 			break;
 		case IBaseActivity.FADE_IN_OUT:
-			mContext.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+			mContext.overridePendingTransition(R.anim.base_fade_in, R.anim.base_fade_out);
 			break;
 		default:
 			break;
