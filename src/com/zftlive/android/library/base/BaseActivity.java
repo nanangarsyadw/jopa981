@@ -17,8 +17,8 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zftlive.android.R;
 import com.zftlive.android.library.MApplication;
+import com.zftlive.android.library.tools.ToolResource;
 import com.zftlive.android.library.widget.SwipeBackLayout;
 
 /**
@@ -227,13 +227,13 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     super.finish();
     switch (mAnimationType) {
       case IBaseActivity.LEFT_RIGHT:
-        overridePendingTransition(0, R.anim.base_slide_right_out);
+        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_out"));
         break;
       case IBaseActivity.TOP_BOTTOM:
-        overridePendingTransition(0, R.anim.base_push_up_out);
+        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out"));
         break;
       case IBaseActivity.FADE_IN_OUT:
-        overridePendingTransition(0, R.anim.base_fade_out);
+        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out"));
         break;
       default:
         break;

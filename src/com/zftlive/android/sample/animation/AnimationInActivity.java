@@ -104,7 +104,7 @@ public class AnimationInActivity extends BaseActivity implements View.OnClickLis
 		switch (mAnimSp.getSelectedItemPosition()) {
 		case 0:
 			//淡入淡出效果
-			overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+			overridePendingTransition(R.anim.base_fade_in, R.anim.base_fade_out);
 			//Android内置的
 			//overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 			break;
@@ -136,7 +136,7 @@ public class AnimationInActivity extends BaseActivity implements View.OnClickLis
 			break;
 		case 7:
 			//下往上推出效果
-			overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+			overridePendingTransition(R.anim.base_push_up_in,R.anim.base_push_up_out);
 			break;
 		case 8:
 			//左右交错效果
