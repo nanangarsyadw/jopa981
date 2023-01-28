@@ -44,7 +44,8 @@ public class StretchViewActivity extends BaseActivity {
 	public void initView(View view) {
 		mMainLayout = (TableLayout) findViewById(R.id.table_layout);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());
+        initBackTitleBar(this.getClass().getSimpleName());
 	}
 
 	@Override

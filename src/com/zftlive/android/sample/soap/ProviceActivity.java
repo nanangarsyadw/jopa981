@@ -67,7 +67,8 @@ public class ProviceActivity extends BaseActivity {
 		});
 		
 		//初始化带返回按钮的标题栏
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), "省份列表");
+//		ActionBarManager.initBackTitle(getContext(), getActionBar(), "省份列表");
+		initBackTitleBar("省份列表");
 	}
 
 	@Override

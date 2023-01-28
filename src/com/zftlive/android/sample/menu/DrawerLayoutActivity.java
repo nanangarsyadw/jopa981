@@ -74,7 +74,8 @@ public class DrawerLayoutActivity extends BaseActivity {
 		actionBar.setLogo(R.drawable.ic_list_white_48dp);
 		actionBar.setDisplayUseLogoEnabled(true);
 		String strCenterTitle = getResources().getString(R.string.DrawerLayoutActivity);
-		ActionBarManager.initTitleCenterActionBar(mContext,actionBar,strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 	
 

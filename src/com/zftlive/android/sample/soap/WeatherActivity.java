@@ -46,7 +46,8 @@ public class WeatherActivity extends BaseActivity{
 	public void initView(View view) {
 		mTextWeather = (TextView) findViewById(R.id.weather);
 		//初始化带返回按钮的标题栏
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), "天气信息");
+//		ActionBarManager.initBackTitle(getContext(), getActionBar(), "天气信息");
+		initBackTitleBar("天气信息");
 	}
 
 	@Override

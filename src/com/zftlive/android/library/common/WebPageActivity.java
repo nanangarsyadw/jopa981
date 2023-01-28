@@ -163,6 +163,9 @@ public class WebPageActivity extends BaseActivity implements
 		ll_reload = (LinearLayout) findViewById(R.id.ll_reload);
 		ll_reload.setOnClickListener(this);
 		isError = false;
+		
+		//隐藏标题栏
+		hiddeTitleBar();
 	}
 
 	@Override

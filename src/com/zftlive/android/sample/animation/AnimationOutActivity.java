@@ -41,7 +41,8 @@ public class AnimationOutActivity extends BaseActivity {
 	public void initView(View view) {
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.AnimationInActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 		
 		//追加右滑关闭activity顶层View
 		rootView = (SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.view_swipeback_root, null);

@@ -84,7 +84,9 @@ public class MainActivity extends BaseActivity {
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.MainActivity);
-		ActionBarManager.initMenuListTitle(getContext(), getActionBar(), strCenterTitle);
+//		ActionBarManager.initMenuListTitle(getContext(), getActionBar(), strCenterTitle);
+		initHomeMenuTitleBar(strCenterTitle, null);
+		
 	}
 
 	@Override

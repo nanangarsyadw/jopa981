@@ -77,7 +77,8 @@ public class FileDownloadUploadActivity extends BaseActivity implements OnClickL
 	public void doBusiness(Context mContext) {
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.FileDownloadUploadActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 
 	@Override

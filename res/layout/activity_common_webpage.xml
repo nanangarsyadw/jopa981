@@ -42,19 +42,19 @@
             android:background="@android:color/transparent"
             android:contentDescription="@null"
             android:src="@drawable/common_share" />
+
+        <!-- 进度条 -->
+
+        <ProgressBar
+            android:id="@+id/pb_web_load_progress"
+            style="@style/ProgressBar_Mini"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:max="100"
+            android:progress="0" />
     </RelativeLayout>
-
-    <!-- 进度条 -->
-
-    <ProgressBar
-        android:id="@+id/pb_web_load_progress"
-        style="@style/ProgressBar_Mini"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_below="@+id/rl_webview_title_bar"
-        android:layout_gravity="center"
-        android:max="100"
-        android:progress="0" />
 
     <!-- webview容器（loading等待 + 错误提示重新加载 + webview） -->
 
@@ -62,7 +62,7 @@
         android:id="@+id/rl_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/pb_web_load_progress" >
+        android:layout_below="@+id/rl_webview_title_bar" >
 
         <WebView
             android:id="@+id/webview"
@@ -76,8 +76,8 @@
             android:layout_height="match_parent"
             android:background="@color/error_bg"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone" >
 
             <ImageView
                 android:layout_width="wrap_content"

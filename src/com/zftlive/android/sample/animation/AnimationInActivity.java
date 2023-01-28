@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import com.zftlive.android.R;
 import com.zftlive.android.library.base.BaseActivity;
-import com.zftlive.android.library.common.ActionBarManager;
 
 /**
  * 动画启动进入界面
@@ -52,7 +51,8 @@ public class AnimationInActivity extends BaseActivity implements View.OnClickLis
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.AnimationInActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+		initBackTitleBar(strCenterTitle);
 	}
 
 	@Override

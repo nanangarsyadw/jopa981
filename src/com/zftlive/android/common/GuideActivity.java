@@ -47,10 +47,13 @@ public class GuideActivity extends BaseActivity {
 						public void run() {
 							finish();
 						}
-					}, 2000);
+					}, 300);
 				}
 			}
 		});
+		
+		//隐藏标题栏
+		hiddeTitleBar();
 	}
 
 	@Override

@@ -58,8 +58,8 @@ public class SMSOperationActivity extends BaseActivity implements
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.SMSOperationActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
-
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 
 	@Override

@@ -36,6 +36,9 @@ public class Launcher extends BaseActivity {
 	@Override
 	public void initView(View view) {
 		
+	    //隐藏标题栏
+	    hiddeTitleBar();
+	  
 		//添加动画效果
 		AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
 		animation.setDuration(2000);

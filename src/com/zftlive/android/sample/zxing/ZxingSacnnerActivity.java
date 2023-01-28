@@ -39,7 +39,8 @@ public class ZxingSacnnerActivity extends BaseActivity {
 	public void initView(View view) {
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.ZxingSacnnerActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 
 	@Override

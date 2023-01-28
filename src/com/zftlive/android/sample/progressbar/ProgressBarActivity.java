@@ -60,7 +60,8 @@ public class ProgressBarActivity extends BaseActivity implements OnClickListener
 		
 		//初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.ProgressBarActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 
 	@Override

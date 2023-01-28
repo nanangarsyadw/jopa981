@@ -9,16 +9,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.zftlive.android.library.MApplication;
-import com.zftlive.android.library.tools.ToolResource;
 import com.zftlive.android.library.widget.SwipeBackLayout;
 
 /**
@@ -35,7 +37,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   /** 当前Activity的弱引用，防止内存泄露 **/
   private WeakReference<Activity> context = null;
   /** 当前Activity渲染的视图View **/
-  private View mContextView = null;
+  private ViewGroup mContextView = null;
   /** 动画类型 **/
   private int mAnimationType = NONE;
   /** 是否运行截屏 **/
@@ -54,7 +56,12 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
     // 获取应用Application
     mApplication = (MApplication) getApplicationContext();
-
+    
+    // 设置渲染视图View
+    int baseLayout = BaseView.gainResId(mApplication, BaseView.LAYOUT, "activity_base_container");
+    mContextView = (ViewGroup)LayoutInflater.from(this).inflate(baseLayout, null);
+    setContentView(mContextView);
+    
     // 将当前Activity压入栈
     context = new WeakReference<Activity>(this);
     mApplication.pushTask(context);
@@ -70,15 +77,13 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
       bundle = new Bundle();
     }
     initParms(bundle);
-
-    // 设置渲染视图View
+    
     View mView = bindView();
     if (null == mView) {
-      mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
-    } else {
-      mContextView = mView;
+      mView = LayoutInflater.from(this).inflate(bindLayout(), null);
     }
-    setContentView(mContextView);
+    ViewGroup mContent = (ViewGroup) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "fl_content"));
+    mContent.addView(mView);
 
     // 初始化控件
     initView(mContextView);
@@ -99,7 +104,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   public View bindView() {
     return null;
   }
-
+  
   @Override
   protected void onRestart() {
     super.onRestart();
@@ -117,6 +122,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     super.onResume();
     Log.d(TAG, "BaseActivity-->onResume()");
     resume();
+  }
+  
+  @Override
+  public void resume() {
+
   }
 
   @Override
@@ -140,6 +150,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     mApplication.removeTask(context);
   }
 
+  @Override
+  public void destroy() {
+      
+  }
+  
   /**
    * 显示Actionbar菜单图标
    */
@@ -206,6 +221,76 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   }
 
   /**
+   * 隐藏标题栏
+   */
+  public void hiddeTitleBar(){
+    //标题栏容器
+    View mTitleBarContainer = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+    if(null == mTitleBarContainer){
+      return;
+    }
+    mTitleBarContainer.setVisibility(View.GONE);
+  }
+  
+  /**
+   * 初始化返回按钮+标题左对齐
+   * @param strTitle 标题名称
+   * @param mBtnClickListener Home/Menu按钮点击监听事件
+   */
+  public void initHomeMenuTitleBar(String strTitle,View.OnClickListener mBtnClickListener){
+    View mMenuBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_menu"));
+    mMenuBtn.setVisibility(View.VISIBLE);
+    if(null != mBtnClickListener){
+      mMenuBtn.setOnClickListener(mBtnClickListener);
+    }
+    View mBackBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_back"));
+    mBackBtn.setVisibility(View.GONE);
+    
+    //标题
+    TextView mTitleText = (TextView)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
+    mTitleText.setText(strTitle);
+  }
+  
+  /**
+   * 初始化返回按钮+标题左对齐
+   * @param strTitle 标题名称
+   */
+  public void initBackTitleBar(String strTitle){
+    initBackTitleBar(strTitle,Gravity.LEFT|Gravity.CENTER_VERTICAL);
+  }
+  
+  /**
+   * 初始化返回按钮+指定标题文本对齐方式
+   * @param strTitle 标题名称
+   * @param mGravity 标题文本对其方式 Gravity.LEFT|Gravity.CENTER_VERTICAL
+   */
+  public void initBackTitleBar(String strTitle,int mGravity){
+    //设置标题
+    TextView mTitleText = (TextView)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
+    mTitleText.setText(strTitle);
+    mTitleText.setGravity(mGravity);
+    
+    //设置点击事件
+    View mBackBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_back"));
+    mBackBtn.setVisibility(View.VISIBLE);
+    mBackBtn.setOnClickListener(new View.OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
+  }
+  
+  /**
+   * 获取标题栏容器，可以自行控制左右按钮和布局
+   * @return
+   */
+  public ViewGroup gainTitleBarVG(){
+    return (ViewGroup)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+  }
+  
+  /**
    * Actionbar点击返回键关闭事件
    */
   @Override
@@ -227,13 +312,16 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     super.finish();
     switch (mAnimationType) {
       case IBaseActivity.LEFT_RIGHT:
-        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_out"));
+        overridePendingTransition(0,
+            BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_out"));
         break;
       case IBaseActivity.TOP_BOTTOM:
-        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out"));
+        overridePendingTransition(0,
+            BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out"));
         break;
       case IBaseActivity.FADE_IN_OUT:
-        overridePendingTransition(0, BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out"));
+        overridePendingTransition(0,
+            BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out"));
         break;
       default:
         break;

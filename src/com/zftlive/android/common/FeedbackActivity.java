@@ -51,7 +51,8 @@ public class FeedbackActivity extends BaseActivity{
 		
 		//初始化返回按钮
 		String strCenterTitle = getResources().getString(R.string.FeedbackActivity);
-		ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
+        initBackTitleBar(strCenterTitle);
 	}
 
 	@Override
