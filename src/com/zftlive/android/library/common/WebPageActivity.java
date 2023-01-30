@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -127,8 +128,8 @@ public class WebPageActivity extends BaseActivity implements
 
 	@Override
 	public void initParms(Bundle parms) {
-		linkURL = parms.getString(LINK_URL, linkURL);
-		mCurrentTile = parms.getString(LINK_URL, mCurrentTile);
+		linkURL = parms.getString(LINK_URL);
+		mCurrentTile = parms.getString(TITLE);
 		isShowShare = parms.getBoolean(SHOW_SHARE, false);
 		isCanZoom = parms.getBoolean(IS_CAN_ZOOM, true);
 	}
@@ -326,7 +327,7 @@ public class WebPageActivity extends BaseActivity implements
 				SslError error) {
 			handler.proceed();
 			super.onReceivedSslError(view, handler, error);
-			Log.i(TAG, "onReceivedSslError--->" + "加载数据失败，错误码："+ error.getUrl());
+			Log.i(TAG, "onReceivedSslError--->" + "加载数据失败");
 			isError = true;
 		}
 		
