@@ -52,7 +52,7 @@ public class ListViewActivity extends Activity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         listView.setAdapter(adapter);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
     }
 
     /**

@@ -43,7 +43,7 @@ public final class PullToRefreshWebViewActivity extends Activity {
 		mWebView.setWebViewClient(new SampleWebViewClient());
 		mWebView.loadUrl("http://www.google.com");
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
 	}
 
 	private static class SampleWebViewClient extends WebViewClient {

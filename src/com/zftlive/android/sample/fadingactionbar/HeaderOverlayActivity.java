@@ -15,20 +15,21 @@
  */
 package com.zftlive.android.sample.fadingactionbar;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import com.zftlive.android.R;
-import com.zftlive.android.library.common.ActionBarManager;
 import com.zftlive.android.library.widget.fadingactionbar.FadingActionBarHelper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class HeaderOverlayActivity extends Activity {
 
@@ -51,7 +52,7 @@ public class HeaderOverlayActivity extends Activity {
         listView.setAdapter(adapter);
         
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//      ActionBarManager.initBackTitle(getContext(), getActionBar(), this.getClass().getSimpleName());
     }
 
     /**

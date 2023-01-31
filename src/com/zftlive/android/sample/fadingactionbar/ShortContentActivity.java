@@ -19,8 +19,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+
 import com.zftlive.android.R;
-import com.zftlive.android.library.common.ActionBarManager;
 import com.zftlive.android.library.widget.fadingactionbar.FadingActionBarHelper;
 
 public class ShortContentActivity extends Activity {
@@ -37,7 +37,7 @@ public class ShortContentActivity extends Activity {
         setContentView(helper.createView(this));
         helper.initActionBar(this);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
     }
 
     @Override

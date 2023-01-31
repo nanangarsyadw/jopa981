@@ -34,7 +34,7 @@ public class ImageBlurActivity extends FragmentActivity {
         
 		// 初始化带返回按钮的标题栏
 		String strCenterTitle = getResources().getString(R.string.ImageBlurActivity);
-		ActionBarManager.initBackTitle(this, getActionBar(),strCenterTitle);
+//		ActionBarManager.initBackTitle(this, getActionBar(),strCenterTitle);
         
         pagerAdapter =
                 new CustomPagerAdapter(getSupportFragmentManager());

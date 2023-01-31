@@ -108,7 +108,7 @@ public final class PullToRefreshListActivity extends ListActivity {
 		// mPullRefreshListView.setAdapter(mAdapter)
 		actualListView.setAdapter(mAdapter);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {

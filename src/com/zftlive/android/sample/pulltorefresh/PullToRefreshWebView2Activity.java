@@ -46,7 +46,7 @@ public final class PullToRefreshWebView2Activity extends Activity implements OnR
 		// sample, see that file for the Javascript implementation
 		webView.loadUrl("file:///android_asset/ptr_webview2_sample.html");
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
 	}
 
 	private static class SampleWebViewClient extends WebViewClient {

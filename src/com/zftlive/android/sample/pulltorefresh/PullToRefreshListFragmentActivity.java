@@ -67,7 +67,7 @@ public final class PullToRefreshListFragmentActivity extends FragmentActivity im
 
 		mPullRefreshListFragment.setListShown(true);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
 	}
 
 	@Override

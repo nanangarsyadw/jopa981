@@ -43,7 +43,7 @@ public class WebViewActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://en.wikipedia.org/wiki/New_York_City");
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
     }
 
     @Override

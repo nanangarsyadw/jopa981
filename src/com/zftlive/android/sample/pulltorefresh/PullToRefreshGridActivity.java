@@ -81,7 +81,7 @@ public final class PullToRefreshGridActivity extends Activity {
 		mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mListItems);
 		mGridView.setAdapter(mAdapter);
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName()); 
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {

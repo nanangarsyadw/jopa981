@@ -50,7 +50,7 @@ public class HomeActivity extends ListActivity {
         setListAdapter(new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, android.R.id.text1, titles));
         //初始化带返回按钮的标题栏
-  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
+//  		ActionBarManager.initBackTitle(this, getActionBar(), this.getClass().getSimpleName());  
     }
 
     @Override
