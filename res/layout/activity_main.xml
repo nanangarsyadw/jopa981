@@ -15,6 +15,7 @@
         android:focusable="true"
         android:footerDividersEnabled="true"
         android:headerDividersEnabled="true"
+        android:overScrollMode="never"
         android:listSelector="@android:color/transparent"
         android:scrollbars="vertical" />
 
