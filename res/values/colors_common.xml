@@ -149,4 +149,5 @@
     <color name="black">#000000</color><!--黑色 -->
     <color name="black_alpha">#70000000</color><!--黑色 -->
     <color name="black_05_alpha">#0C000000</color><!--5%黑色 -->
+    <color name="common_bg_color">#EFEFF4</color><!--共通灰色背景 -->
 </resources>
