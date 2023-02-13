@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@android:color/transparent"
-        android:divider="@color/lightgray"
         android:choiceMode="singleChoice"
+        android:divider="@color/lightgray"
         android:dividerHeight="1.5dp"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dp"
         android:focusable="true"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
-        android:overScrollMode="never"
         android:listSelector="@android:color/transparent"
+        android:overScrollMode="never"
         android:scrollbars="vertical" />
 
 </RelativeLayout>
