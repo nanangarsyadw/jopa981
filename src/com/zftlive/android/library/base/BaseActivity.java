@@ -1,13 +1,11 @@
 package com.zftlive.android.library.base;
 
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,10 +16,13 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
-
 import com.zftlive.android.library.MApplication;
 import com.zftlive.android.library.widget.SwipeBackLayout;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -35,7 +36,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   /*** 整个应用Applicaiton **/
   private MApplication mApplication = null;
   /** 当前Activity的弱引用，防止内存泄露 **/
-  private WeakReference<Activity> context = null;
+  private WeakReference<Activity> mContextWR = null;
   /** 当前Activity渲染的视图View **/
   private ViewGroup mContextView = null;
   /** 动画类型 **/
@@ -56,15 +57,15 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
     // 获取应用Application
     mApplication = (MApplication) getApplicationContext();
-    
+
     // 设置渲染视图View
     int baseLayout = BaseView.gainResId(mApplication, BaseView.LAYOUT, "activity_base_container");
-    mContextView = (ViewGroup)LayoutInflater.from(this).inflate(baseLayout, null);
+    mContextView = (ViewGroup) LayoutInflater.from(this).inflate(baseLayout, null);
     setContentView(mContextView);
-    
+
     // 将当前Activity压入栈
-    context = new WeakReference<Activity>(this);
-    mApplication.pushTask(context);
+    mContextWR = new WeakReference<Activity>(this);
+    mApplication.pushTask(mContextWR);
 
     // 实例化共通操作
     mOperation = new Operation(this);
@@ -77,12 +78,13 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
       bundle = new Bundle();
     }
     initParms(bundle);
-    
+
     View mView = bindView();
     if (null == mView) {
       mView = LayoutInflater.from(this).inflate(bindLayout(), null);
     }
-    ViewGroup mContent = (ViewGroup) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "fl_content"));
+    ViewGroup mContent =
+        (ViewGroup) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "fl_content"));
     mContent.addView(mView);
 
     // 初始化控件
@@ -104,7 +106,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   public View bindView() {
     return null;
   }
-  
+
   @Override
   protected void onRestart() {
     super.onRestart();
@@ -123,7 +125,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     Log.d(TAG, "BaseActivity-->onResume()");
     resume();
   }
-  
+
   @Override
   public void resume() {
 
@@ -147,14 +149,14 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     Log.d(TAG, "BaseActivity-->onDestroy()");
 
     destroy();
-    mApplication.removeTask(context);
+    mApplication.removeTask(mContextWR);
   }
 
   @Override
   public void destroy() {
-      
+
   }
-  
+
   /**
    * 显示Actionbar菜单图标
    */
@@ -198,8 +200,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
    * @return
    */
   protected Activity getContext() {
-    if (null != context)
-      return context.get();
+    if (null != mContextWR)
+      return mContextWR.get();
     else
       return null;
   }
@@ -223,73 +225,147 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   /**
    * 隐藏标题栏
    */
-  public void hiddeTitleBar(){
-    //标题栏容器
-    View mTitleBarContainer = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
-    if(null == mTitleBarContainer){
+  public void hiddeTitleBar() {
+    // 标题栏容器
+    View mTitleBarContainer =
+        findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+    if (null == mTitleBarContainer) {
       return;
     }
     mTitleBarContainer.setVisibility(View.GONE);
   }
-  
+
+  /**
+   * 设置标题栏背景颜色
+   * 
+   * @param strColor 背景颜色，如：#FFFFFF
+   */
+  public void setTitleBarBgColor(String strColor) {
+    if (TextUtils.isEmpty(strColor)) return;
+    setTitleBarBgColor(Color.parseColor(strColor));
+  }
+
+  /**
+   * 设置标题栏背景颜色
+   * 
+   * @param mResId 背景资源文件-->mContext.getResources().getColor(R.color.actionbar_bg)
+   */
+  public void setTitleBarBgColor(int mResId) {
+    View mTitleBarContainer =
+        findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+    mTitleBarContainer.setBackgroundColor(mResId);
+  }
+
+  /**
+   * 设置标题栏背景图片
+   * 
+   * @param strResName 图片资源文件名称，如：actionbar_bg
+   */
+  public void setTitleBarBg(String strResName) {
+    if (TextUtils.isEmpty(strResName)) return;
+    setTitleBarBg(BaseView.gainResId(mApplication, BaseView.DRAWABLE, strResName));
+  }
+
+  /**
+   * 设置标题栏背景图片
+   * 
+   * @param mResId 图片资源id，如：R.drawable.actionbar_bg
+   */
+  public void setTitleBarBg(int mResId) {
+    View mTitleBarContainer =
+        findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+    mTitleBarContainer.setBackgroundResource(mResId);
+  }
+
   /**
    * 初始化返回按钮+标题左对齐
+   * 
    * @param strTitle 标题名称
    * @param mBtnClickListener Home/Menu按钮点击监听事件
    */
-  public void initHomeMenuTitleBar(String strTitle,View.OnClickListener mBtnClickListener){
+  public void initHomeMenuTitleBar(String strTitle, View.OnClickListener mBtnClickListener) {
     View mMenuBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_menu"));
     mMenuBtn.setVisibility(View.VISIBLE);
-    if(null != mBtnClickListener){
+    if (null != mBtnClickListener) {
       mMenuBtn.setOnClickListener(mBtnClickListener);
     }
     View mBackBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_back"));
     mBackBtn.setVisibility(View.GONE);
-    
-    //标题
-    TextView mTitleText = (TextView)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
+
+    // 标题
+    TextView mTitleText =
+        (TextView) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
     mTitleText.setText(strTitle);
   }
-  
+
   /**
    * 初始化返回按钮+标题左对齐
+   * 
    * @param strTitle 标题名称
    */
-  public void initBackTitleBar(String strTitle){
-    initBackTitleBar(strTitle,Gravity.LEFT|Gravity.CENTER_VERTICAL);
+  public void initBackTitleBar(String strTitle) {
+    initBackTitleBar(strTitle, Gravity.LEFT | Gravity.CENTER_VERTICAL);
   }
-  
+
   /**
    * 初始化返回按钮+指定标题文本对齐方式
+   * 
    * @param strTitle 标题名称
    * @param mGravity 标题文本对其方式 Gravity.LEFT|Gravity.CENTER_VERTICAL
    */
-  public void initBackTitleBar(String strTitle,int mGravity){
-    //设置标题
-    TextView mTitleText = (TextView)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
+  public void initBackTitleBar(String strTitle, int mGravity) {
+    // 设置标题
+    TextView mTitleText =
+        (TextView) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
     mTitleText.setText(strTitle);
     mTitleText.setGravity(mGravity);
-    
-    //设置点击事件
+
+    // 设置点击事件
     View mBackBtn = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_back"));
     mBackBtn.setVisibility(View.VISIBLE);
     mBackBtn.setOnClickListener(new View.OnClickListener() {
-      
+
       @Override
       public void onClick(View v) {
         finish();
       }
     });
   }
-  
+
   /**
    * 获取标题栏容器，可以自行控制左右按钮和布局
+   * 
    * @return
    */
-  public ViewGroup gainTitleBarVG(){
-    return (ViewGroup)findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+  public ViewGroup gainTitleBarVG() {
+    return (ViewGroup) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
   }
-  
+
+  /**
+   * 初始化标题栏右侧[完成/提交]按钮
+   * 
+   * @param strBtnText 按钮显示文本
+   * @param mClickListener 点击监听事件
+   */
+  public void initRightDoneBtn(String strBtnText, View.OnClickListener mClickListener) {
+    Button mDoneBtn =
+        (Button) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "btn_done"));
+    mDoneBtn.setVisibility(View.VISIBLE);
+    mDoneBtn.setText(strBtnText);
+    if (null != mClickListener) {
+      mDoneBtn.setOnClickListener(mClickListener);
+    }
+  }
+
+  /**
+   * 隐藏标题栏右侧[完成/提交]按钮
+   */
+  public void hiddenRightDoneBtn() {
+    Button mDoneBtn =
+        (Button) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "btn_done"));
+    mDoneBtn.setVisibility(View.GONE);
+  }
+
   /**
    * Actionbar点击返回键关闭事件
    */
