@@ -24,8 +24,8 @@
             android:background="@drawable/selector_common_transparent_btn"
             android:contentDescription="@null"
             android:scaleType="center"
-            android:visibility="gone"
-            android:src="@drawable/ic_list_white_48dp" />
+            android:src="@drawable/ic_list_white_48dp"
+            android:visibility="gone" />
 
         <!-- 返回按钮 -->
 
@@ -36,8 +36,8 @@
             android:background="@drawable/selector_common_transparent_btn"
             android:contentDescription="@null"
             android:scaleType="center"
-            android:visibility="invisible"
-            android:src="@drawable/selector_common_back_white_btn" />
+            android:src="@drawable/selector_common_back_white_btn"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <!-- 标题 -->
@@ -88,6 +88,18 @@
             android:button="@drawable/selector_common_transparent_btn"
             android:checked="false"
             android:textColor="#666666"
+            android:textSize="16.67sp"
+            android:visibility="gone" />
+
+        <!-- 完成/提交共用按钮 -->
+
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_common_transparent_btn"
+            android:text="完成"
+            android:textColor="@color/white"
             android:textSize="16.67sp"
             android:visibility="gone" />
     </LinearLayout>
