@@ -234,7 +234,27 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     }
     mTitleBarContainer.setVisibility(View.GONE);
   }
-
+  
+  /**
+   * 设置标题
+   * @param strTitle 标题文本
+   */
+  public void setTitle(String strTitle){
+    setTitle(strTitle,Gravity.LEFT|Gravity.CENTER_VERTICAL);
+  }
+  
+  /**
+   * 设置标题以及文本对齐方式
+   * @param strTitle 标题文本
+   * @param mTitleGravity 标题文本对齐方式
+   */
+  public void setTitle(String strTitle,int mTitleGravity){
+    // 标题
+    TextView mTitleText = (TextView) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
+    mTitleText.setGravity(mTitleGravity);
+    mTitleText.setText(strTitle);
+  }
+  
   /**
    * 设置标题栏背景颜色
    * 
