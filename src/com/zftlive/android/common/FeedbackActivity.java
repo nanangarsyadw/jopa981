@@ -53,6 +53,18 @@ public class FeedbackActivity extends BaseActivity{
 		String strCenterTitle = getResources().getString(R.string.FeedbackActivity);
 //      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
         initBackTitleBar(strCenterTitle);
+        initRightDoneBtn("提交", new View.OnClickListener() {
+          
+          @Override
+          public void onClick(View v) {
+            //提交表单
+            if(validateForm()){
+                //需要设置表单元素控件的tag属性，作为表单提交的key
+//              DTO<String,Object> form = ToolData.gainForm(root, new DTO<String,Object>());
+//              ToolHTTP.post(FEED_BACK_URL, form, getFeedBackHandler());
+            }
+          }
+        });
 	}
 
 	@Override
