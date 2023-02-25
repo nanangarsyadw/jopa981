@@ -24,7 +24,7 @@
             android:background="@drawable/selector_common_transparent_btn"
             android:contentDescription="@null"
             android:scaleType="center"
-            android:src="@drawable/ic_list_white_48dp"
+            android:src="@drawable/common_nav_menu_white_n"
             android:visibility="gone" />
 
         <!-- 返回按钮 -->
