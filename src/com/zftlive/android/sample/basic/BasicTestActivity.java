@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,7 +16,13 @@ import com.zftlive.android.library.tools.ToolDateTime;
 import com.zftlive.android.library.tools.ToolLocation;
 import com.zftlive.android.library.tools.ToolPhone;
 import com.zftlive.android.library.tools.ToolString;
+import com.zftlive.android.library.tools.ToolToast;
 import com.zftlive.android.library.widget.AlignTextView;
+import com.zftlive.android.library.widget.OperationDialog;
+import com.zftlive.android.library.widget.OperationDialog.ItemBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 基本常用操作测试样例
@@ -117,8 +124,44 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
 			break;
 		case R.id.btn_photo:
 //			ToolPhone.toImagePickerActivity(getContext(), 77);
-			flag = false;
-			task.interrupt();
+//			flag = false;
+//			task.interrupt();
+			
+			//初始化Item数据
+            List<ItemBean> mItemData  = new ArrayList<ItemBean>();
+            ItemBean item1 = new ItemBean();
+            item1.isShowGo = false;
+            item1.isShowOkay = true;
+            item1.mLeftMainTitle = "定期理财";
+            item1.mLeftSubTitle = "货币基金";
+            item1.mRightMainTitle = "年收益率6.5%";
+            mItemData.add(item1);
+            
+            ItemBean item2 = new ItemBean();
+            item2.isShowGo = true;
+            item2.isShowOkay = false;
+            item2.mLeftMainTitle = "定期理财";
+            item2.mLeftSubTitle = "货币基金";
+            item2.mRightMainTitle = "年收益率6.5%";
+            mItemData.add(item2);
+            
+            //创建一个Dialog
+            OperationDialog mDialog = new OperationDialog.Builder(this)
+            .setMainTitle("请选择购买的产品")
+            .setItemClickListener(new AdapterView.OnItemClickListener(){
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                  ItemBean rowData = (ItemBean) parent.getItemAtPosition(position);
+                  ToolToast.showShort(getContext(), rowData.mLeftMainTitle + "-->"+position);
+                }
+            })
+            .setItemData(mItemData)
+            .build();
+            
+            //展示Dialog
+            mDialog.setCanceledOnTouchOutside(false);
+            mDialog.show();
+			
 			break;
 		default:
 			break;

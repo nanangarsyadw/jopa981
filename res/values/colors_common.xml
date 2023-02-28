@@ -150,4 +150,7 @@
     <color name="black_alpha">#70000000</color><!--黑色 -->
     <color name="black_05_alpha">#0C000000</color><!--5%黑色 -->
     <color name="common_bg_color">#EFEFF4</color><!--共通灰色背景 -->
+    <color name="grally_f4f4f4">#f4f4f4</color><!--共通灰色背景 -->
+    <color name="black_80_alpha">#cc000000</color>
+    
 </resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 共通机能-操作对话框[带关闭][带Item点击][带标题][带ICON] -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!-- 标题容器 -->
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        android:paddingLeft="@dimen/common_padding_48px" >
+
+        <LinearLayout
+            android:id="@+id/ll_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp" >
+
+            <TextView
+                android:id="@+id/tv_main_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="赠品详情"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_sub_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="2款赠品"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/selector_common_grally_close_btn" />
+    </RelativeLayout>
+
+    <!-- 点击条目Item容器 -->
+
+    <ListView
+        android:id="@+id/lv_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dp"
+        android:listSelector="@drawable/selector_common_btn_white_grally_nobold"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <!-- 底部占位View -->
+
+    <RelativeLayout
+        android:id="@+id/rl_blank"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/lv_item_list"
+        android:background="#F5F5F5" >
+    </RelativeLayout>
+
+</RelativeLayout>
