@@ -1,5 +1,9 @@
 package com.zftlive.android.library.base;
 
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -18,11 +22,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.zftlive.android.library.MApplication;
 import com.zftlive.android.library.widget.SwipeBackLayout;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 /**
  * android 系统中的四大组件之一Activity基类
@@ -381,9 +383,17 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
    * 隐藏标题栏右侧[完成/提交]按钮
    */
   public void hiddenRightDoneBtn() {
+    hiddenRightDoneBtn(View.GONE);
+  }
+  
+  /**
+   * 隐藏标题栏右侧[完成/提交]按钮
+   * @param mViewStatus 按钮的状态 View.GONE/View.INVISIBLE
+   */
+  public void hiddenRightDoneBtn(int mViewStatus) {
     Button mDoneBtn =
         (Button) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "btn_done"));
-    mDoneBtn.setVisibility(View.GONE);
+    mDoneBtn.setVisibility(mViewStatus);
   }
 
   /**
