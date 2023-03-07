@@ -1,5 +1,6 @@
 package com.zftlive.android.library.widget;
 
+import java.util.List;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,12 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.zftlive.android.R;
 import com.zftlive.android.library.base.BaseEntity;
 import com.zftlive.android.library.base.BaseMAdapter;
-
-import java.util.List;
 
 /**
  * 自定义操作对话框
@@ -161,15 +158,17 @@ public class OperationDialog extends Dialog {
       // 查找控件
       ViewHolder holder = null;
       if(null == itemView){
-          itemView = LayoutInflater.from(getActivity()).inflate(R.layout.common_operation_dialog_item, parent,false);
-          itemView.setBackgroundResource(R.drawable.selector_common_btn_white_grally_nobold);
+          int mLayoutResId = gainResId(mContext, "layout", "common_operation_dialog_item");
+          int mBgResId = gainResId(mContext, "drawable", "selector_common_btn_white_grally_nobold");
+          itemView = LayoutInflater.from(getActivity()).inflate(mLayoutResId, parent,false);
+          itemView.setBackgroundResource(mBgResId);
           holder = new ViewHolder();
-          holder.tv_item_ltitle1 = (TextView) itemView.findViewById(R.id.tv_item_ltitle1);
-          holder.tv_item_ltitle2 = (TextView) itemView.findViewById(R.id.tv_item_ltitle2);
-          holder.tv_item_rtitle1 = (TextView) itemView.findViewById(R.id.tv_item_rtitle1);
-          holder.ib_item_right_go = (ImageButton) itemView.findViewById(R.id.ib_item_right_go);
-          holder.ib_item_right_ok = (ImageButton) itemView.findViewById(R.id.ib_item_right_ok);
-          holder.buttom_line = itemView.findViewById(R.id.buttom_line);
+          holder.tv_item_ltitle1 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle1"));
+          holder.tv_item_ltitle2 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle2"));
+          holder.tv_item_rtitle1 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_rtitle1"));
+          holder.ib_item_right_go = (ImageButton) itemView.findViewById(gainResId(mContext, "id", "ib_item_right_go"));
+          holder.ib_item_right_ok = (ImageButton) itemView.findViewById(gainResId(mContext, "id", "ib_item_right_ok"));
+          holder.buttom_line = itemView.findViewById(gainResId(mContext, "id", "buttom_line"));
           //缓存View
           itemView.setTag(holder);
       }else {
