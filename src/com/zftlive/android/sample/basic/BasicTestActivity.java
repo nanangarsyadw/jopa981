@@ -1,9 +1,14 @@
 package com.zftlive.android.sample.basic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,18 +16,15 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.library.base.BaseActivity;
-import com.zftlive.android.library.common.ActionBarManager;
+import com.zftlive.android.library.tools.ToolAlert;
 import com.zftlive.android.library.tools.ToolDateTime;
 import com.zftlive.android.library.tools.ToolLocation;
 import com.zftlive.android.library.tools.ToolPhone;
 import com.zftlive.android.library.tools.ToolString;
-import com.zftlive.android.library.tools.ToolToast;
 import com.zftlive.android.library.widget.AlignTextView;
 import com.zftlive.android.library.widget.OperationDialog;
+import com.zftlive.android.library.widget.OperationDialog.DialogBuilder;
 import com.zftlive.android.library.widget.OperationDialog.ItemBean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 基本常用操作测试样例
@@ -134,33 +136,33 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
             item1.isShowOkay = true;
             item1.mLeftMainTitle = "定期理财";
             item1.mLeftSubTitle = "货币基金";
-            item1.mRightMainTitle = "年收益率6.5%";
+            item1.mRightMainTitle = "";
             mItemData.add(item1);
             
             ItemBean item2 = new ItemBean();
             item2.isShowGo = true;
             item2.isShowOkay = false;
-            item2.mLeftMainTitle = "定期理财";
-            item2.mLeftSubTitle = "货币基金";
+            item2.mLeftMainTitle = "货币基金";
+            item2.mLeftSubTitle = "定期理财";
             item2.mRightMainTitle = "年收益率6.5%";
             mItemData.add(item2);
             
             //创建一个Dialog
-            OperationDialog mDialog = new OperationDialog.Builder(this)
-            .setMainTitle("请选择购买的产品")
-            .setItemClickListener(new AdapterView.OnItemClickListener(){
+            new DialogBuilder(this)
+            .setGravity(Gravity.BOTTOM)
+            .setCanceledOnTouchOutside(false)
+            .showButtomFooter(false)
+            .setMainTitle(Html.fromHtml("为您搜索到了<font color='#359df5'>"+6+"</font>条相关内容"))
+            .setItemClickListener(new OperationDialog.ItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                   ItemBean rowData = (ItemBean) parent.getItemAtPosition(position);
-                  ToolToast.showShort(getContext(), rowData.mLeftMainTitle + "-->"+position);
+                  ToolAlert.toastShort(getContext(), rowData.mLeftMainTitle + "-->"+position);
                 }
             })
             .setItemData(mItemData)
-            .build();
-            
-            //展示Dialog
-            mDialog.setCanceledOnTouchOutside(false);
-            mDialog.show();
+            .build()
+            .show();
 			
 			break;
 		default:

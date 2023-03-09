@@ -1,20 +1,27 @@
 package com.zftlive.android.library.widget;
 
 import java.util.List;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.zftlive.android.library.base.BaseEntity;
 import com.zftlive.android.library.base.BaseMAdapter;
 
@@ -55,50 +62,40 @@ public class OperationDialog extends Dialog {
   /** 日志输出标志 **/
   protected final static String TAG = OperationDialog.class.getSimpleName();
   
-  private boolean isShowTitle = true;
-  private String mMainTitle = "";
-  private String mSubTitle = "";
-  private boolean isShowClose = true;
-  private boolean isShowButtomBlank = true;
-  private List<ItemBean> mItemData;
+  /**
+   * 触发弹窗的Activity
+   */
   private Activity mContext;
-  private AdapterView.OnItemClickListener mItemClickListener;
 
-  private OperationDialog(Builder mBuilder) {
-    super(mBuilder.mContext,gainResId(mBuilder.mContext, "style", "OperationDialog"));
+  protected OperationDialog(DialogBuilder mBuilder) {
+    super(mBuilder.mContext,mBuilder.mStyleResId);
     setContentView(gainResId(mBuilder.mContext, "layout", "common_operation_dialog"));
     //初始化界面
-    isShowTitle = mBuilder.isShowTitle;
-    mMainTitle = mBuilder.mMainTitle;
-    mSubTitle = mBuilder.mSubTitle;
-    isShowClose = mBuilder.isShowClose;
-    isShowButtomBlank = mBuilder.isShowButtomBlank;
-    mItemData = mBuilder.mItemData;
-    mContext = mBuilder.mContext;
-    mItemClickListener = mBuilder.mItemClickListener;
-    initView();
+    initView(mBuilder);
   }
 
   /**
    * 初始化控件
    */
-  private void initView() {
+  private void initView(final DialogBuilder mBuilder) {
+    mContext = mBuilder.mContext;
+    
     mDialogTitle = (RelativeLayout) findViewById(gainResId(getContext(), "id", "rl_title"));
-    mDialogTitle.setVisibility(isShowTitle?View.VISIBLE:View.GONE);
+    mDialogTitle.setVisibility(mBuilder.isShowTitle?View.VISIBLE:View.GONE);
     
     mButtomBlank = (RelativeLayout) findViewById(gainResId(getContext(), "id", "rl_blank"));
-    mButtomBlank.setVisibility(isShowButtomBlank?View.VISIBLE:View.GONE);
+    mButtomBlank.setVisibility(mBuilder.isShowButtomBlank?View.VISIBLE:View.GONE);
     
     mMinTitleTV = (TextView) findViewById(gainResId(getContext(), "id", "tv_main_title"));
-    mMinTitleTV.setText(mMainTitle);
-    mMinTitleTV.setVisibility(TextUtils.isEmpty(mMainTitle)?View.GONE:View.VISIBLE);
+    mMinTitleTV.setText(mBuilder.mMainTitle);
+    mMinTitleTV.setVisibility(TextUtils.isEmpty(mBuilder.mMainTitle)?View.GONE:View.VISIBLE);
     
     mSubTitleTV = (TextView) findViewById(gainResId(getContext(), "id", "tv_sub_title"));
-    mSubTitleTV.setText(mSubTitle);
-    mSubTitleTV.setVisibility(TextUtils.isEmpty(mSubTitle)?View.GONE:View.VISIBLE);
+    mSubTitleTV.setText(mBuilder.mSubTitle);
+    mSubTitleTV.setVisibility(TextUtils.isEmpty(mBuilder.mSubTitle)?View.GONE:View.VISIBLE);
     
     mTitleCloseBtn = (ImageButton) findViewById(gainResId(getContext(), "id", "ib_close"));
-    mTitleCloseBtn.setVisibility(isShowClose?View.VISIBLE:View.GONE);
+    mTitleCloseBtn.setVisibility(mBuilder.isShowClose?View.VISIBLE:View.GONE);
     mTitleCloseBtn.setOnClickListener(new View.OnClickListener() {
       
       @Override
@@ -109,19 +106,50 @@ public class OperationDialog extends Dialog {
       }
     });
     
+    //初始化Item列表
     mItemList = (ListView) findViewById(gainResId(getContext(), "id", "lv_item_list"));
     mItemListAdapter = new DialogItemAdapter(mContext);
     mItemList.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
     mItemList.setAdapter(mItemListAdapter);
-    if(null != mItemData){
-      mItemListAdapter.addItem(mItemData);
+    if(null != mBuilder.mItemData){
+      mItemListAdapter.addItem(mBuilder.mItemData);
       mItemListAdapter.notifyDataSetChanged();
     }
-    if(null != mItemClickListener){
-      mItemList.setOnItemClickListener(mItemClickListener);
-    }
+    
+    //设置Listview点击事件
+    mItemList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        dismiss();
+        if(null != mBuilder.mItemClickListener){
+          mBuilder.mItemClickListener.onItemClick(parent, view, position, id);
+        }
+      }
+    });
+    
+    //设置窗体显示的位置和宽度
+    Window win = getWindow();  
+    WindowManager.LayoutParams windowparams = win.getAttributes();  
+    win.setGravity(mBuilder.mGravity);  
+    Rect rect = new Rect();  
+    win.getDecorView().getWindowVisibleDisplayFrame(rect);  
+    windowparams.width = gainScreenDisplay().widthPixels;  
+    win.setAttributes(windowparams);
+    setCanceledOnTouchOutside(mBuilder.canCancelOutside);
   }
 
+  /**
+   * 获取屏幕材质,宽度高度等信息
+   * @return
+   */
+  private DisplayMetrics gainScreenDisplay(){
+    DisplayMetrics mDisplayMetrics = new DisplayMetrics();
+    WindowManager windowMgr = (WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE);
+    windowMgr.getDefaultDisplay().getMetrics(mDisplayMetrics);
+    return mDisplayMetrics;
+  }
+  
   /**
    * 获取资源文件id
    * 
@@ -190,6 +218,10 @@ public class OperationDialog extends Dialog {
       //最后一项时，隐藏line
       holder.buttom_line.setVisibility((position+1 == getCount())?View.GONE:View.VISIBLE);
       
+      //按钮类的控件会抢焦点，导致选择器失效
+      holder.ib_item_right_go.setFocusable(false);
+      holder.ib_item_right_ok.setFocusable(false);
+      
       return itemView;
     }
     
@@ -200,6 +232,14 @@ public class OperationDialog extends Dialog {
     }
   }
 
+  /**
+   * Item点击事件
+   *
+   */
+  public interface ItemClickListener extends AdapterView.OnItemClickListener{
+    
+  }
+  
   /**
    * Item点击条目Bean
    *
@@ -238,55 +278,128 @@ public class OperationDialog extends Dialog {
   /**
    * Dialog构造器
    */
-  public static class Builder {
+  public static class DialogBuilder {
     private boolean isShowTitle = true;
-    private String mMainTitle;
-    private String mSubTitle;
+    private CharSequence mMainTitle;
+    private CharSequence mSubTitle;
     private boolean isShowClose = true;
     private boolean isShowButtomBlank = true;
     private Activity mContext;
     private List<ItemBean> mItemData;
-    private AdapterView.OnItemClickListener mItemClickListener;
+    private ItemClickListener mItemClickListener;
+    private int mStyleResId = 0;
+    private int mGravity = Gravity.BOTTOM;
+    private boolean canCancelOutside = true;
 
-    public Builder(Activity mContext) {
+    public DialogBuilder(Activity mContext) {
       this.mContext = mContext;
+      mStyleResId = gainResId(mContext, "style", "OperationDialog");
     }
-
-    public Builder showTitleClose(boolean isShow) {
+    
+    /**
+     * 是否显示标题栏关闭按钮
+     * @param isShow
+     * @return
+     */
+    public DialogBuilder showTitleClose(boolean isShow) {
       this.isShowClose = isShow;
       return this;
     }
 
-    public Builder showTopHeader(boolean isShow) {
+    /**
+     * 是否显示窗体标题栏Header
+     * @param isShow
+     * @return
+     */
+    public DialogBuilder showTopHeader(boolean isShow) {
       this.isShowTitle = isShow;
       return this;
     }
 
-    public Builder showButtomFooter(boolean isShow) {
+    /**
+     * 是否显示底部Footer
+     * @param isShow
+     * @return
+     */
+    public DialogBuilder showButtomFooter(boolean isShow) {
       this.isShowButtomBlank = isShow;
       return this;
     }
 
-    public Builder setMainTitle(String mMainTitle) {
+    /**
+     * 设置窗体主标题，支持HTML格式文本
+     * @param mMainTitle
+     * @return
+     */
+    public DialogBuilder setMainTitle(CharSequence mMainTitle) {
       this.mMainTitle = mMainTitle;
       return this;
     }
 
-    public Builder setSubTitle(String mSubTitle) {
+    /**
+     * 设置窗体副标题，支持HTML格式文本
+     * @param mSubTitle
+     * @return
+     */
+    public DialogBuilder setSubTitle(CharSequence mSubTitle) {
       this.mSubTitle = mSubTitle;
       return this;
     }
 
-    public Builder setItemData(List<ItemBean> mItemData){
+    /**
+     * 设置Item列表数据
+     * @param mItemData
+     * @return
+     */
+    public DialogBuilder setItemData(List<ItemBean> mItemData){
       this.mItemData = mItemData;
       return this;
     }
     
-    public Builder setItemClickListener(AdapterView.OnItemClickListener mItemClickListener){
+    /**
+     * 设置Item点击事件
+     * @param mItemClickListener
+     * @return
+     */
+    public DialogBuilder setItemClickListener(ItemClickListener mItemClickListener){
       this.mItemClickListener = mItemClickListener;
       return this;
     } 
     
+    /**
+     * 设置窗体主题
+     * @param mStyleId style样式名称id
+     * @return
+     */
+    public DialogBuilder setTheme(int mStyleId){
+      this.mStyleResId = mStyleId;
+      return this;
+    }
+    
+    /**
+     * 设置窗体所在位置 ，默认Gravity.BOTTOM
+     * @param mGravity 
+     * @return
+     */
+    public DialogBuilder setGravity(int mGravity){
+      this.mGravity = mGravity;
+      return this;
+    } 
+    
+    /**
+     * 点击窗体其他地方是否可以关闭
+     * @param cancelable
+     * @return
+     */
+    public DialogBuilder setCanceledOnTouchOutside(boolean cancelable){
+      this.canCancelOutside = cancelable;
+      return this;
+    } 
+    
+    /**
+     * 创建一个Dialog
+     * @return
+     */
     public OperationDialog build() {
       return new OperationDialog(this);
     }
