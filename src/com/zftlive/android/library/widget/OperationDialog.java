@@ -1,11 +1,8 @@
 package com.zftlive.android.library.widget;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -13,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -24,6 +20,8 @@ import android.widget.TextView;
 
 import com.zftlive.android.library.base.BaseEntity;
 import com.zftlive.android.library.base.BaseMAdapter;
+
+import java.util.List;
 
 /**
  * 自定义操作对话框
@@ -129,13 +127,16 @@ public class OperationDialog extends Dialog {
     });
     
     //设置窗体显示的位置和宽度
-    Window win = getWindow();  
-    WindowManager.LayoutParams windowparams = win.getAttributes();  
-    win.setGravity(mBuilder.mGravity);  
-    Rect rect = new Rect();  
-    win.getDecorView().getWindowVisibleDisplayFrame(rect);  
-    windowparams.width = gainScreenDisplay().widthPixels;  
-    win.setAttributes(windowparams);
+    getWindow().setGravity(mBuilder.mGravity);  
+    
+    //是否撑满屏幕宽度
+    if(mBuilder.isFillScreenWith){
+      WindowManager.LayoutParams windowparams = getWindow().getAttributes();  
+      windowparams.width = gainScreenDisplay().widthPixels;  
+      getWindow().setAttributes(windowparams);
+    }
+    
+    //点击其他区域是否关闭窗体
     setCanceledOnTouchOutside(mBuilder.canCancelOutside);
   }
 
@@ -191,9 +192,10 @@ public class OperationDialog extends Dialog {
           itemView = LayoutInflater.from(getActivity()).inflate(mLayoutResId, parent,false);
           itemView.setBackgroundResource(mBgResId);
           holder = new ViewHolder();
-          holder.tv_item_ltitle1 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle1"));
-          holder.tv_item_ltitle2 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle2"));
-          holder.tv_item_rtitle1 = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_rtitle1"));
+          holder.tv_item_lMaintitle = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle1"));
+          holder.tv_item_lSubtitle = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_ltitle2"));
+          holder.tv_item_Centertitle = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_center_title"));
+          holder.tv_item_rMaintitle = (TextView) itemView.findViewById(gainResId(mContext, "id", "tv_item_rtitle1"));
           holder.ib_item_right_go = (ImageButton) itemView.findViewById(gainResId(mContext, "id", "ib_item_right_go"));
           holder.ib_item_right_ok = (ImageButton) itemView.findViewById(gainResId(mContext, "id", "ib_item_right_ok"));
           holder.buttom_line = itemView.findViewById(gainResId(mContext, "id", "buttom_line"));
@@ -206,12 +208,14 @@ public class OperationDialog extends Dialog {
       //装填数据
       final ItemBean rowData = (ItemBean)getItem(position);
       
-      holder.tv_item_ltitle1.setText(rowData.mLeftMainTitle);
-      holder.tv_item_ltitle1.setVisibility(TextUtils.isEmpty(rowData.mLeftMainTitle)?View.GONE:View.VISIBLE);
-      holder.tv_item_ltitle2.setText(rowData.mLeftSubTitle);
-      holder.tv_item_ltitle2.setVisibility(TextUtils.isEmpty(rowData.mLeftSubTitle)?View.GONE:View.VISIBLE);
-      holder.tv_item_rtitle1.setText(rowData.mRightMainTitle);
-      holder.tv_item_rtitle1.setVisibility(TextUtils.isEmpty(rowData.mRightMainTitle)?View.GONE:View.VISIBLE);
+      holder.tv_item_lMaintitle.setText(rowData.leftMainTitle);
+      holder.tv_item_lMaintitle.setVisibility(TextUtils.isEmpty(rowData.leftMainTitle)?View.GONE:View.VISIBLE);
+      holder.tv_item_lSubtitle.setText(rowData.leftSubTitle);
+      holder.tv_item_lSubtitle.setVisibility(TextUtils.isEmpty(rowData.leftSubTitle)?View.GONE:View.VISIBLE);
+      holder.tv_item_Centertitle.setText(rowData.centerTitle);
+      holder.tv_item_Centertitle.setVisibility(TextUtils.isEmpty(rowData.centerTitle)?View.GONE:View.VISIBLE);
+      holder.tv_item_rMaintitle.setText(rowData.rightMainTitle);
+      holder.tv_item_rMaintitle.setVisibility(TextUtils.isEmpty(rowData.rightMainTitle)?View.GONE:View.VISIBLE);
       
       holder.ib_item_right_go.setVisibility(rowData.isShowGo?View.VISIBLE:View.GONE);
       holder.ib_item_right_ok.setVisibility(rowData.isShowOkay?View.VISIBLE:View.GONE);
@@ -226,7 +230,7 @@ public class OperationDialog extends Dialog {
     }
     
     class ViewHolder {
-      TextView tv_item_ltitle1,tv_item_ltitle2, tv_item_rtitle1 ;
+      TextView tv_item_lMaintitle,tv_item_lSubtitle,tv_item_Centertitle, tv_item_rMaintitle ;
       ImageButton ib_item_right_go,ib_item_right_ok;
       View buttom_line;
     }
@@ -251,17 +255,22 @@ public class OperationDialog extends Dialog {
     /**
      * Item左-主标题
      */
-    public String mLeftMainTitle;
+    public String leftMainTitle;
     
     /**
      * Item左-副标题
      */
-    public String mLeftSubTitle;
+    public String leftSubTitle;
+    
+    /**
+     * Item中间-标题（只有中间一个标题时使用）
+     */
+    public String centerTitle;
     
     /**
      * Item右-主标题
      */
-    public String mRightMainTitle;
+    public String rightMainTitle;
     
     /**
      * 是否显示右箭头图标( > )
@@ -290,6 +299,7 @@ public class OperationDialog extends Dialog {
     private int mStyleResId = 0;
     private int mGravity = Gravity.BOTTOM;
     private boolean canCancelOutside = true;
+    private boolean isFillScreenWith = true;
 
     public DialogBuilder(Activity mContext) {
       this.mContext = mContext;
@@ -395,6 +405,16 @@ public class OperationDialog extends Dialog {
       this.canCancelOutside = cancelable;
       return this;
     } 
+    
+    /**
+     * 设置窗体宽度是否撑满屏幕宽度
+     * @param cancelable
+     * @return
+     */
+    public DialogBuilder setFillScreenWith(boolean isFillScreenWith){
+      this.isFillScreenWith = isFillScreenWith;
+      return this;
+    }
     
     /**
      * 创建一个Dialog

@@ -24,7 +24,7 @@
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:maxLines="2"
-            android:text="定期理财"
+            android:text=""
             android:textColor="#333333"
             android:textSize="14sp" />
 
@@ -36,11 +36,24 @@
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:maxLines="2"
-            android:text="免服务费"
+            android:text=""
             android:textColor="#999999"
             android:textSize="10sp" />
     </LinearLayout>
 
+        <!-- 中间标题 -->
+
+    <TextView
+        android:id="@+id/tv_item_center_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#999999"
+        android:visibility="gone"
+        android:textSize="14sp" />
+    
     <!-- 右侧标题+图标 -->
 
     <LinearLayout
@@ -58,7 +71,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="年化收益率3.7%"
+            android:text=""
             android:textColor="#359df5"
             android:textSize="14sp" />
 

@@ -134,17 +134,17 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
             ItemBean item1 = new ItemBean();
             item1.isShowGo = false;
             item1.isShowOkay = true;
-            item1.mLeftMainTitle = "定期理财";
-            item1.mLeftSubTitle = "货币基金";
-            item1.mRightMainTitle = "";
+            item1.leftMainTitle = "定期理财";
+            item1.leftSubTitle = "货币基金";
+            item1.rightMainTitle = "";
             mItemData.add(item1);
             
             ItemBean item2 = new ItemBean();
             item2.isShowGo = true;
             item2.isShowOkay = false;
-            item2.mLeftMainTitle = "货币基金";
-            item2.mLeftSubTitle = "定期理财";
-            item2.mRightMainTitle = "年收益率6.5%";
+            item2.leftMainTitle = "货币基金";
+            item2.leftSubTitle = "定期理财";
+            item2.rightMainTitle = "年收益率6.5%";
             mItemData.add(item2);
             
             //创建一个Dialog
@@ -157,7 +157,7 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                   ItemBean rowData = (ItemBean) parent.getItemAtPosition(position);
-                  ToolAlert.toastShort(getContext(), rowData.mLeftMainTitle + "-->"+position);
+                  ToolAlert.toastShort(getContext(), rowData.leftMainTitle + "-->"+position);
                 }
             })
             .setItemData(mItemData)
