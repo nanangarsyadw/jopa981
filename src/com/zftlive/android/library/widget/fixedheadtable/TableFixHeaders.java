@@ -3,6 +3,9 @@ package com.zftlive.android.library.widget.fixedheadtable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.fixedheadtable.adapter.TableAdapter;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -17,9 +20,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Scroller;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.fixedheadtable.adapter.TableAdapter;
 
 /**
  * This view shows a table which can scroll in both directions. Also still

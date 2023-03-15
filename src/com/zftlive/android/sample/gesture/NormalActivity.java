@@ -16,29 +16,53 @@
 
 package com.zftlive.android.sample.gesture;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.zftlive.android.R;
+import com.zftlive.android.library.base.BaseActivity;
 import com.zftlive.android.library.widget.gesture.Lock9View;
 
-public class NormalActivity extends Activity {
+/**
+ * 九宫格解锁示例-普通样式
+ * 
+ * @author 曾繁添
+ * @version 1.0
+ *
+ */
+public class NormalActivity extends BaseActivity {
 
     protected Lock9View lock9View;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_normal_lock);
-        lock9View = (Lock9View) findViewById(R.id.lock_9_view);
-        lock9View.setCallBack(new Lock9View.CallBack() {
+    public int bindLayout() {
+      return R.layout.activity_lock_normal;
+    }
 
-            @Override
-            public void onFinish(String password) {
-                Toast.makeText(NormalActivity.this, password, Toast.LENGTH_SHORT).show();
-            }
+    @Override
+    public void initParms(Bundle parms) {
+      
+    }
 
-        });
+    @Override
+    public void initView(View view) {
+      lock9View = (Lock9View) findViewById(R.id.lock_9_view);
+      lock9View.setCallBack(new Lock9View.CallBack() {
+
+          @Override
+          public void onFinish(String password) {
+              Toast.makeText(NormalActivity.this, password, Toast.LENGTH_SHORT).show();
+          }
+
+      });
+    }
+
+    @Override
+    public void doBusiness(Context mContext) {
+      //初始化带返回按钮的标题栏
+      String strCenterTitle = getResources().getString(R.string.Lock9DemoActivity);
+      initBackTitleBar(strCenterTitle);
     }
 }

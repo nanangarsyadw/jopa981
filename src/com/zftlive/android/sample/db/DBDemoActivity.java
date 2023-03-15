@@ -156,8 +156,8 @@ public class DBDemoActivity extends BaseActivity {
 		QueryBuilder<User, String> qb;
 		try {
 			qb = userDao.queryBuilder();
-			//qb.where().eq("parentId", "1111");
-			//qb.prepare();
+//			qb.where().eq("parentId", "1111");
+//			qb.prepare();
 //			qb.limit(maxRows);
 //			qb.offset(startRow);
 			List<User> subItems = qb.query();

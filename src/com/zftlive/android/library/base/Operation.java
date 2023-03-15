@@ -1,8 +1,10 @@
 package com.zftlive.android.library.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.zftlive.android.library.MApplication;
 import com.zftlive.android.library.config.SysEnv;
@@ -27,6 +29,8 @@ public class Operation {
   private Activity mContext = null;
   /*** 整个应用Applicaiton **/
   private MApplication mApplication = null;
+  /** 日志输出标志 **/
+  private final static String TAG = Operation.class.getSimpleName();
 
   public Operation(Activity mContext) {
     this.mContext = mContext;
@@ -61,21 +65,24 @@ public class Operation {
     mIntent.setClassName(mContext, className);
     mIntent.putExtra(IBaseActivity.ANIMATION_TYPE, animaType);
     mContext.startActivity(mIntent);
+    
+    int mAnimIn = 0;
+    int mAnimOut = 0;
     switch (animaType) {
       case IBaseActivity.LEFT_RIGHT:
-        int inLFAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_in");
-        int outLFAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_remain");
-        mContext.overridePendingTransition(inLFAnim, outLFAnim);
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_left_out");
+        mContext.overridePendingTransition(mAnimIn, mAnimOut);
         break;
       case IBaseActivity.TOP_BOTTOM:
-        int inTBAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_in");
-        int outTBAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out");
-        mContext.overridePendingTransition(inTBAnim, outTBAnim);
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_bottom_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out");
+        mContext.overridePendingTransition(mAnimIn, mAnimOut);
         break;
       case IBaseActivity.FADE_IN_OUT:
-        int inFAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_in");
-        int outFAnim = BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out");
-        mContext.overridePendingTransition(inFAnim, outFAnim);
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out");
+        mContext.overridePendingTransition(mAnimIn, mAnimOut);
         break;
       default:
         break;
@@ -137,15 +144,11 @@ public class Operation {
    * @param key
    * @return
    */
-  public Object getParameters(String key) {
-    DTO parms = getParameters();
-    if (null != parms) {
-      return parms.get(key);
-    } else {
-      parms = new DTO();
-      parms.put(key, mContext.getIntent().getExtras().get(key));
-    }
-    return parms;
+  public Object getParameter(String key) {
+    Bundle extras = mContext.getIntent().getExtras();
+    if(null == extras) return null;
+    
+    return mContext.getIntent().getExtras().get(key);
   }
 
   /**
@@ -213,4 +216,24 @@ public class Operation {
     ToolAlert.closeLoading();
   }
 
+  /**
+   * 获取资源文件id
+   * 
+   * @param mContext 上下文
+   * @param resType 资源类型（drawable/string/layout/style/dimen/color/array等）
+   * @param resName 资源文件名称
+   * @return
+   */
+  public int gainResId(Context mContext, String resType, String resName) {
+    int result = -1;
+    try {
+      String packageName = mContext.getPackageName();
+      result = mContext.getResources().getIdentifier(resName, resType, packageName);
+    } catch (Exception e) {
+      result = -1;
+      Log.e(TAG, "获取资源文件失败，原因：" + e.getMessage());
+    }
+
+    return result;
+  }
 }

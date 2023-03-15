@@ -56,9 +56,10 @@ public class DrawerLayoutActivity extends BaseActivity {
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				ActionBarManager.updateActionCenterTitle(getContext(),getActionBar(), mPlanetTitles[position]);
-				mDrawerList.setItemChecked(position, true);
-				mDrawerLayout.closeDrawer(mDrawerList);
+//				ActionBarManager.updateActionCenterTitle(getContext(),getActionBar(), mPlanetTitles[position]);
+			  setWindowTitle( mPlanetTitles[position],Gravity.CENTER);
+			  mDrawerList.setItemChecked(position, true);
+			  mDrawerLayout.closeDrawer(mDrawerList);
 			}
 		});
 	}
@@ -66,36 +67,47 @@ public class DrawerLayoutActivity extends BaseActivity {
 	@SuppressLint("NewApi")
 	@Override
 	public void doBusiness(Context mContext) {
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(false);
-		actionBar.setDisplayShowHomeEnabled(true);
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setHomeButtonEnabled(true);
-		actionBar.setLogo(R.drawable.ic_list_white_48dp);
-		actionBar.setDisplayUseLogoEnabled(true);
+//		ActionBar actionBar = getActionBar();
+//		actionBar.setDisplayHomeAsUpEnabled(false);
+//		actionBar.setDisplayShowHomeEnabled(true);
+//		actionBar.setDisplayShowTitleEnabled(false);
+//		actionBar.setHomeButtonEnabled(true);
+//		actionBar.setLogo(R.drawable.ic_list_white_48dp);
+//		actionBar.setDisplayUseLogoEnabled(true);
 		String strCenterTitle = getResources().getString(R.string.DrawerLayoutActivity);
 //      ActionBarManager.initBackTitle(getContext(), getActionBar(), strCenterTitle);
-        initBackTitleBar(strCenterTitle);
+		initHomeMenuTitleBar(strCenterTitle,new View.OnClickListener() {
+          
+          @Override
+          public void onClick(View v) {
+            // 按钮按下，将抽屉打开
+            if(mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
+            }else{
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+          }
+        });
 	}
 	
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// 按钮按下，将抽屉打开
-			if(mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
-				mDrawerLayout.closeDrawer(Gravity.LEFT);
-			}else{
-				mDrawerLayout.openDrawer(Gravity.LEFT);
-			}
-			break;
-		default:
-			break;
-		}
-		
-	    return true;
-	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case android.R.id.home:
+//			// 按钮按下，将抽屉打开
+//			if(mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+//				mDrawerLayout.closeDrawer(Gravity.LEFT);
+//			}else{
+//				mDrawerLayout.openDrawer(Gravity.LEFT);
+//			}
+//			break;
+//		default:
+//			break;
+//		}
+//		
+//	    return true;
+//	}
 
 	@Override
 	public void resume() {

@@ -26,11 +26,11 @@
         <item name="android:backgroundDimEnabled">true</item><!-- 模糊 -->
     </style>
 
-    <style name="OperationDialog" parent="CommonDialog">
+    <style name="DialogTopButtomAnimation" parent="CommonDialog">
         <item name="android:windowAnimationStyle">@style/dialog_animation</item>
     </style>
 
-    <style name="OperationDialogNoAnim" parent="@android:style/Theme.Dialog">
+    <style name="DialogNoAnimation" parent="CommonDialog">
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
     <!-- 操作对话框（结束） -->

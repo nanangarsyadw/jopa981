@@ -12,7 +12,7 @@ import android.util.Log;
  * @version 1.0
  *
  */
-public abstract class BaseService extends Service {
+public abstract class BaseService extends Service implements IBaseConstant {
 
 	/**日志输出标志**/
 	protected final String TAG = this.getClass().getSimpleName();

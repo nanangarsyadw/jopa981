@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh.internal;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Matrix;
@@ -29,9 +32,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
 
 @SuppressLint("ViewConstructor")
 public class IndicatorLayout extends FrameLayout implements AnimationListener {

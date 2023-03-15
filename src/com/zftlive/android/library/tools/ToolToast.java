@@ -68,8 +68,8 @@ public class ToolToast {
 	 * @param context 上下文
 	 * @return
 	 */
-	private static Toast buildToast(Context context,String msg,int duration){
-		return buildToast(context,msg,duration,"#000000",16);
+	public static Toast buildToast(Context context,String msg,int duration){
+		return buildToast(context,msg,duration,"#D8000000",16);
 	}
 	
 

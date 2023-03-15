@@ -15,6 +15,10 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh.internal;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Matrix;
@@ -22,10 +26,6 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
 
 
 public class RotateLoadingLayout extends LoadingLayout {

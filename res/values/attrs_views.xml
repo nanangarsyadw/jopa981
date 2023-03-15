@@ -176,8 +176,13 @@
         <attr name="progress_reached_color" format="color" />
         <attr name="progress_reached_bar_height" format="dimension" />
         <attr name="progress_unreached_bar_height" format="dimension" />
+        <attr name="progress_label" format="string" />
         <attr name="progress_text_size" format="dimension" />
         <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_background_radius" format="dimension" />
+        <attr name="progress_text_background_color" format="color" />
+        <attr name="progress_text_stroke_color" format="color" />
+        <attr name="progress_text_stroke_width" format="dimension" />
         <attr name="progress_text_offset" format="dimension" />
         <attr name="progress_text_visibility" format="enum">
             <enum name="visible" value="0" />
@@ -205,5 +210,23 @@
         <attr name="lock9_vibrateTime" format="integer" />
     </declare-styleable>
     <!-- 九宫格锁屏控件（结束） -->
+
+
+    <!-- ViewPager指示器 -->
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsTabSelectedTextColor" format="color" />
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsTabTextSize" format="dimension" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
 
 </resources>

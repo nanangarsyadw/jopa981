@@ -65,8 +65,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	 * 注册表实体
 	 * @param entity 表实体
 	 */
-	public static void registerTables(Class<? extends BaseEntity> entity){
+	public void registerTables(Class<? extends BaseEntity> entity){
 		table.add(entity);
+		createTable(entity);
 	}
 	
 	/**

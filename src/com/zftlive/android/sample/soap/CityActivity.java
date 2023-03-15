@@ -75,7 +75,7 @@ public class CityActivity extends BaseActivity {
 		
 		//添加参数
 		HashMap<String, String> properties = new HashMap<String, String>();
-		properties.put("byProvinceName", String.valueOf(getOperation().getParameters("province")));
+		properties.put("byProvinceName", String.valueOf(getOperation().getParameter("province")));
 		
 		ToolSOAP.callService(ProviceActivity.WEB_SERVER_URL,ProviceActivity.NAME_SPACE,"getSupportCity", properties, new ToolSOAP.WebServiceCallBack() {
 			

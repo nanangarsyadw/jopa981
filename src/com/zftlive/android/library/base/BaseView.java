@@ -98,35 +98,35 @@ public abstract class BaseView extends View {
   /**
    * 根据手机的分辨率从 dip 的单位 转成为 px(像素)
    * 
-   * @param mContext 环境
+   * @param context 环境
    * @param dpValue 需要转化的dip值
    * @return int 转化后的px值
    */
-  public static int dipToPx(Context mContext, float dipValue) {
-    final float scale = mContext.getResources().getDisplayMetrics().density;
+  public static int dipToPx(Context context, float dipValue) {
+    final float scale = context.getResources().getDisplayMetrics().density;
     return (int) (dipValue * scale + 0.5f);
   }
 
   /**
    * 根据手机的分辨率从 px(像素) 的单位 转成为 dip
    * 
-   * @param mContext 环境
+   * @param context 环境
    * @param pxValue 需要转换的像素值
    * @return int 转化后的dip值
    */
-  public static int pxToDip(Context mContext, float pxValue) {
-    final float scale = mContext.getResources().getDisplayMetrics().density;
+  public static int pxToDip(Context context, float pxValue) {
+    final float scale = context.getResources().getDisplayMetrics().density;
     return (int) (pxValue / scale + 0.5f);
   }
 
   /**
    * 将px值转换为sp值，保证文字大小不变
    * 
-   * @param mContext
+   * @param context
    * @param pxValue
    */
-  public static int pxTosp(Context mContext, float pxValue) {
-    final float fontScale = mContext.getResources().getDisplayMetrics().scaledDensity;
+  public static int pxTosp(Context context, float pxValue) {
+    final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
     return (int) (pxValue / fontScale + 0.5f);
   }
 
@@ -136,8 +136,8 @@ public abstract class BaseView extends View {
    * @param spValue
    * @param fontScale （DisplayMetrics类中属性scaledDensity）
    */
-  public static int spTopx(Context mContext, float spValue) {
-    final float fontScale = mContext.getResources().getDisplayMetrics().scaledDensity;
+  public static int spTopx(Context context, float spValue) {
+    final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
     return (int) (spValue * fontScale + 0.5f);
   }
 

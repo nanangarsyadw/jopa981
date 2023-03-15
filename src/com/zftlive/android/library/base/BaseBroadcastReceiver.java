@@ -8,7 +8,7 @@ import android.content.BroadcastReceiver;
  * @version 1.0
  *
  */
-public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
+public abstract class BaseBroadcastReceiver extends BroadcastReceiver implements IBaseConstant {
 
 	/**日志输出标志**/
 	protected final String TAG = this.getClass().getSimpleName();

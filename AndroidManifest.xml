@@ -203,6 +203,18 @@
             </intent-filter>
         </activity>
 
+        <!-- 共通图片查看器界面 -->
+        <activity
+            android:name="com.zftlive.android.library.common.picture.PictureViewerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <!-- 引导界面 -->
         <activity
             android:name=".common.GuideActivity"
@@ -741,11 +753,11 @@
             </intent-filter>
         </activity>
 
-        <!-- 支付宝支付DEMO -->
+        <!-- 音频控制示例DEMO -->
         <activity
-            android:name=".sample.pay.AlipayDemoActivity"
+            android:name=".sample.media.AudioManagerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/AlipayDemoActivity"
+            android:label="@string/AudioManagerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
             <intent-filter>
@@ -755,7 +767,7 @@
             </intent-filter>
         </activity>
 
-        <!-- 九宫格手势锁示例 -->
+        <!-- 九宫格解锁示例DEMO -->
         <activity
             android:name=".sample.gesture.Lock9DemoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -769,16 +781,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".sample.gesture.NormalActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
-        </activity>
-        <activity
             android:name=".sample.gesture.LStyleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/Lock9DemoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sample.gesture.NormalActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/Lock9DemoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <!-- 图片缩放查看器示例DEMO -->
+        <activity
+            android:name=".sample.image.photoview.PictureViewerDemoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/PictureViewerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+
+        <!-- 拍照/相册选择示例DEMO -->
+        <activity
+            android:name=".sample.image.CamreaPictureDemoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/CamreaPictureDemoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.zftlive.android.SAMPLE_CODE" />
+            </intent-filter>
         </activity>
 
         <!-- 静态注册短信广播接收器 -->
@@ -901,9 +949,11 @@
             android:windowSoftInputMode="stateHidden|adjustResize" >
 
             <!--
-            	AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
-            	的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
-            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+                AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
+                的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
+                开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+
+
             -->
             <meta-data
                 android:name="AuthorizeAdapter"
@@ -912,17 +962,21 @@
                 android:name="QZoneWebShareAdapter"
                 android:value="com.zftlive.android.library.common.onekeyshare.MyQZoneWebShareAdapter" />
             <!--
-            	QZoneWebShareAdapter表示一个继承自cn.sharesdk.tencent.qzone.QZoneWebShareAdapter
-            	的类，这个类可以监听到页面的生命周期，也可以获QQ空间网页分享权页面的各种UI控件。 
-            	开发者可以通过继承QZoneWebShareAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+                QZoneWebShareAdapter表示一个继承自cn.sharesdk.tencent.qzone.QZoneWebShareAdapter
+                的类，这个类可以监听到页面的生命周期，也可以获QQ空间网页分享权页面的各种UI控件。 
+                开发者可以通过继承QZoneWebShareAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
             
-            <meta-data android:name="QQWebShareAdapter" android:value="cn.sharesdk.demo.MyQQWebShareAdapter" />
+            <meta-data android:name="QQWebShareAdapter" android:value="cn.sharesdk.demo.MyQQWebShareAdapter" />
+
+
             -->
 
 
             <!--
-            	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
-            	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+                Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
+                “db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+
+
             -->
             <intent-filter>
                 <data android:scheme="db-7janx53ilz11gbs" />
@@ -934,9 +988,11 @@
             </intent-filter>
 
             <!--
-            	如果集成QQ分享，或者使用QQ客户端来进行QQ空间的分享，须要在此处添加一个对ACTION_VIEW
-            	事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
-            	则分享结束以后不能得到正确的回调
+                如果集成QQ分享，或者使用QQ客户端来进行QQ空间的分享，须要在此处添加一个对ACTION_VIEW
+                事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
+                则分享结束以后不能得到正确的回调
+
+
             -->
             <intent-filter>
                 <data android:scheme="tencent100371282" />
@@ -983,20 +1039,13 @@
         <!-- 百度基础地图+定位+LBS（结束） -->
 
 
-        <!-- alipay sdk begin -->
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
-        <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
-        <!-- alipay sdk end -->
+        <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> -->
+        <!-- <receiver android:name="com.zftlive.android.sample.media.BootBroadcastReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED"></action> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
     </application>
 

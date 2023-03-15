@@ -15,6 +15,13 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.internal.FlipLoadingLayout;
+import com.zftlive.android.library.widget.pulltorefresh.internal.LoadingLayout;
+import com.zftlive.android.library.widget.pulltorefresh.internal.RotateLoadingLayout;
+import com.zftlive.android.library.widget.pulltorefresh.internal.Utils;
+import com.zftlive.android.library.widget.pulltorefresh.internal.ViewCompat;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -33,13 +40,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.internal.FlipLoadingLayout;
-import com.zftlive.android.library.widget.pulltorefresh.internal.LoadingLayout;
-import com.zftlive.android.library.widget.pulltorefresh.internal.RotateLoadingLayout;
-import com.zftlive.android.library.widget.pulltorefresh.internal.Utils;
-import com.zftlive.android.library.widget.pulltorefresh.internal.ViewCompat;
 
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout implements IPullToRefresh<T> {

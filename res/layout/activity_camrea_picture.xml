@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 相册选择/拍照DEMO -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_color" >
+
+    <Button
+        android:id="@+id/btn_album"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从相册中获取" />
+
+    <Button
+        android:id="@+id/btn_camera"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_album"
+        android:text="从拍照中获取" />
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btn_camera"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/default_icon"
+        android:scaleType="fitCenter" />
+
+</RelativeLayout>

@@ -1,8 +1,5 @@
 package com.zftlive.android.sample.basic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,8 +20,12 @@ import com.zftlive.android.library.tools.ToolPhone;
 import com.zftlive.android.library.tools.ToolString;
 import com.zftlive.android.library.widget.AlignTextView;
 import com.zftlive.android.library.widget.OperationDialog;
+import com.zftlive.android.library.widget.OperationDialog.ButtonBean;
 import com.zftlive.android.library.widget.OperationDialog.DialogBuilder;
 import com.zftlive.android.library.widget.OperationDialog.ItemBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 基本常用操作测试样例
@@ -149,20 +150,56 @@ public class BasicTestActivity extends BaseActivity implements View.OnClickListe
             
             //创建一个Dialog
             new DialogBuilder(this)
-            .setGravity(Gravity.BOTTOM)
+            .setGravity(Gravity.CENTER)
             .setCanceledOnTouchOutside(false)
+            .showTopHeader(false)
             .showButtomFooter(false)
+            .setFillScreenWith(false)
+            .hasAnimation(false)
             .setMainTitle(Html.fromHtml("为您搜索到了<font color='#359df5'>"+6+"</font>条相关内容"))
+            .addItemData(new ItemBean("货币基金", "定期理财","年收益率6.5%", true))
+            .addItemData(new ItemBean("货币基金", "", R.drawable.recoment, "年收益率6.5%", true))
             .setItemClickListener(new OperationDialog.ItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                   ItemBean rowData = (ItemBean) parent.getItemAtPosition(position);
-                  ToolAlert.toastShort(getContext(), rowData.leftMainTitle + "-->"+position);
+                  ToolAlert.showCenterText(getContext(), "点击了第"+rowData.leftMainTitle+"个Item");
                 }
             })
-            .setItemData(mItemData)
+            .showItemListLastLine(true)
+            
+            .setBodyTitle("中间对话框标题")
+            .setBodyMsg("zftlive，顾名思义“曾繁添的生活”，我是一个追求技术的代码狂，我的生活很单纯，占据我大部分生活的是代码，在工作之余整理/沉淀自己所学、所能，一方面可以记录一下，方便日后使用、开发；另一方面开源共享可以帮助一些需要这方面资源的同学，两全其美的事情何乐而不为。")
+            .setOperationBtnDirection(OperationDialog.VERTICAL)
+            .addOperationBtn(new ButtonBean(R.id.action_fav, "取消"))
+            .addOperationBtn(new ButtonBean(R.id.action_settings, "确定","#FF0000"))
+            .addOperationBtn(new ButtonBean(R.id.action_about, "我知道了","#359df5"))
+            .setOperationClickListener(new OperationDialog.OperationClickListener() {
+              
+              @Override
+              public void onClick(View v) {
+                switch (v.getId()) {
+                  case R.id.action_about:
+                    ToolAlert.showCenterText(getContext(), "点击了取消按钮");
+                    break;
+                  case R.id.action_settings:
+                    ToolAlert.showCenterText(getContext(), "点击了确定按钮");
+                    break;
+                  default:
+                    break;
+                }
+              }
+            })
+            .setCancelListener(new OperationDialog.CancelListener() {
+              
+              @Override
+              public void onCancel() {
+                //Dialog关闭的时候，这里可以做收起软键盘
+                ToolAlert.showCenterText(getContext(), "Dialog关闭了");
+              }
+            })
             .build()
-            .show();
+            .show();    
 			
 			break;
 		default:

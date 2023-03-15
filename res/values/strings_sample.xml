@@ -1,8 +1,6 @@
 <resources>
     
     <string name="app_name">AjavaSample</string>
-    <!-- 共通字符串 -->
-    <string name="loading_waiting">加載中，请稍后...</string>
     <!-- Android样例锦集label(开始) -->
     <string name="MainActivity">Android样例锦集</string>
     <string name="GuideActivity">引导界面</string>
@@ -33,8 +31,11 @@
     <string name="DialogEffectActivity">dialog各种特效DEMO</string>
     <string name="NumberPbActivity">带数字的进度条样例</string>
     <string name="BaiduLocationActivity">百度地图定位演示DEMO</string>
+    <string name="AudioManagerActivity">控制系统音量样例</string>
+    <string name="Lock9DemoActivity">九宫格解锁样例</string>
     <string name="AlipayDemoActivity">支付宝支付DEMO</string>
-    <string name="Lock9DemoActivity">九宫格手势锁示例</string>
+    <string name="PictureViewerActivity">图片缩放查看器样例</string>
+    <string name="CamreaPictureDemoActivity">拍照/相册选择图片样例</string>
     <!-- Android样例锦集label(结束) -->
 
 
@@ -73,13 +74,6 @@
     <string name="btn_bind">绑定拦截</string>
     <string name="btn_choice">选择</string>
     <!-- 短信操作示例（结束） -->
-
-
-    <!-- common意见反馈示例（开始） -->
-    <string name="btn_submit">提交</string>
-    <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
-    <!-- common意见反馈示例（结束） -->
-
 
     <!-- 基本操作示例（开始） -->
     <string name="btn_opengps">强制打开GPS</string>
@@ -128,17 +122,6 @@
     <string name="list_title">企业市场供给压力不足为惧企业市场供给压力不足为惧企业市场供给压力不足为惧</string>
     <string name="menu_delete">删除</string>
 
-    <!-- ActionBar按钮 -->
-    <string name="action_about">关于</string>
-    <string name="action_scan">扫一扫</string>
-    <string name="action_search">搜索</string>
-    <string name="action_setting">设置</string>
-    <string name="action_favrate">收藏</string>
-    <string name="action_share">分享</string>
-    <string name="action_refresh">刷新</string>
-    <string name="action_submit">提交</string>
-    <string name="action_feedback">意见反馈</string>
-    
     <!-- 带回弹效果的ScrollView -->
     <string name="add_attention">加关注</string>
     <string name="user_post">职位：产品经理</string>
@@ -176,6 +159,7 @@
     <string name="scan_failed">扫描失败</string>
     <string name="bottom_hint">建议与镜头保持10CM距离，尽量避免逆光和阴影</string>
     <string name="top_hint">将条形码或二维码置于取景框内系统会自动扫描</string>
+    <string name="cancel">取消</string>
     <string name="msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
     <string name="button_ok">确定</string>
     <!-- zxing(end) -->

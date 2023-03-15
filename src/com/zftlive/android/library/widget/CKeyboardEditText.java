@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.zftlive.android.R;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -39,8 +41,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
-
-import com.zftlive.android.R;
 
 /**
  * 

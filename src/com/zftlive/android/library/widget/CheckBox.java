@@ -1,10 +1,10 @@
 package com.zftlive.android.library.widget;
 
+import com.zftlive.android.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-
-import com.zftlive.android.R;
 
 /**
  * 自定义CheckBox,增加属性key/value

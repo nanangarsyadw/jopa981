@@ -1,7 +1,5 @@
 package com.zftlive.android.library.common;
 
-import com.zftlive.android.R;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
@@ -12,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zftlive.android.R;
 
 /**
  * ActionBar管理器

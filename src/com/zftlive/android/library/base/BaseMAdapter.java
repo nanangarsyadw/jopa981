@@ -12,7 +12,7 @@ import android.app.Activity;
  * @version 1.0
  * @param <T> Adapter绑定的数据源行类型Bean/Map/Object
  */
-public abstract class BaseMAdapter<T> extends android.widget.BaseAdapter {
+public abstract class BaseMAdapter<T> extends android.widget.BaseAdapter implements IBaseConstant {
 
 	/** 数据存储集合 **/
 	private List<T> mDataList = new ArrayList<T>();
@@ -62,6 +62,38 @@ public abstract class BaseMAdapter<T> extends android.widget.BaseAdapter {
 		return (getCount() / mPerPageSize) + 1;
 	}
 	
+	   /**
+     * 获取分页的偏移量(供列表带删除功能时使用)
+     * @return
+     */
+    public int getOffsetCount(){
+        return (getCount() - 1) + 1;
+    }
+	
+    /**
+     * 获取当前ListView绑定的数据源
+     * @return
+     */
+    public List<T> gainDataSource(){
+        return this.mDataList;
+    }
+    
+    /**
+     * 获取每页显示的数量
+     * @return
+     */
+    public int getPerPagerSize(){
+        return mPerPageSize;
+    }
+    
+    /**
+     * 设置每一页显示条目数
+     * @param pageSize
+     */
+    public void setPerPageSize(int pageSize){
+        this.mPerPageSize = pageSize;
+    }
+    
 	/**
 	 * 添加数据
 	 * @param item 数据项

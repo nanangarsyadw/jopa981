@@ -25,6 +25,7 @@
             android:gravity="left|center_vertical"
             android:maxLines="2"
             android:text=""
+            android:visibility="gone"
             android:textColor="#333333"
             android:textSize="14sp" />
 
@@ -37,6 +38,7 @@
             android:gravity="left|center_vertical"
             android:maxLines="2"
             android:text=""
+            android:visibility="gone"
             android:textColor="#999999"
             android:textSize="10sp" />
     </LinearLayout>
@@ -50,9 +52,9 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text=""
-        android:textColor="#999999"
         android:visibility="gone"
-        android:textSize="14sp" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
     
     <!-- 右侧标题+图标 -->
 
@@ -72,6 +74,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text=""
+            android:visibility="gone"
             android:textColor="#359df5"
             android:textSize="14sp" />
 
@@ -81,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:background="@android:color/transparent"
+            android:visibility="gone"
             android:src="@drawable/arrow_normal" />
 
         <ImageButton
@@ -88,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:visibility="gone"
             android:background="@android:color/transparent"
             android:src="@drawable/item_choose_icon" />
     </LinearLayout>

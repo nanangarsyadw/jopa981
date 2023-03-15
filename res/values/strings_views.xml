@@ -22,4 +22,25 @@
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <!-- xlistview(end) -->
 
+    <string name="loading_waiting">加載中，请稍后...</string>
+
+    <!-- ActionBar按钮 -->
+    <string name="action_about">关于</string>
+    <string name="action_scan">扫一扫</string>
+    <string name="action_search">搜索</string>
+    <string name="action_setting">设置</string>
+    <string name="action_favrate">收藏</string>
+    <string name="action_share">分享</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_submit">提交</string>
+    <string name="action_feedback">意见反馈</string>
+
+    <!-- common意见反馈示例（开始） -->
+    <string name="btn_submit">提交</string>
+    <string name="hint_feedback">期待您的宝贵建议(1000字)</string>
+    <!-- common意见反馈示例（结束） -->
+
+    <!-- 图片查看器指示 -->
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+
 </resources>

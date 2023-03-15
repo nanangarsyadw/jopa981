@@ -15,6 +15,10 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.internal.EmptyViewMethodAccessor;
+import com.zftlive.android.library.widget.pulltorefresh.internal.IndicatorLayout;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -31,10 +35,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.internal.EmptyViewMethodAccessor;
-import com.zftlive.android.library.widget.pulltorefresh.internal.IndicatorLayout;
 
 public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T> implements
 		OnScrollListener {

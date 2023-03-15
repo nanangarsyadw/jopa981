@@ -35,10 +35,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.zftlive.android.R;
 import com.zftlive.android.library.widget.fadingactionbar.view.ObservableScrollView;
 import com.zftlive.android.library.widget.fadingactionbar.view.ObservableWebViewWithHeader;
 import com.zftlive.android.library.widget.fadingactionbar.view.OnScrollChangedCallback;
+import com.zftlive.android.R;
 
 @SuppressWarnings("unchecked")
 public abstract class FadingActionBarHelperBase {

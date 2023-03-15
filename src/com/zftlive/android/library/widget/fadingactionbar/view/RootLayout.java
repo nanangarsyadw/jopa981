@@ -1,11 +1,11 @@
 package com.zftlive.android.library.widget.fadingactionbar.view;
 
+import com.zftlive.android.R;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import com.zftlive.android.R;
 
 public class RootLayout extends FrameLayout {
 

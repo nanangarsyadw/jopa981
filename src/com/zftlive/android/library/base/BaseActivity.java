@@ -1,12 +1,19 @@
 package com.zftlive.android.library.base;
 
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -18,12 +25,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.zftlive.android.library.MApplication;
+import com.zftlive.android.library.tools.ToolFile;
 import com.zftlive.android.library.widget.SwipeBackLayout;
 
 /**
@@ -33,7 +46,7 @@ import com.zftlive.android.library.widget.SwipeBackLayout;
  * @version 1.0
  * 
  */
-public abstract class BaseActivity extends FragmentActivity implements IBaseActivity {
+public abstract class BaseActivity extends FragmentActivity implements IBaseActivity,IBaseConstant {
 
   /*** 整个应用Applicaiton **/
   private MApplication mApplication = null;
@@ -59,7 +72,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
     // 获取应用Application
     mApplication = (MApplication) getApplicationContext();
-
+    
+    //需要在setContentView之前配置window的一些属性
+    config(savedInstanceState);
+    
     // 设置渲染视图View
     int baseLayout = BaseView.gainResId(mApplication, BaseView.LAYOUT, "activity_base_container");
     mContextView = (ViewGroup) LayoutInflater.from(this).inflate(baseLayout, null);
@@ -105,6 +121,11 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   }
 
   @Override
+  public void config(Bundle savedInstanceState) {
+    
+  }
+  
+  @Override
   public View bindView() {
     return null;
   }
@@ -147,11 +168,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
   @Override
   protected void onDestroy() {
-    super.onDestroy();
     Log.d(TAG, "BaseActivity-->onDestroy()");
-
     destroy();
     mApplication.removeTask(mContextWR);
+    super.onDestroy();
   }
 
   @Override
@@ -159,6 +179,12 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
   }
 
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //让Fragment可以消费
+    super.onActivityResult(requestCode, resultCode, data);
+  }
+  
   /**
    * 显示Actionbar菜单图标
    */
@@ -241,8 +267,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
    * 设置标题
    * @param strTitle 标题文本
    */
-  public void setTitle(String strTitle){
-    setTitle(strTitle,Gravity.LEFT|Gravity.CENTER_VERTICAL);
+  public void setWindowTitle(String strTitle){
+    setWindowTitle(strTitle,Gravity.LEFT|Gravity.CENTER_VERTICAL);
   }
   
   /**
@@ -250,11 +276,20 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
    * @param strTitle 标题文本
    * @param mTitleGravity 标题文本对齐方式
    */
-  public void setTitle(String strTitle,int mTitleGravity){
+  public void setWindowTitle(String strTitle,int mTitleGravity){
     // 标题
     TextView mTitleText = (TextView) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "tv_title"));
     mTitleText.setGravity(mTitleGravity);
     mTitleText.setText(strTitle);
+  }
+  
+  /**
+   * 设置标题栏底部线
+   * @param visibility 是否可见
+   */
+  public void setButtomLine(int visibility){
+    View mLineView = findViewById(BaseView.gainResId(mApplication, BaseView.ID, "title_buttom_line"));
+    mLineView.setVisibility(visibility);
   }
   
   /**
@@ -276,6 +311,17 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
     View mTitleBarContainer =
         findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
     mTitleBarContainer.setBackgroundColor(mResId);
+  }
+  
+  /**
+   * 设置标题栏背景颜色
+   * 
+   * @param mResId 背景资源文件-->R.color.actionbar_bg/R.drawable.actionbar_bg
+   */
+  public void setTitleBgWithResColor(int mResId) {
+    View mTitleBarContainer =
+        findViewById(BaseView.gainResId(mApplication, BaseView.ID, "ll_title"));
+    mTitleBarContainer.setBackgroundResource(mResId);
   }
 
   /**
@@ -397,6 +443,122 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
   }
 
   /**
+   * 隐藏标题栏左侧[返回]按钮
+   */
+  public void hiddenLeftBackBtn() {
+    hiddenLeftBackBtn(View.GONE);
+  }
+  
+  /**
+   * 隐藏标题栏左侧[返回]按钮
+   * @param mViewStatus 按钮的状态 View.GONE/View.INVISIBLE
+   */
+  public void hiddenLeftBackBtn(int mViewStatus) {
+    ImageButton mBackBtn =
+        (ImageButton) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_back"));
+    mBackBtn.setVisibility(mViewStatus);
+  }
+  
+  /**
+   * 隐藏标题栏左侧[菜单/Home]按钮
+   */
+  public void hiddenLeftMenuBtn() {
+    hiddenLeftMenuBtn(View.GONE);
+  }
+  
+  /**
+   * 隐藏标题栏左侧[菜单/Home]按钮
+   * @param mViewStatus 按钮的状态 View.GONE/View.INVISIBLE
+   */
+  public void hiddenLeftMenuBtn(int mViewStatus) {
+    ImageButton mBackBtn =
+        (ImageButton) findViewById(BaseView.gainResId(mApplication, BaseView.ID, "iv_menu"));
+    mBackBtn.setVisibility(mViewStatus);
+  }
+  
+  /**
+   * 引导状态存储偏好
+   */
+  protected final static String GUIDE_STATUS = "guide_status_sp";
+
+  /**
+   * 添加遮罩引导图
+   * 
+   * @param spKey 对应界面的引导图key，可以传入当前类的全名称+引导图序号
+   * @param resId 引导图res目录的资源id
+   */
+  @SuppressWarnings("unchecked")
+  public void addMaskGuide(final String spKey, int resId) {
+    // 查找通过setContentView上的根布局
+    View view = getWindow().getDecorView().findViewById(BaseView.gainResId(mApplication, BaseView.ID, "rootLayout"));
+    if (0 == resId || null == view) return;
+    // 读取引导状态
+    Map<String, Object> perface = (Map<String, Object>) ToolFile.readShrePerface(mApplication, GUIDE_STATUS);
+    if (null == perface) {
+      perface = new HashMap<String, Object>();
+    }
+    final Map<String, Object> mPerface = perface;
+    boolean isGuided = (null == perface.get(spKey)) ? false : (Boolean) perface.get(spKey);
+    if (isGuided) {
+      return;
+    }
+    // 当前Activity界面的容器
+    ViewParent viewParent = view.getParent().getParent().getParent();
+    if(null == viewParent)return;
+    if (viewParent instanceof FrameLayout) {
+      final FrameLayout root = (FrameLayout) viewParent;
+      final ImageView guide = new ImageView(this);
+      FrameLayout.LayoutParams params =
+          new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+              ViewGroup.LayoutParams.MATCH_PARENT);
+      guide.setScaleType(ScaleType.FIT_XY);
+      guide.setImageBitmap(readBitMap(mApplication, resId));
+      guide.setBackgroundResource(BaseView.gainResId(mApplication, BaseView.DRAWABLE, "mask_guide_bg"));
+      guide.setLayoutParams(params);
+      guide.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          // 回收Bitmap
+          if (guide != null && guide.getDrawable() != null) {
+            Bitmap mBitmap = ((BitmapDrawable) guide.getDrawable()).getBitmap();
+            guide.setImageDrawable(null);
+            if (mBitmap != null && !mBitmap.isRecycled()) {
+              mBitmap.recycle();
+              mBitmap = null;
+            }
+          }
+          root.removeView(guide);
+          mPerface.put(spKey, true);
+          ToolFile.writeShrePerface(mApplication,GUIDE_STATUS, mPerface);
+          System.gc();
+        }
+      });
+      root.addView(guide);
+    }
+  }
+
+  /**
+   * 
+   * 调用JNI底层实现获取本地图片资源
+   * 
+   * @param mContext
+   * @param resId
+   * @return
+   */
+  public Bitmap readBitMap(Context mContext, int resId) {
+    BitmapFactory.Options opt = new BitmapFactory.Options();
+    opt.inPreferredConfig = Bitmap.Config.RGB_565;
+    opt.inPurgeable = true;
+    opt.inInputShareable = true;
+    opt.inJustDecodeBounds = false;
+    // width，hight设为原来的十分一
+    // opt.inSampleSize = 10;
+    // 获取资源图片
+    InputStream is = mContext.getResources().openRawResource(resId);
+    return BitmapFactory.decodeStream(is, null, opt);
+  }
+  
+  /**
    * Actionbar点击返回键关闭事件
    */
   @Override
@@ -416,18 +578,25 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseActi
 
   public void finish() {
     super.finish();
+    int mAnimIn = 0;
+    int mAnimOut = 0;
     switch (mAnimationType) {
+      //左进右出
       case IBaseActivity.LEFT_RIGHT:
-        overridePendingTransition(0,
-            BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_out"));
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_left_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM, "base_slide_right_out");
+        overridePendingTransition(mAnimIn,mAnimOut);
         break;
+       //上进下出
       case IBaseActivity.TOP_BOTTOM:
-        overridePendingTransition(0,
-            BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_out"));
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_push_up_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM,"base_push_bottom_out");
+        overridePendingTransition(mAnimIn,mAnimOut);
         break;
       case IBaseActivity.FADE_IN_OUT:
-        overridePendingTransition(0,
-            BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_out"));
+        mAnimIn = BaseView.gainResId(mApplication, BaseView.ANIM, "base_fade_in");
+        mAnimOut = BaseView.gainResId(mApplication, BaseView.ANIM,"base_fade_out");
+        overridePendingTransition(mAnimIn,mAnimOut);
         break;
       default:
         break;

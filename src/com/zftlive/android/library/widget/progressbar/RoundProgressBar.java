@@ -1,5 +1,7 @@
 package com.zftlive.android.library.widget.progressbar;
 
+import com.zftlive.android.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -10,8 +12,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-
-import com.zftlive.android.R;
 
 public class RoundProgressBar extends View {
 

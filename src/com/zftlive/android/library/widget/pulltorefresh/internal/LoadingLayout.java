@@ -15,6 +15,11 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh.internal;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.ILoadingLayout;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -34,11 +39,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.ILoadingLayout;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
 
 @SuppressLint("ViewConstructor")
 public abstract class LoadingLayout extends FrameLayout implements ILoadingLayout {

@@ -15,6 +15,10 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh.internal;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -25,10 +29,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Mode;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase.Orientation;
 
 @SuppressLint("ViewConstructor")
 public class FlipLoadingLayout extends LoadingLayout {

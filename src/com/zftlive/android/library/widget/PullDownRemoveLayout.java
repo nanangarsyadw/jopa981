@@ -3,6 +3,8 @@ package com.zftlive.android.library.widget;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.zftlive.android.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,8 +20,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
-
-import com.zftlive.android.R;
 
 /**
  * 下拉关闭当前Activity，解决掉Listview、ScrollView、ViewPager事件冲突问题

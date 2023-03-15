@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.UUID;
 
+import android.text.TextUtils;
+
 /**
  * 字符串工具类
  * 
@@ -37,6 +39,23 @@ public class ToolString {
 		return !((strParm == null) || (strParm.equals("")));
 	}
 
+	/**
+	 * 将字符首字母转成大写
+	 * @param str
+	 * @return
+	 */
+	public static String capitalFirst(String str){
+	  if(TextUtils.isEmpty(str)) return "";
+	  
+	  if(1 == str.length()) return str.toUpperCase();
+	  
+	  StringBuilder sb = new StringBuilder();
+	  String first = str.substring(0, 1);
+	  sb.append(first.toUpperCase());
+	  sb.append(str.substring(1, str.length()));
+	  return sb.toString();
+	}
+	
 	/**
 	 * 将流转成字符串
 	 * 

@@ -15,13 +15,13 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh.extras.viewpager;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
+
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.widget.pulltorefresh.PullToRefreshBase;
 
 public class PullToRefreshViewPager extends PullToRefreshBase<ViewPager> {
 

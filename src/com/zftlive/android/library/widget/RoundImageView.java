@@ -1,5 +1,6 @@
 package com.zftlive.android.library.widget;
 
+import com.zftlive.android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,8 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
-import com.zftlive.android.R;
 
 /**
  * 圆形ImageView可设置最多两个宽度不同且颜色不同的圆形边框。

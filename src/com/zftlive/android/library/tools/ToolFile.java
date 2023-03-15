@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.StatFs;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -715,4 +716,15 @@ public class ToolFile {
 		return obj;
 	}
 	
+	/**
+	 * 删除指定路径的文件
+	 * @param filePath 文件路径
+	 */
+	public static void deleteFile(String filePath){
+	  if(TextUtils.isEmpty(filePath))return;
+	  File file = new File(filePath);
+	  if(file.exists()){
+	    file.delete();
+	  }
+	}
 }

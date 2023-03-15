@@ -2,22 +2,33 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
+    
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">@color/actionbar_bg</item>
+    </style>
 
+    <style name="NoTitleBarNoShowDou" parent="android:Theme.NoTitleBar">
+        <item name="android:windowTitleSize">35dp</item>
+        <!-- 去除标题栏下的阴影 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    </style>
+    
     <style name="TransparentTheme" parent="AppBaseTheme">
 
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
         <!-- Activity透明样式 -->
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -26,7 +37,7 @@
         <!--
              Note that we use the base animation style here (that is no
              animations) because we really have no idea how this kind of
-             activity will be used.
+             activity will be used.
         -->
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <!-- ActionBar样式 -->

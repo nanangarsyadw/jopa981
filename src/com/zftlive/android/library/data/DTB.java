@@ -9,7 +9,7 @@ package com.zftlive.android.library.data;
  * @param <K>
  * 
  */
-public class DTB<V, K> extends DTO<K, V>{
+public class DTB<K, V> extends DTO<K, V>{
 
 	private String name;
 

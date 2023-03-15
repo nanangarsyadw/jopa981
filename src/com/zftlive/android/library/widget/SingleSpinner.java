@@ -1,11 +1,11 @@
 package com.zftlive.android.library.widget;
 
+import com.zftlive.android.R;
+import com.zftlive.android.library.data.widget.Option;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-
-import com.zftlive.android.R;
-import com.zftlive.android.library.data.widget.Option;
 
 public class SingleSpinner extends android.widget.Spinner {
 

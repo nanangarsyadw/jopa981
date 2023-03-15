@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh;
 
+import com.zftlive.android.R;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build.VERSION;
@@ -24,8 +26,6 @@ import android.util.AttributeSet;
 import android.util.FloatMath;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-
-import com.zftlive.android.R;
 
 public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 

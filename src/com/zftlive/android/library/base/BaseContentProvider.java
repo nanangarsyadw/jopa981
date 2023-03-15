@@ -8,7 +8,7 @@ import android.content.ContentProvider;
  * @version 1.0
  *
  */
-public abstract class BaseContentProvider extends ContentProvider {
+public abstract class BaseContentProvider extends ContentProvider implements IBaseConstant {
 
 	/**日志输出标志**/
 	protected final String TAG = this.getClass().getSimpleName();

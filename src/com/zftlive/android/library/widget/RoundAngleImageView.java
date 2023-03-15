@@ -1,5 +1,8 @@
 package com.zftlive.android.library.widget;
 
+import com.zftlive.android.R;
+
+import android.widget.ImageView;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -12,9 +15,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.widget.ImageView;
-
-import com.zftlive.android.R;
 
 /**
  * 圆角图片

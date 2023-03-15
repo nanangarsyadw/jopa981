@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 共通点击按钮id -->
+    <item type="id" name="common_ok"/>
+    <item type="id" name="common_cancel"/>
+    
+    
+</resources>

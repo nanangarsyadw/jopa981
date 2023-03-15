@@ -2,6 +2,8 @@ package com.zftlive.android.library.widget;
 
 import java.util.List;
 
+import com.zftlive.android.R;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -11,8 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView;
 import android.util.AttributeSet;
-
-import com.zftlive.android.R;
 
 public class CKeyboard extends KeyboardView {
 	

@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity {
 		String strCenterTitle = getResources().getString(R.string.MainActivity);
 //		ActionBarManager.initMenuListTitle(getContext(), getActionBar(), strCenterTitle);
 		initHomeMenuTitleBar(strCenterTitle, null);
-		
+		hiddenRightDoneBtn(View.INVISIBLE);
 	}
 
 	@Override

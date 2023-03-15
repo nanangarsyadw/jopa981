@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.zftlive.android.library.widget.pulltorefresh;
 
+import com.zftlive.android.R;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build.VERSION;
@@ -22,8 +24,6 @@ import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ScrollView;
-
-import com.zftlive.android.R;
 
 public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 

@@ -1,5 +1,7 @@
 package com.zftlive.android.library.widget;
 
+import com.zftlive.android.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,8 +12,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
-
-import com.zftlive.android.R;
 
 /**
  * 滑动删除Listview

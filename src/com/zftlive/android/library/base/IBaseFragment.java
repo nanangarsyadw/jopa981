@@ -10,7 +10,7 @@ import android.view.View;
  * @version 1.0
  *
  */
-public interface IBaseFragment {
+public interface IBaseFragment extends IBaseConstant {
 
 	/**
 	 * 绑定渲染视图的布局文件
@@ -28,7 +28,7 @@ public interface IBaseFragment {
 	 * 初始化界面参数
 	 * @param parms
 	 */
-	public void initParms(Bundle parms);
+	public void initParams(Bundle params);
 	
 	/**
 	 * 初始化控件

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.zftlive.android.R;
 import com.zftlive.android.library.base.BaseActivity;
-import com.zftlive.android.library.common.ActionBarManager;
 import com.zftlive.android.library.tools.ToolAlert;
 import com.zftlive.android.library.tools.ToolSOAP;
 
@@ -53,10 +52,10 @@ public class WeatherActivity extends BaseActivity{
 	@Override
 	public void doBusiness(final Context mContext) {
 		//等待对话框
-		ToolAlert.loading(mContext, "数据加载中...");
+		ToolAlert.loading(getContext(), "数据加载中...");
 		
 		HashMap<String, String> properties = new HashMap<String, String>();
-		properties.put("theCityName", String.valueOf(getOperation().getParameters("city")));
+		properties.put("theCityName", String.valueOf(getOperation().getParameter("city")));
 		
 		ToolSOAP.callService(ProviceActivity.WEB_SERVER_URL,ProviceActivity.NAME_SPACE,"getWeatherbyCityName", properties, new ToolSOAP.WebServiceCallBack() {
 			

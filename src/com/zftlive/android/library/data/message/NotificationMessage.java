@@ -18,12 +18,12 @@ public class NotificationMessage extends Message {
 	private static final long serialVersionUID = 681166507845221063L;
 
 	/**
-	 * 状态栏提示信息图标
+	 * 状态栏提示信息图标（必须）
 	 */
 	private int iconResId;
 
 	/**
-	 * 状态栏提示信息图标
+	 * 状态栏提示信息文本（必须）
 	 */
 	private String statusBarText;
 
