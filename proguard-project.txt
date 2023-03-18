@@ -117,10 +117,13 @@
 }
 
 #android辅助包
--libraryjars libs/android-support-v4.jar
+-libraryjars libs/android-support-v13.jar
 -dontwarn android.support.v4.**
 -keep class android.support.v4.**
 -keep interface android.support.v4.app.** {*;}
+-dontwarn android.support.v13.**
+-keep class android.support.v13.**
+-keep interface android.support.v13.app.** {*;}
 ############################################Application/R/V4辅助包混淆配置（结束）#############################################
 
 
