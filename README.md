@@ -123,7 +123,7 @@
 var Author = {
     realName : '曾繁添',
     nickName : 'Ajava攻城师',
-    job : 'Android研发工程师 @ 京东金融'
+    job : 'Android研发工程师'
     qq : '1260128980',
     email : 'zftlive@163.com',
     website : 'http://www.zftlive.com',
