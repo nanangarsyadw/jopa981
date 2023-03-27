@@ -73,9 +73,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * String[] colors = { "blue", "yellow" }; // Ordered collection
  * params.put("colors", colors); // url params: "colors[]=blue&amp;colors[]=yellow"
  *
- * File[] files = { new File("pic.jpg"), new File("pic1.jpg") }; // Ordered collection
- * params.put("files", files); // url params: "files[]=pic.jpg&amp;files[]=pic1.jpg"
- *
  * List&lt;Map&lt;String, String&gt;&gt; listOfMaps = new ArrayList&lt;Map&lt;String,
  * String&gt;&gt;();
  * Map&lt;String, String&gt; user1 = new HashMap&lt;String, String&gt;();
@@ -109,7 +106,6 @@ public class RequestParams implements Serializable {
     protected final ConcurrentHashMap<String, String> urlParams = new ConcurrentHashMap<String, String>();
     protected final ConcurrentHashMap<String, StreamWrapper> streamParams = new ConcurrentHashMap<String, StreamWrapper>();
     protected final ConcurrentHashMap<String, FileWrapper> fileParams = new ConcurrentHashMap<String, FileWrapper>();
-    protected final ConcurrentHashMap<String, List<FileWrapper>> fileArrayParams = new ConcurrentHashMap<String, List<FileWrapper>>();
     protected final ConcurrentHashMap<String, Object> urlParamsWithObjects = new ConcurrentHashMap<String, Object>();
     protected String contentEncoding = HTTP.UTF_8;
 
@@ -117,7 +113,7 @@ public class RequestParams implements Serializable {
      * Sets content encoding for return value of {@link #getParamString()} and {@link
      * #createFormEntity()} <p>&nbsp;</p> Default encoding is "UTF-8"
      *
-     * @param encoding String constant from {@link HTTP}
+     * @param encoding String constant from {@link org.apache.http.protocol.HTTP}
      */
     public void setContentEncoding(final String encoding) {
         if (encoding != null) {
@@ -130,7 +126,7 @@ public class RequestParams implements Serializable {
     /**
      * If set to true will force Content-Type header to `multipart/form-data`
      * even if there are not Files or Streams to be send
-     * <p>&nbsp;</p>
+     *
      * Default value is false
      *
      * @param force boolean, should declare content-type multipart/form-data even without files or streams present
@@ -205,45 +201,11 @@ public class RequestParams implements Serializable {
     }
 
     /**
-     * Adds files array to the request.
-     *
-     * @param key   the key name for the new param.
-     * @param files the files array to add.
-     * @throws FileNotFoundException if one of passed files is not found at time of assembling the requestparams into request
-     */
-    public void put(String key, File files[]) throws FileNotFoundException {
-        put(key, files, null, null);
-    }
-
-    /**
-     * Adds files array to the request with both custom provided file content-type and files name
-     *
-     * @param key            the key name for the new param.
-     * @param files          the files array to add.
-     * @param contentType    the content type of the file, eg. application/json
-     * @param customFileName file name to use instead of real file name
-     * @throws FileNotFoundException throws if wrong File argument was passed
-     */
-    public void put(String key, File files[], String contentType, String customFileName) throws FileNotFoundException {
-
-        if (key != null) {
-            List<FileWrapper> fileWrappers = new ArrayList<FileWrapper>();
-            for (int i = 0; i < files.length; i++) {
-                if (files[i] == null || !files[i].exists()) {
-                    throw new FileNotFoundException();
-                }
-                fileWrappers.add(new FileWrapper(files[i], contentType, customFileName));
-            }
-            fileArrayParams.put(key, fileWrappers);
-        }
-    }
-
-    /**
      * Adds a file to the request.
      *
      * @param key  the key name for the new param.
      * @param file the file to add.
-     * @throws FileNotFoundException throws if wrong File argument was passed
+     * @throws java.io.FileNotFoundException throws if wrong File argument was passed
      */
     public void put(String key, File file) throws FileNotFoundException {
         put(key, file, null, null);
@@ -255,7 +217,7 @@ public class RequestParams implements Serializable {
      * @param key            the key name for the new param.
      * @param file           the file to add.
      * @param customFileName file name to use instead of real file name
-     * @throws FileNotFoundException throws if wrong File argument was passed
+     * @throws java.io.FileNotFoundException throws if wrong File argument was passed
      */
     public void put(String key, String customFileName, File file) throws FileNotFoundException {
         put(key, file, null, customFileName);
@@ -267,7 +229,7 @@ public class RequestParams implements Serializable {
      * @param key         the key name for the new param.
      * @param file        the file to add.
      * @param contentType the content type of the file, eg. application/json
-     * @throws FileNotFoundException throws if wrong File argument was passed
+     * @throws java.io.FileNotFoundException throws if wrong File argument was passed
      */
     public void put(String key, File file, String contentType) throws FileNotFoundException {
         put(key, file, contentType, null);
@@ -280,7 +242,7 @@ public class RequestParams implements Serializable {
      * @param file           the file to add.
      * @param contentType    the content type of the file, eg. application/json
      * @param customFileName file name to use instead of real file name
-     * @throws FileNotFoundException throws if wrong File argument was passed
+     * @throws java.io.FileNotFoundException throws if wrong File argument was passed
      */
     public void put(String key, File file, String contentType, String customFileName) throws FileNotFoundException {
         if (file == null || !file.exists()) {
@@ -407,7 +369,6 @@ public class RequestParams implements Serializable {
         streamParams.remove(key);
         fileParams.remove(key);
         urlParamsWithObjects.remove(key);
-        fileArrayParams.remove(key);
     }
 
     /**
@@ -420,8 +381,7 @@ public class RequestParams implements Serializable {
         return urlParams.get(key) != null ||
                 streamParams.get(key) != null ||
                 fileParams.get(key) != null ||
-                urlParamsWithObjects.get(key) != null ||
-                fileArrayParams.get(key) != null;
+                urlParamsWithObjects.get(key) != null;
     }
 
     @Override
@@ -446,15 +406,6 @@ public class RequestParams implements Serializable {
         }
 
         for (ConcurrentHashMap.Entry<String, FileWrapper> entry : fileParams.entrySet()) {
-            if (result.length() > 0)
-                result.append("&");
-
-            result.append(entry.getKey());
-            result.append("=");
-            result.append("FILE");
-        }
-
-        for (ConcurrentHashMap.Entry<String, List<FileWrapper>> entry : fileArrayParams.entrySet()) {
             if (result.length() > 0)
                 result.append("&");
 
@@ -488,7 +439,7 @@ public class RequestParams implements Serializable {
      * Sets an additional field when upload a JSON object through the streamer
      * to hold the time, in milliseconds, it took to upload the payload. By
      * default, this field is set to "_elapsed".
-     * <p>&nbsp;</p>
+     *
      * To disable this feature, call this method with null as the field value.
      *
      * @param value field name to add elapsed time, or null to disable
@@ -518,7 +469,7 @@ public class RequestParams implements Serializable {
     public HttpEntity getEntity(ResponseHandlerInterface progressHandler) throws IOException {
         if (useJsonStreamer) {
             return createJsonStreamerEntity(progressHandler);
-        } else if (!forceMultipartEntity && streamParams.isEmpty() && fileParams.isEmpty() && fileArrayParams.isEmpty()) {
+        } else if (!forceMultipartEntity && streamParams.isEmpty() && fileParams.isEmpty()) {
             return createFormEntity();
         } else {
             return createMultipartEntity(progressHandler);
@@ -600,14 +551,6 @@ public class RequestParams implements Serializable {
         for (ConcurrentHashMap.Entry<String, FileWrapper> entry : fileParams.entrySet()) {
             FileWrapper fileWrapper = entry.getValue();
             entity.addPart(entry.getKey(), fileWrapper.file, fileWrapper.contentType, fileWrapper.customFileName);
-        }
-
-        // Add file collection
-        for (ConcurrentHashMap.Entry<String, List<FileWrapper>> entry : fileArrayParams.entrySet()) {
-            List<FileWrapper> fileWrapper = entry.getValue();
-            for (FileWrapper fw : fileWrapper) {
-                entity.addPart(entry.getKey(), fw.file, fw.contentType, fw.customFileName);
-            }
         }
 
         return entity;

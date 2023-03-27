@@ -18,38 +18,33 @@
 
 package com.zftlive.android.library.third.asynchttp;
 
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-
 import java.net.URI;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 
 /**
  * The current Android (API level 21) bundled version of the Apache Http Client does not implement
- * the HTTP PATCH method. Until the Android version is updated this can serve in it's stead.
+ * the HTTP PATCH method. Until the Android version is updated this can serve in it's stead. 
  * This implementation can and should go away when the official solution arrives.
  */
 public final class HttpPatch extends HttpEntityEnclosingRequestBase {
-
+	
     public final static String METHOD_NAME = "PATCH";
 
     public HttpPatch() {
         super();
     }
 
-    /**
-     * @param uri target url as URI
-     */
     public HttpPatch(final URI uri) {
         super();
         setURI(uri);
     }
 
     /**
-     * @param uri target url as String
      * @throws IllegalArgumentException if the uri is invalid.
-     */
+    */
     public HttpPatch(final String uri) {
-        super();
-        setURI(URI.create(uri));
+            super();
+            setURI(URI.create(uri));
     }
 
     @Override

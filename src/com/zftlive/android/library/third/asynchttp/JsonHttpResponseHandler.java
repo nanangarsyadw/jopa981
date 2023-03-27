@@ -163,6 +163,7 @@ public class JsonHttpResponseHandler extends TextHttpResponseHandler {
                                 } else {
                                     onFailure(statusCode, headers, new JSONException("Unexpected response type " + jsonResponse.getClass().getName()), (JSONObject) null);
                                 }
+                                onFinishEnd();
                             }
                         });
                     } catch (final JSONException ex) {
@@ -209,6 +210,7 @@ public class JsonHttpResponseHandler extends TextHttpResponseHandler {
                                 } else {
                                     onFailure(statusCode, headers, new JSONException("Unexpected response type " + jsonResponse.getClass().getName()), (JSONObject) null);
                                 }
+                                onFinishEnd();
                             }
                         });
 

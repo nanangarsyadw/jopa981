@@ -17,7 +17,7 @@ public abstract class BinaryHandler extends BinaryHttpResponseHandler {
     }
     
 	@Override
-	public void onProgress(long bytesWritten, long totalSize) {
+	public void onProgress(int bytesWritten, int totalSize) {
 		super.onProgress(bytesWritten, totalSize);
 		progress(bytesWritten, totalSize);
 	}

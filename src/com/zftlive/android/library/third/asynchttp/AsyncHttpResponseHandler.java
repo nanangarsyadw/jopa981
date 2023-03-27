@@ -39,7 +39,7 @@ import java.net.URI;
  * {@link #onSuccess(int, org.apache.http.Header[], byte[])} method is designed to be anonymously
  * overridden with your own response handling code. <p>&nbsp;</p> Additionally, you can override the
  * {@link #onFailure(int, org.apache.http.Header[], byte[], Throwable)}, {@link #onStart()}, {@link
- * #onFinish()}, {@link #onRetry(int)} and {@link #onProgress(long, long)} methods as required.
+ * #onFinish()}, {@link #onRetry(int)} and {@link #onProgress(int, int)} methods as required.
  * <p>&nbsp;</p> For example: <p>&nbsp;</p>
  * <pre>
  * AsyncHttpClient client = new AsyncHttpClient();
@@ -78,7 +78,6 @@ import java.net.URI;
  * });
  * </pre>
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterface {
 
     private static final String LOG_TAG = "AsyncHttpResponseHandler";
@@ -247,7 +246,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      * @param bytesWritten offset from start of file
      * @param totalSize    total size of file
      */
-    public void onProgress(long bytesWritten, long totalSize) {
+    public void onProgress(int bytesWritten, int totalSize) {
         Log.v(LOG_TAG, String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
     }
 
@@ -264,6 +263,10 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      */
     public void onFinish() {
         // default log warning is not necessary, because this method is just optional notification
+    }
+    
+    public void onFinishEnd(){
+    	
     }
 
     @Override
@@ -314,7 +317,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
     }
 
     @Override
-    final public void sendProgressMessage(long bytesWritten, long bytesTotal) {
+    final public void sendProgressMessage(int bytesWritten, int bytesTotal) {
         sendMessage(obtainMessage(PROGRESS_MESSAGE, new Object[]{bytesWritten, bytesTotal}));
     }
 
@@ -380,7 +383,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
                     response = (Object[]) message.obj;
                     if (response != null && response.length >= 2) {
                         try {
-                            onProgress((Long) response[0], (Long) response[1]);
+                            onProgress((Integer) response[0], (Integer) response[1]);
                         } catch (Throwable t) {
                             Log.e(LOG_TAG, "custom onProgress contains an error", t);
                         }
@@ -421,7 +424,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      */
     protected void postRunnable(Runnable runnable) {
         if (runnable != null) {
-            if (getUseSynchronousMode() || handler == null) {
+           if (getUseSynchronousMode() || handler == null) {
                 // This response handler is synchronous, run on current thread
                 runnable.run();
             } else {
@@ -481,13 +484,12 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
                     ByteArrayBuffer buffer = new ByteArrayBuffer(buffersize);
                     try {
                         byte[] tmp = new byte[BUFFER_SIZE];
-                        long count = 0;
-                        int l;
+                        int l, count = 0;
                         // do not send messages if request has been cancelled
                         while ((l = instream.read(tmp)) != -1 && !Thread.currentThread().isInterrupted()) {
                             count += l;
                             buffer.append(tmp, 0, l);
-                            sendProgressMessage(count, (contentLength <= 0 ? 1 : contentLength));
+                            sendProgressMessage(count, (int) (contentLength <= 0 ? 1 : contentLength));
                         }
                     } finally {
                         AsyncHttpClient.silentCloseInputStream(instream);

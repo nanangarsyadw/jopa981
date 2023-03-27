@@ -27,7 +27,6 @@ import org.apache.http.util.ByteArrayBuffer;
 import java.io.IOException;
 import java.io.InputStream;
 
-@SuppressWarnings("ALL")
 public abstract class DataAsyncHttpResponseHandler extends AsyncHttpResponseHandler {
     private static final String LOG_TAG = "DataAsyncHttpResponseHandler";
 
@@ -106,7 +105,7 @@ public abstract class DataAsyncHttpResponseHandler extends AsyncHttpResponseHand
                         while ((l = instream.read(tmp)) != -1 && !Thread.currentThread().isInterrupted()) {
                             buffer.append(tmp, 0, l);
                             sendProgressDataMessage(copyOfRange(tmp, 0, l));
-                            sendProgressMessage(count, contentLength);
+                            sendProgressMessage(count, (int) contentLength);
                         }
                     } finally {
                         AsyncHttpClient.silentCloseInputStream(instream);

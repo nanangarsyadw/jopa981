@@ -26,6 +26,9 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -186,32 +189,62 @@ public class AsyncHttpClient {
      * @param httpsPort                  HTTPS port to be used, must be greater than 0
      */
     private static SchemeRegistry getDefaultSchemeRegistry(boolean fixNoHttpResponseException, int httpPort, int httpsPort) {
-        if (fixNoHttpResponseException) {
-            Log.d(LOG_TAG, "Beware! Using the fix is insecure, as it doesn't verify SSL certificates.");
-        }
-
-        if (httpPort < 1) {
-            httpPort = 80;
-            Log.d(LOG_TAG, "Invalid HTTP port number specified, defaulting to 80");
-        }
-
-        if (httpsPort < 1) {
-            httpsPort = 443;
-            Log.d(LOG_TAG, "Invalid HTTPS port number specified, defaulting to 443");
-        }
-
-        // Fix to SSL flaw in API < ICS
-        // See https://code.google.com/p/android/issues/detail?id=13117
-        SSLSocketFactory sslSocketFactory;
-        if (fixNoHttpResponseException) {
-            sslSocketFactory = MySSLSocketFactory.getFixedSocketFactory();
-        } else {
-            sslSocketFactory = SSLSocketFactory.getSocketFactory();
-        }
-
-        SchemeRegistry schemeRegistry = new SchemeRegistry();
-        schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), httpPort));
-        schemeRegistry.register(new Scheme("https", sslSocketFactory, httpsPort));
+//        if (fixNoHttpResponseException) {
+//            Log.d(LOG_TAG, "Beware! Using the fix is insecure, as it doesn't verify SSL certificates.");
+//        }
+//
+//        if (httpPort < 1) {
+//            httpPort = 80;
+//            Log.d(LOG_TAG, "Invalid HTTP port number specified, defaulting to 80");
+//        }
+//
+//        if (httpsPort < 1) {
+//            httpsPort = 443;
+//            Log.d(LOG_TAG, "Invalid HTTPS port number specified, defaulting to 443");
+//        }
+//
+//        // Fix to SSL flaw in API < ICS
+//        // See https://code.google.com/p/android/issues/detail?id=13117
+//        SSLSocketFactory sslSocketFactory;
+//        if (fixNoHttpResponseException) {
+//            sslSocketFactory = MySSLSocketFactory.getFixedSocketFactory();
+//        } else {
+//            sslSocketFactory = SSLSocketFactory.getSocketFactory();
+//        }
+//
+//        SchemeRegistry schemeRegistry = new SchemeRegistry();
+//        schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), httpPort));
+//        schemeRegistry.register(new Scheme("https", sslSocketFactory, httpsPort));
+    	
+    	/*Ϊ�˺���֤�����https����*/
+		KeyStore trustStore = null;
+		try {
+			trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+		} catch (KeyStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			trustStore.load(null, null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SSLSocketFactory sf = null;
+		try {
+			sf = new SSLSocketFactoryEx(trustStore);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+		/*Ϊ�˺���֤�����https����*/
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory
+				.getSocketFactory(), 80));
+		/*Ϊ�˺���֤�����https���*/
+		schemeRegistry.register(new Scheme("https", sf, 443));
+		/*Ϊ�˺���֤�����https���*/
 
         return schemeRegistry;
     }
@@ -632,12 +665,12 @@ public class AsyncHttpClient {
      * Sets basic authentication for the request. Uses AuthScope.ANY. This is the same as
      * setBasicAuth('username','password',AuthScope.ANY)
      *
-     * @param username   Basic Auth username
-     * @param password   Basic Auth password
-     * @param preemptive sets authorization in preemptive manner
+     * @param username  Basic Auth username
+     * @param password  Basic Auth password
+     * @param preemtive sets authorization in preemtive manner
      */
-    public void setBasicAuth(String username, String password, boolean preemptive) {
-        setBasicAuth(username, password, null, preemptive);
+    public void setBasicAuth(String username, String password, boolean preemtive) {
+        setBasicAuth(username, password, null, preemtive);
     }
 
     /**
@@ -656,15 +689,15 @@ public class AsyncHttpClient {
      * Sets basic authentication for the request. You should pass in your AuthScope for security. It
      * should be like this setBasicAuth("username","password", new AuthScope("host",port,AuthScope.ANY_REALM))
      *
-     * @param username   Basic Auth username
-     * @param password   Basic Auth password
-     * @param scope      an AuthScope object
-     * @param preemptive sets authorization in preemptive manner
+     * @param username  Basic Auth username
+     * @param password  Basic Auth password
+     * @param scope     an AuthScope object
+     * @param preemtive sets authorization in preemtive manner
      */
-    public void setBasicAuth(String username, String password, AuthScope scope, boolean preemptive) {
+    public void setBasicAuth(String username, String password, AuthScope scope, boolean preemtive) {
         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username, password);
         setCredentials(scope, credentials);
-        setAuthenticationPreemptive(preemptive);
+        setAuthenticationPreemptive(preemtive);
     }
 
     public void setCredentials(AuthScope authScope, Credentials credentials) {
@@ -676,16 +709,16 @@ public class AsyncHttpClient {
     }
 
     /**
-     * Sets HttpRequestInterceptor which handles authorization in preemptive way, as workaround you
+     * Sets HttpRequestInterceptor which handles authorization in preemtive way, as workaround you
      * can use call `AsyncHttpClient.addHeader("Authorization","Basic base64OfUsernameAndPassword==")`
      *
-     * @param isPreemptive whether the authorization is processed in preemptive way
+     * @param isPreemtive whether the authorization is processed in preemtive way
      */
-    public void setAuthenticationPreemptive(boolean isPreemptive) {
-        if (isPreemptive) {
-            httpClient.addRequestInterceptor(new PreemptiveAuthorizationHttpRequestInterceptor(), 0);
+    public void setAuthenticationPreemptive(boolean isPreemtive) {
+        if (isPreemtive) {
+            httpClient.addRequestInterceptor(new PreemtiveAuthorizationHttpRequestInterceptor(), 0);
         } else {
-            httpClient.removeRequestInterceptorByClass(PreemptiveAuthorizationHttpRequestInterceptor.class);
+            httpClient.removeRequestInterceptorByClass(PreemtiveAuthorizationHttpRequestInterceptor.class);
         }
     }
 
@@ -1101,8 +1134,7 @@ public class AsyncHttpClient {
     }
 
     /**
-     * Perform a HTTP
-     * request, without any parameters.
+     * Perform a HTTP PATCH request, without any parameters.
      *
      * @param url             the URL to send the request to.
      * @param responseHandler the response handler instance that should handle the response.
@@ -1143,11 +1175,6 @@ public class AsyncHttpClient {
      * @param context         the Android Context which initiated the request.
      * @param url             the URL to send the request to.
      * @param responseHandler the response handler instance that should handle the response.
-     * @param entity          a raw {@link HttpEntity} to send with the request, for example, use
-     *                        this to send string/json/xml payloads to a server by passing a {@link
-     *                        org.apache.http.entity.StringEntity}
-     * @param contentType     the content type of the payload you are sending, for example
-     *                        "application/json" if sending a json payload.
      * @return RequestHandle of future request process
      */
     public RequestHandle patch(Context context, String url, HttpEntity entity, String contentType, ResponseHandlerInterface responseHandler) {
@@ -1304,9 +1331,9 @@ public class AsyncHttpClient {
         if (responseHandler.getUseSynchronousMode() && !responseHandler.getUsePoolThread()) {
             throw new IllegalArgumentException("Synchronous ResponseHandler used in AsyncHttpClient. You should create your response handler in a looper thread or use SyncHttpClient instead.");
         }
-        
+
         if (contentType != null) {
-            if (uriRequest instanceof HttpEntityEnclosingRequestBase && ((HttpEntityEnclosingRequestBase) uriRequest).getEntity() != null && uriRequest.containsHeader(HEADER_CONTENT_TYPE)) {
+            if (uriRequest instanceof HttpEntityEnclosingRequestBase && ((HttpEntityEnclosingRequestBase) uriRequest).getEntity() != null) {
                 Log.w(LOG_TAG, "Passed contentType will be ignored because HttpEntity sets content type");
             } else {
                 uriRequest.setHeader(HEADER_CONTENT_TYPE, contentType);
@@ -1409,7 +1436,7 @@ public class AsyncHttpClient {
      *
      * @param inputStream InputStream to be checked
      * @return true or false if the stream contains GZIP compressed data
-     * @throws java.io.IOException if read from inputStream fails
+     * @throws java.io.IOException
      */
     public static boolean isInputStreamGZIPCompressed(final PushbackInputStream inputStream) throws IOException {
         if (inputStream == null)

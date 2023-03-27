@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -43,7 +44,7 @@ public class FileDownloadUploadActivity extends BaseActivity implements OnClickL
 //	public final static String DOWNLOAD_FILE_PATH = "http://10.8.2.101:8080/SpringMVC_01/files/Android-Rules.pdf";
 	
 	public final static String DOWNLOAD_FILE_PATH = "http://7jpo65.com1.z0.glb.clouddn.com/AjavaAndroidSample.apk";
-	public final static String UPLOAD_FILE = "http://10.8.2.86:8080/AJavaCore/cn/com/ajava/servlet/ServletUploadFile";
+	public final static String UPLOAD_FILE = "http://10.45.255.90:8080/AjavaWeb/cn/com/ajava/servlet/ServletUploadFile";
 		
 	@Override
 	public int bindLayout() {
@@ -102,7 +103,7 @@ public class FileDownloadUploadActivity extends BaseActivity implements OnClickL
 				ToolHTTP.get(DOWNLOAD_FILE_PATH, new BinaryHttpResponseHandler(allowType) {
 					
 					@Override
-					public void onProgress(long bytesWritten, long totalSize) {
+					public void onProgress(int bytesWritten, int totalSize) {
 						super.onProgress(bytesWritten, totalSize);
 						if(bytesWritten>0 && totalSize >0){
 							String text = String.format("Progress %d  from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1);
@@ -142,6 +143,9 @@ public class FileDownloadUploadActivity extends BaseActivity implements OnClickL
 					String filePath = ToolFile.gainSDCardPath()+"/ajava_download/Android-Rules中文.pdf";
 //					String filePath = ToolFile.gainSDCardPath()+"/ajava_download/Hydrangeas.jpg";//et_file_path.getText().toString();
 //					parms.put("date", new Date());
+					if(!TextUtils.isEmpty(et_upload_file_path.getText().toString())){
+					  filePath = et_upload_file_path.getText().toString();
+					}
 					parms.put("file", new File(filePath));
 //					parms.put("file2", new File(filePath));
 				} catch (Exception e1) {
@@ -163,7 +167,7 @@ public class FileDownloadUploadActivity extends BaseActivity implements OnClickL
 	private ResponseHandlerInterface getUploadResponseHandler(){
 		return new JsonHttpResponseHandler(){
 			@Override
-			public void onProgress(long bytesWritten, long totalSize) {
+			public void onProgress(int bytesWritten, int totalSize) {
 				super.onProgress(bytesWritten, totalSize);
 				if(bytesWritten>0 && totalSize >0){
 					BigDecimal mData1 = new BigDecimal((bytesWritten/(1024))).setScale(2, BigDecimal.ROUND_HALF_UP);

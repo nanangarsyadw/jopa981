@@ -16,9 +16,9 @@
 
 package com.zftlive.android.library.third.asynchttp;
 
-import java.io.UnsupportedEncodingException;
-
 import com.zftlive.android.BuildConfig;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Utilities for encoding and decoding the Base64 representation of binary data.  See RFCs <a

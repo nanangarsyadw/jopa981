@@ -24,7 +24,7 @@ package com.zftlive.android.library.third.asynchttp;
  * not rely on {@link org.json.JSONArray} or {@link org.json.JSONObject} to
  * exchange data.
  *
- * @author Noor Dawod {@literal <github@fineswap.com>}
+ * @author Noor Dawod <github@fineswap.com>
  */
 public interface JsonValueInterface {
 
