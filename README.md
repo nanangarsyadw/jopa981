@@ -22,6 +22,26 @@
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
     - 更多项目文档/API/相关截图 [请点击这里][27]
 
+    - 最近类库代码已经提交至[JCenter][30]和[Maven仓库][31]，使用以下代码即可集成引入类库
+
+```
+
+Gradle：
+
+compile 'com.zftlive.android.library:basic-framework:1.0.0'
+
+Maven：
+
+<dependency>
+  <groupId>com.zftlive.android.library</groupId>
+  <artifactId>basic-framework</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+
+```
+
+
 #集成组件
 
  - [√] 网络异步请求[android-async-http][1]
@@ -166,3 +186,5 @@ var Author = {
 [27]: http://git.oschina.net/zftlive/zftlive/tree/master/doc
 [28]: http://jr.jd.com/
 [29]: http://git.oschina.net/zftlive/zftlive/
+[30]: https://bintray.com/zengfantian/android/basic-framework
+[31]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.zftlive.android.library%22
