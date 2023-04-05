@@ -22,7 +22,8 @@
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
     - 更多项目文档/API/相关截图 [请点击这里][27]
 
-    - 最近类库代码已经提交至[JCenter](https://bintray.com/zengfantian/android/basic-framework)和[Maven](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.zftlive.android.library%22)仓库，使用以下代码即可集成引入类库
+    - 最近类库代码已经提交至[JCenter](https://bintray.com/zengfantian/android/basic-framework)和[Maven](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.zftlive.android.library%22)仓库，使用以下代码即可[Maven][31]集成引入类库
+[JCenter][30]
 
 Gradle
 
