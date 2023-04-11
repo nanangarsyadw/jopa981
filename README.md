@@ -21,22 +21,18 @@
     - - AjavaAndroidLib使用Sample工程，请根据自己环境下载：[Eclipse版][21]，[AndroidStudio版][22]。
     - - 直接使用git签出到同一个workspace目录，git如何使用签出工程可以观看作者录制的[教程][23]
     - 更多项目文档/API/相关截图 [请点击这里][27]
-
-    - - 最近类库代码已经提交至[JCenter][30]和[Maven][31]仓库，使用以下代码即可[Maven][31]集成引入类库
+    - 最近类库代码已经提交至[JCenter][30]和[Maven][31]仓库，使用以下代码即可[Maven][31]集成引入类库
 
 
 [JCenter][30]仓库
-
-[Maven][31]仓库
-
-Gradle
 
 ```javascript
 
 compile 'com.zftlive.android.library:basic-framework:1.0.0'
 
 ```
-Maven
+
+[Maven][31]仓库
 
 ```javascript
 
