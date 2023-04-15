@@ -28,7 +28,30 @@
 
 ```javascript
 
-compile 'com.zftlive.android.library:basic-framework:1.0.0'
+    // 共通资源(可单独使用)
+//    compile 'com.zftlive.android.library:common-resource:1.0.0'
+    // 基础框架(依赖common-resource)
+    compile 'com.zftlive.android.library:basic-framework:1.0.2'
+    // 特性功能类库-基础自定义控件(可选)
+    compile 'com.zftlive.android.library:widget:1.0.2'
+    // 特性功能类库-常用工具开发包(可选)
+    compile 'com.zftlive.android.library:tools:1.0.2'
+    // 特性功能类库-ormlite数据库组件(可选)
+    compile 'com.zftlive.android.library:db:1.0.1'
+    // 特性功能类库-图片异步加载组件(可选)
+    compile 'com.zftlive.android.library:imageloader:1.0.2'
+    //高斯模糊库(可选)
+    compile 'com.zftlive.android.library:blur:1.0.0'
+    // 特性功能类库-地图组件(可选)
+    compile 'com.zftlive.android.library:map:1.0.1'
+    // 特性功能类库-HTTP/SOAP网络通信组件(可选)
+    compile 'com.zftlive.android.library:network:1.0.1'
+    // 特性功能类库-社会化分享-联合登陆组件(可选)
+    compile 'com.zftlive.android.library:sharesdk:1.0.1'
+    // 特性功能类库-腾讯信鸽/MTA/bugly错误收集(可选)
+    compile 'com.zftlive.android.library:tencent:1.0.1'
+    // 特性功能类库-zxing二维码/条形码扫描识别(可选)
+    compile 'com.zftlive.android.library:zxing:1.0.1'
 
 ```
 
@@ -36,12 +59,7 @@ compile 'com.zftlive.android.library:basic-framework:1.0.0'
 
 ```javascript
 
-<dependency>
-  <groupId>com.zftlive.android.library</groupId>
-  <artifactId>basic-framework</artifactId>
-  <version>1.0.0</version>
-  <type>pom</type>
-</dependency>
+地址(自行查阅)：https://bintray.com/zengfantian/android
 
 ```
 
