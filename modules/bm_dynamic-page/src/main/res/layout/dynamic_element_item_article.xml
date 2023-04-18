@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~     Android基础开发个人积累、沉淀、封装、整理共通
+  ~     Copyright (c) 2016. 曾繁添 <zftlive@163.com>
+  ~     Github：https://github.com/zengfantian || http://git.oschina.net/zftlive
+  ~
+  ~     Licensed under the Apache License, Version 2.0 (the "License");
+  ~     you may not use this file except in compliance with the License.
+  ~     You may obtain a copy of the License at
+  ~
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~     Unless required by applicable law or agreed to in writing, software
+  ~     distributed under the License is distributed on an "AS IS" BASIS,
+  ~     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~     See the License for the specific language governing permissions and
+  ~     limitations under the License.
+  ~
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dynamic_selector_common_btn_white_grally_nobold"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/top_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_module_split_1px"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/common_module_padding_48px"
+        android:background="@color/common_module_black_eeeeee"
+        android:visibility="visible" />
+
+    <!-- 作者区域-->
+    <RelativeLayout
+        android:id="@+id/ll_author_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_module_padding_48px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/common_module_padding_48px">
+
+        <ImageView
+            android:id="@+id/iv_author_avatar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_module_padding_48px"
+            android:layout_marginRight="9dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/common_module_default_user_avtar" />
+
+        <TextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_author_avatar"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:singleLine="true"
+            android:text="安居白居易"
+            android:textColor="@color/common_module_black_333333"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_release_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:singleLine="true"
+            android:text="4小时前"
+            android:textColor="@color/common_module_black_999999"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
+
+    <!-- 标题区域-->
+    <LinearLayout
+        android:id="@+id/rl_article_middle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_author_tag"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_module_padding_48px">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <!--标题 -->
+            <TextView
+                android:id="@+id/tv_article_title"
+                style="@style/Common_Module_Text_32pt_16sp_MutilLine_Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="白条周年庆·京东商限时先抢先得!"
+                android:textColor="@color/common_module_black_333333"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:maxLines="2"
+                android:text="七田真坚信可以真正做到用教育惠及中国的每一个家"
+                android:textColor="@color/common_module_black_999999"
+                android:textSize="14sp" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="50dp"
+                android:layout_height="6dp" />
+
+            <TextView
+                android:id="@+id/tv_label"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:background="@color/common_module_blue_359df5"
+                android:clickable="false"
+                android:ellipsize="none"
+                android:gravity="center"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:singleLine="true"
+                android:text="周年店庆"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- 右侧缩略图-->
+        <ImageView
+            android:id="@+id/iv_list_thumb"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/common_module_default_picture"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <android.support.v4.widget.Space
+        android:id="@+id/buttom_space"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/rl_article_middle_layout" />
+
+</LinearLayout>

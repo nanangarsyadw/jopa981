@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 共通点击按钮id -->
+    <item type="id" name="dynamic_tag_floor_title"/>
+
+    <!-- VP滑动grid-->
+    <item type="id" name="dynamic_vp_item_grid"/>
+
+    <!-- 点击跳转数据-->
+    <item type="id" name="dynamic_tag_forward"/>
+
+    <!-- 动态页面固定id-->
+    <item type="id" name="dynamic_id_floor_title"/>
+    <item type="id" name="dynamic_id_floor_divider"/>
+    <item type="id" name="dynamic_id_margin_space"/>
+
+</resources>

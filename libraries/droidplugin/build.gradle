@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+
+//声明上传发布打包脚本
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'droidplugin'
+
+    //compile 'com.zftlive.android.library:droidplugin:1.0.0'
+    publishedGroupId = 'com.zftlive.android.library'
+    artifact = 'droidplugin'
+
+    libraryVersionCode = 2
+    libraryVersionName = '1.0.1'
+    libraryName = 'AndroidPlugin'
+    libraryDescription = 'Android develop framework,include basic base classes/widgets/tools/common abstract'
+
+    siteUrl = 'http://git.oschina.net/zftlive/zftlive'
+    gitUrl = 'https://git.oschina.net/zftlive/zftlive.git'
+
+    developerId = 'zengfantian'
+    developerName = '曾繁添'
+    developerEmail = 'zftlive@163.com'
+
+    allLicenses = ["Apache-2.0"]
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+}
+
+android {
+    // 编译SDK的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // build tools的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode libraryVersionCode
+        versionName libraryVersionName
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        instrumentTest.setRoot('tests')
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    provided fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+//注意：不能放到第二行，否则会报错，顺序不能动,执行以下命令发布到仓库
+// -->gradle install
+// --> gradle bintrayUpload
+//apply from: '../install-module.gradle'
+//apply from: '../bintray-upload.gradle'

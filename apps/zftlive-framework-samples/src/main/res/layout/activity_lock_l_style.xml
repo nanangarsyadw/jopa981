@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zftlive.android.library.widget.gesture.Lock9View
+        android:id="@+id/lock_9_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:layout_gravity="center"
+        app:anl_lock9_nodeSrc="@drawable/lock9_node_small"
+        app:anl_lock9_nodeSize="16dp"
+        app:anl_lock9_nodeAreaExpand="24dp"
+        app:anl_lock9_nodeOnAnim="@anim/lock9_node_on_2"
+        app:anl_lock9_lineColor="@color/blue_light"
+        app:anl_lock9_lineWidth="4dp"
+        app:anl_lock9_enableVibrate="true"
+        app:anl_lock9_vibrateTime="20" />
+
+</FrameLayout>

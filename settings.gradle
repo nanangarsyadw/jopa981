@@ -1,0 +1,36 @@
+//工程根目录
+rootProject.name = 'zftlive-android'
+
+//app-样例工程
+include ':apps:zftlive-framework-samples'
+
+//module业务模块工程
+include ':modules:bm_dynamic-page'
+//模块路由(业务交互协议、中转桥梁、职责分配)
+include ':modules:app-route'
+
+//测试工程
+//include ':tests:api-test'
+//include ':tests:plugin-test'
+
+
+//共同依赖库
+include ':libraries:common-resource'
+
+//基础框架类库
+include ':libraries:basic-framework'
+
+//特性功能类库
+include ':libraries:widget'
+include ':libraries:tools'
+include ':libraries:imageloader'
+include ':libraries:blur'
+include ':libraries:json'
+include ':libraries:db'
+include ':libraries:sharesdk'
+include ':libraries:zxing'
+include ':libraries:tencent'
+include ':libraries:network'
+include ':libraries:map'
+include ':libraries:chart'
+include ':libraries:droidplugin'

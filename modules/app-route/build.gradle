@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+
+//声明上传发布打包脚本
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'app-route'
+
+    //compile 'com.zftlive.android.library:app-route:1.0.0'
+    publishedGroupId = 'com.zftlive.android.library'
+    artifact = 'app-route'
+
+    libraryVersionCode = 2
+    libraryVersionName = '1.0.1'
+    libraryName = 'app route'
+    libraryDescription = 'Android develop framework,include basic base classes/widgets/tools/common abstract'
+
+    siteUrl = 'http://git.oschina.net/zftlive/zftlive'
+    gitUrl = 'https://git.oschina.net/zftlive/zftlive.git'
+
+    developerId = 'zengfantian'
+    developerName = '曾繁添'
+    developerEmail = 'zftlive@163.com'
+
+    allLicenses = ["Apache-2.0"]
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+}
+
+android {
+    // 编译SDK的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // build tools的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode libraryVersionCode
+        versionName libraryVersionName
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    //指定so库目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//这一行是没有的，如果我们有.so文件就需要加上这一行代码
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//注意：所有依赖必须明确版本号，不然同步Maven仓库审核不了
+dependencies {
+    provided fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+//注意：不能放到第二行，否则会报错，顺序不能动,执行以下命令发布到仓库
+// -->gradle install
+// --> gradle bintrayUpload
+//apply from: '../install-module.gradle'
+//apply from: '../bintray-upload.gradle'

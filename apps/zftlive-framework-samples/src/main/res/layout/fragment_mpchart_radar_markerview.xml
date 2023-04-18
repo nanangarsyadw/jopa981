@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="30dp"
+    android:background="@color/anl_grally_f4f4f4">
+
+    <TextView
+        android:id="@+id/tv_tips_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="12dp" />
+
+</RelativeLayout>

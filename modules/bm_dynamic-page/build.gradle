@@ -1,0 +1,134 @@
+apply plugin: 'com.android.library'
+
+//声明上传发布打包脚本
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'feature_dynamic-page'
+
+    //compile 'com.zftlive.android.library:dynamic-page:1.0.0'
+    publishedGroupId = 'com.zftlive.android.library'
+    artifact = 'feature_dynamic-page'
+
+    libraryVersion = '1.0.0'
+    libraryName = 'AndroidBasicFramework'
+    libraryDescription = 'Android develop framework,include basic base classes/widgets/tools/common abstract'
+
+    siteUrl = 'http://git.oschina.net/zftlive/zftlive'
+    gitUrl = 'https://git.oschina.net/zftlive/zftlive.git'
+
+    developerId = 'zengfantian'
+    developerName = '曾繁添'
+    developerEmail = 'zftlive@163.com'
+
+    allLicenses = ["Apache-2.0"]
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+}
+
+android {
+    // 编译SDK的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // build tools的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+//    resourcePrefix "anl_"
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2
+        versionName libraryVersion
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    //指定so库目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//这一行是没有的，如果我们有.so文件就需要加上这一行代码
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//注意：所有依赖必须明确版本号，不然同步Maven仓库审核不了
+//配置工程依赖的jar和类库
+dependencies {
+    //本地编译需要的第三方jar
+    provided fileTree(dir: 'lib', include: '*.jar')
+    //support兼容库
+    provided 'com.android.support:support-v4:22.2.1'
+    provided 'com.android.support:appcompat-v7:22.1.1'
+
+    // 全部模块共享依赖资源(必须)
+    compile project(':libraries:common-resource')
+//    compile 'com.zftlive.android.library:common-resource:1.0.0'
+    // 基础框架(必须)
+    compile project(':libraries:basic-framework')
+
+    // 特性功能类库-基础自定义控件(可选)
+//    compile project(':libraries:widget')
+    compile 'com.zftlive.android.library:widget:1.0.1'
+    // 特性功能类库-基础工具(可选)
+    provided project(':libraries:tools')
+    // 特性功能类库-图片异步加载组件(可选)
+    provided project(':libraries:imageloader')
+
+    // 拆包依赖库
+//    compile 'com.android.support:multidex:1.0.0'
+    // 依赖libs目录jar包
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // 特性功能类库-社会化分享-联合登陆组件(可选)
+//    compile project(':libraries:feature-android-sharesdk')
+    // 特性功能类库-HTTP/SOAP网络通信组件(可选)
+//    compile project(':libraries:feature-android-network')
+    // 特性功能类库-ormlite数据库组件(可选)
+//    compile project(':libraries:feature-android-db')
+    // 特性功能类库-腾讯信鸽/MTA/bugly错误收集(可选)
+//    compile project(':libraries:feature-android-tencent')
+    // 特性功能类库-地图组件(可选)
+//    compile project(':libraries:feature-android-map')
+    // 特性功能类库-zxing二维码/条形码扫描识别(可选)
+//    compile project(':libraries:feature-android-zxing')
+    // 特性功能类库-基于JNI实现画图(可选)
+//    compile project(':libraries:feature-android-draw')
+    // 特性功能类库-360开源插件(可选)
+//    compile project(':libraries:feature-android-droidplugin')
+
+//    // 基础框架(必须)
+//    compile 'com.zftlive.android.library:basic-framework:1.0.0'
+//    // 特性功能类库-基础自定义控件(可选)
+//    compile 'com.zftlive.android.library:feature-android-widget:1.0.0'
+//    // 特性功能类库-基础工具(可选)
+//    compile 'com.zftlive.android.library:feature-android-tools:1.0.0'
+//    // 特性功能类库-ormlite数据库组件(可选)
+//    compile 'com.zftlive.android.library:feature-android-db:1.0.0'
+//    // 特性功能类库-图片异步加载组件(可选)
+//    compile 'com.zftlive.android.library:feature-android-imageloader:1.0.0'
+//    // 特性功能类库-地图组件(可选)
+//    compile 'com.zftlive.android.library:feature-android-map:1.0.0'
+//    // 特性功能类库-HTTP/SOAP网络通信组件(可选)
+//    compile 'com.zftlive.android.library:feature-android-network:1.0.0'
+//    // 特性功能类库-社会化分享-联合登陆组件(可选)
+//    compile 'com.zftlive.android.library:feature-android-sharesdk:1.0.0'
+//    // 特性功能类库-腾讯信鸽/MTA/bugly错误收集(可选)
+//    compile 'com.zftlive.android.library:feature-android-tencent:1.0.0'
+//    // 特性功能类库-zxing二维码/条形码扫描识别(可选)
+//    compile 'com.zftlive.android.library:feature-android-zxing:1.0.0'
+}
+
+//注意：不能放到第二行，否则会报错，顺序不能动,执行以下命令发布到仓库
+// -->gradle install
+// --> gradle bintrayUpload
+//apply from: '../install-module.gradle'
+//apply from: '../bintray-upload.gradle'
+

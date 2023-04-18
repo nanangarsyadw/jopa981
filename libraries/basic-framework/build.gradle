@@ -1,0 +1,89 @@
+apply plugin: 'com.android.library'
+
+//声明上传发布打包脚本
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'basic-framework'
+
+    //compile 'com.zftlive.android.library:basic-framework:1.0.0'
+    publishedGroupId = 'com.zftlive.android.library'
+    artifact = 'basic-framework'
+
+    libraryVersionCode = 3
+    libraryVersionName = '1.0.2'
+    libraryName = 'AndroidBasicFramework'
+    libraryDescription = 'Android develop framework,include basic base classes/widgets/tools/common abstract'
+
+    siteUrl = 'http://git.oschina.net/zftlive/zftlive'
+    gitUrl = 'https://git.oschina.net/zftlive/zftlive.git'
+
+    developerId = 'zengfantian'
+    developerName = '曾繁添'
+    developerEmail = 'zftlive@163.com'
+
+    allLicenses = ["Apache-2.0"]
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+}
+
+android {
+    // 编译SDK的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // build tools的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+//    resourcePrefix "anl_"
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode libraryVersionCode
+        versionName libraryVersionName
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    //指定so库目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//这一行是没有的，如果我们有.so文件就需要加上这一行代码
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//注意：所有依赖必须明确版本号，不然同步Maven仓库审核不了
+dependencies {
+    provided fileTree(dir: 'lib', include: '*.jar')
+    //support兼容库
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+
+    // 全部模块共享依赖资源(必须)
+//    compile project(':libraries:common-resource')
+    compile 'com.zftlive.android.library:common-resource:1.0.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //内存检测工具(只有debug生效.debug/test无效果，只是为了编译可以通过)
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+}
+
+//生成jar脚本--> gradle makeJar
+//apply from: 'build-jar.gradle'
+
+//注意：不能放到第二行，否则会报错，顺序不能动,执行以下命令发布到仓库
+// -->gradle install
+// --> gradle bintrayUpload
+//apply from: '../install-module.gradle'
+//apply from: '../bintray-upload.gradle'

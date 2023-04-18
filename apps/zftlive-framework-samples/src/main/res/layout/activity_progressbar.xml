@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_go"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="走起" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="复位" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <com.zftlive.android.library.widget.progressbar.RoundProgressBar
+            android:id="@+id/roundProgressBar1"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+        <com.zftlive.android.library.widget.progressbar.RoundProgressBar
+            android:id="@+id/roundProgressBar3"
+            android_custom:anl_style="FILL"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_gravity="center"
+            android_custom:anl_roundProgressColor="#C2C2C2"
+            android_custom:anl_roundWidth="1dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <com.zftlive.android.library.widget.progressbar.RoundProgressBar
+            android:id="@+id/roundProgressBar4"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="56dp" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+        <com.zftlive.android.library.widget.progressbar.RoundProgressBar
+            android:id="@+id/roundProgressBar2"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_gravity="center"
+            android_custom:anl_roundColor="#C6E2FF"
+            android_custom:anl_roundProgressColor="#CD3333"
+            android_custom:anl_roundWidth="10dip"
+            android_custom:anl_textIsDisplayable="false" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_google_styled"
+        style="@style/Widget_ProgressBar_Mini"
+        android:layout_width="200dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="40" />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content" />
+
+    <com.zftlive.android.library.widget.progressbar.VerticalProgressBar
+        android:id="@+id/pb_vertical_custom"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="10dip"
+        android:layout_height="100dip"
+        android:layout_gravity="center"
+        android:max="100"
+        android:progress="20"
+        android:progressDrawable="@drawable/widget_layer_list_progressbar_custom" />
+
+    <ProgressBar
+        android:id="@+id/pb_horizontal_custom"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/widget_layer_list_progressbar_custom" />
+
+</LinearLayout>

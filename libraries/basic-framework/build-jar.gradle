@@ -1,0 +1,13 @@
+def fileName = "zftlive-basic-framework-${android.defaultConfig.versionName}.jar"
+task makeJar(type: Copy) {
+    delete 'build/libs/'+fileName
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename ('classes.jar', fileName)
+}
+
+makeJar.dependsOn(build)
+
+//在终端执行生成JAR包
+// gradlew makeJar

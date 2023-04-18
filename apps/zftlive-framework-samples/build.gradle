@@ -1,0 +1,203 @@
+// 声明是Android程序
+apply plugin: 'com.android.application'
+
+//定义当前时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    // 编译SDK的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // build tools的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    // 应用的包名、版本信息等
+    defaultConfig {
+        applicationId "com.zftlive.android"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 3
+        versionName "1.2"
+        multiDexEnabled true
+        //枚举打入主dex的类
+//        multiDexKeepFile file('multidex-config.txt')
+        //以混淆配置的语法配置打入主dex的类
+//        multiDexKeepProguard file('multidex-config.pro')
+        ndk {
+            // 设置支持的SO库架构,x86是为了支持模拟器运行
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        // 默认是umeng的渠道
+//        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g" //specify the heap size for the dex process
+        preDexLibraries = false //delete the already predexed libraries
+        additionalParameters = ['--multi-dex', '--set-max-idx-number=50000']
+//List of additional parameters to be passed to dx
+    }
+
+    // JDK版本
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+    //指定so库目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//这一行 是没有的，如果我们有.so文件就需要加上这一行代码
+        }
+    }
+
+    //签名信息
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('./debug.keystore')
+            storePassword 'android'
+        }
+        relealse {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('./debug.keystore')
+            storePassword 'android'
+        }
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    //编译配置
+    buildTypes {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //是否进行混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            versionNameSuffix "-debug"
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //是否进行混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //加载默认混淆配置文件(proguard-android.txt和proguard-android-optimize.txt启用优化-删除日志输出等)
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            versionNameSuffix '-release'
+            //签名
+            signingConfig signingConfigs.relealse
+
+            //不需要友盟多渠道包可以注释掉
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
+//                        def fileName = "AjavaSample_V${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                    }
+//                }
+//            }
+        }
+    }
+
+//    //友盟多渠道打包,需要依赖umeng-analytics-v5.5.3.jar
+//    productFlavors {
+//        baidu {}
+//        xiaomi {}
+//        tencent {}
+//        taobao {}
+//    }
+//    productFlavors.all { flavor ->
+//        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//    }
+}
+
+//配置工程依赖的jar和类库
+dependencies {
+
+    // 依赖libs目录jar包
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // 拆包依赖库
+    compile 'com.android.support:multidex:1.0.1'
+    //support兼容库
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+
+    // 全部模块共享依赖资源(必须)
+    compile project(':libraries:common-resource')
+    // 基础框架(必须)
+    compile project(':libraries:basic-framework')
+    // 特性功能类库-基础自定义控件(可选)
+    compile project(':libraries:widget')
+    // 特性功能类库-基础工具(可选)
+    compile project(':libraries:tools')
+    // 特性功能类库-json工具(可选)
+    compile project(':libraries:json')
+    // 特性功能类库-图片异步加载组件(可选)
+    compile project(':libraries:imageloader')
+    // 特性功能类库-图片高斯模糊组件(可选)
+    compile project(':libraries:blur')
+    // 特性功能类库-社会化分享-联合登陆组件(可选)
+    compile project(':libraries:sharesdk')
+    // 特性功能类库-HTTP/SOAP网络通信组件(可选)
+    compile project(':libraries:network')
+    // 特性功能类库-ormlite数据库组件(可选)
+    compile project(':libraries:db')
+    // 特性功能类库-腾讯信鸽/MTA/bugly错误收集(可选)
+    compile project(':libraries:tencent')
+    // 特性功能类库-地图组件(可选)
+    compile project(':libraries:map')
+    // 特性功能类库-zxing二维码/条形码扫描识别(可选)
+    compile project(':libraries:zxing')
+    // 特性功能类库-基于JNI实现画图(可选)
+    compile project(':libraries:chart')
+    // 特性功能类库-360开源插件(可选)
+//     compile project(':libraries:feature-android-droidplugin')
+    // 模板定制-动态页面(可选)
+    compile project(':modules:bm_dynamic-page')
+
+
+//    // 基础资源(必须)
+//    compile 'com.zftlive.android.library:common-resource:1.0.0'
+//    // 基础框架(必须)
+//    compile 'com.zftlive.android.library:basic-framework:1.0.1'
+//    // 特性功能类库-基础自定义控件(可选)
+//    compile 'com.zftlive.android.library:widget:1.0.1'
+//    // 特性功能类库-基础工具(可选)
+//    compile 'com.zftlive.android.library:tools:1.0.1'
+//    // 特性功能类库-ormlite数据库组件(可选)
+//    compile 'com.zftlive.android.library:db:1.0.1'
+//    // 特性功能类库-图片异步加载组件(可选)
+//    compile 'com.zftlive.android.library:imageloader:1.0.1'
+//    //高斯模糊库
+//    compile 'com.zftlive.android.library:blur:1.0.0'
+//    // 特性功能类库-地图组件(可选)
+//    compile 'com.zftlive.android.library:map:1.0.1'
+//    // 特性功能类库-HTTP/SOAP网络通信组件(可选)
+//    compile 'com.zftlive.android.library:network:1.0.1'
+//    // 特性功能类库-社会化分享-联合登陆组件(可选)
+//    compile 'com.zftlive.android.library:sharesdk:1.0.1'
+//    //数据库操作
+//    compile 'com.zftlive.android.library:db:1.0.1'
+//    // 特性功能类库-腾讯信鸽/MTA/bugly错误收集(可选)
+//    compile 'com.zftlive.android.library:tencent:1.0.1'
+//    // 特性功能类库-zxing二维码/条形码扫描识别(可选)
+//    compile 'com.zftlive.android.library:zxing:1.0.1'
+}

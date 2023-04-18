@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--透明无标题栏主题 -->
+    <style name="Route_Index_Style">
+        <item name="android:theme">@android:style/Theme.Translucent.NoTitleBar</item>
+    </style>
+
+</resources>

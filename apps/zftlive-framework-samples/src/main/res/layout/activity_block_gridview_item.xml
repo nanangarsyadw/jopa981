@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zftlive.android.library.widget.container.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:contentDescription="@null"
+        android:src="@drawable/anl_common_default_picture" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
+        android:ellipsize="none"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:text="@string/AutoGainFormActivity"
+        android:textColor="@color/anl_blue"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/press"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_gridview_item" />
+
+</com.zftlive.android.library.widget.container.SquareLayout>

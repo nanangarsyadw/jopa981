@@ -1,0 +1,90 @@
+-keep class android.test.InstrumentationTestRunner { <init>(); }
+-keep class com.zftlive.android.GlobalApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class com.zftlive.android.Launcher { <init>(); }
+-keep class com.zftlive.android.sample.MainActivity { <init>(); }
+-keep class com.zftlive.android.common.WebPageActivity { <init>(); }
+-keep class com.zftlive.android.library.imageloader.picture.PictureViewerActivity { <init>(); }
+-keep class com.zftlive.android.common.GuideActivity { <init>(); }
+-keep class com.zftlive.android.common.FeedbackActivity { <init>(); }
+-keep class com.zftlive.android.library.zxing.CaptureActivity { <init>(); }
+-keep class com.zftlive.android.sample.popupwindow.PopDialogMenuActivity { <init>(); }
+-keep class com.zftlive.android.sample.chart.LineChartActivity { <init>(); }
+-keep class com.zftlive.android.sample.image.ImageListviewActivity { <init>(); }
+-keep class com.zftlive.android.sample.camera.CameraPictureActivity { <init>(); }
+-keep class com.zftlive.android.sample.db.DBDemoActivity { <init>(); }
+-keep class com.zftlive.android.sample.zxing.ZxingGenBinActivity { <init>(); }
+-keep class com.zftlive.android.sample.zxing.ZxingSacnnerActivity { <init>(); }
+-keep class com.zftlive.android.sample.soap.ProviceActivity { <init>(); }
+-keep class com.zftlive.android.sample.soap.CityActivity { <init>(); }
+-keep class com.zftlive.android.sample.soap.WeatherActivity { <init>(); }
+-keep class com.zftlive.android.sample.sms.PhoneValidateCodeActivity { <init>(); }
+-keep class com.zftlive.android.sample.progressbar.ProgressBarActivity { <init>(); }
+-keep class com.zftlive.android.sample.data.AutoGainFormActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.AnimationInActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.AnimationOutActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.AnimationOutPullActivity { <init>(); }
+-keep class com.zftlive.android.sample.sms.SMSOperationActivity { <init>(); }
+-keep class com.zftlive.android.sample.basic.BasicTestActivity { <init>(); }
+-keep class com.zftlive.android.sample.menu.DrawerLayoutActivity { <init>(); }
+-keep class com.zftlive.android.sample.fixed.HVScorllListviewActivity { <init>(); }
+-keep class com.zftlive.android.sample.scrollview.StretchViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.HomeActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.LightActionBarActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.HeaderOverlayActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.LightBackgroundActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.ListViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.NavigationDrawerActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.NoParallaxActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.SampleFragmentActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.ScrollViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.ShortContentActivity { <init>(); }
+-keep class com.zftlive.android.sample.fadingactionbar.WebViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.LauncherActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshExpandableListActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshGridActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshHorizontalScrollViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshListActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshListFragmentActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshListInViewPagerActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshScrollViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshViewPagerActivity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshWebView2Activity { <init>(); }
+-keep class com.zftlive.android.sample.pulltorefresh.PullToRefreshWebViewActivity { <init>(); }
+-keep class com.zftlive.android.sample.gridview.SquareAutoFitGridviewActivity { <init>(); }
+-keep class com.zftlive.android.sample.http.FileDownloadUploadActivity { <init>(); }
+-keep class com.zftlive.android.sample.basic.LoadHTMLActivity { <init>(); }
+-keep class com.zftlive.android.sample.image.blur.ImageBlurActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.DialogEffectActivity { <init>(); }
+-keep class com.zftlive.android.sample.progressbar.NumberPbActivity { <init>(); }
+-keep class com.zftlive.android.sample.map.location.BaiduMarkerActivity { <init>(); }
+-keep class com.zftlive.android.sample.media.AudioManagerActivity { <init>(); }
+-keep class com.zftlive.android.sample.gesture.Lock9DemoActivity { <init>(); }
+-keep class com.zftlive.android.sample.gesture.LStyleActivity { <init>(); }
+-keep class com.zftlive.android.sample.gesture.NormalActivity { <init>(); }
+-keep class com.zftlive.android.sample.image.photoview.PictureViewerDemoActivity { <init>(); }
+-keep class com.zftlive.android.sample.image.CamreaPictureDemoActivity { <init>(); }
+-keep class com.zftlive.android.sample.tabs.viewpager.ui.MainVPTabActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.ScaleViewPagerActivity { <init>(); }
+-keep class com.zftlive.android.sample.dynamic.DynamicPageDemoActivity { <init>(); }
+-keep class com.zftlive.android.sample.animation.viewpager.VpAnimMainActivity { <init>(); }
+-keep class com.zftlive.android.sample.chart.mpchart.MPChartActivity { <init>(); }
+-keep class com.zftlive.android.sample.sms.SMSBroadcastReceiver { <init>(); }
+-keep class com.zftlive.android.common.MyNetworkListener { <init>(); }
+-keep class com.tencent.android.tpush.XGPushReceiver { <init>(); }
+-keep class com.tencent.android.tpush.XGPushActivity { <init>(); }
+-keep class com.tencent.android.tpush.service.XGPushService { <init>(); }
+-keep class com.tencent.android.tpush.rpc.XGRemoteService { <init>(); }
+-keep class com.mob.tools.MobUIShell { <init>(); }
+-keep class com.zftlive.android.wxapi.WXEntryActivity { <init>(); }
+-keep class cn.sharesdk.sina.weibo.SinaActivity { <init>(); }
+-keep class com.baidu.location.f { <init>(); }
+-keep class com.zftlive.android.library.dynamicpage.ui.DynamicPageActivity { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

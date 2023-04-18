@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音量控制示例DEMO -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 系统音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="系统音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/sysSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- 铃声音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="铃声音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/ringerSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- 通知音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="通知音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/notifySound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- 媒体音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="媒体音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/mediaSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- 闹铃音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="闹铃音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/alarmSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+    <!-- 通话音量 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:text="通话音量："
+            android:textColor="@color/anl_black"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/callSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:max="7"
+            android:progress="1" />
+    </LinearLayout>
+
+</LinearLayout>
