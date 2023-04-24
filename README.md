@@ -6,7 +6,7 @@
 
    下图是最初建立项目需要集成功能的大致雏形图，当然目前有些功能还没集成进来，后续完成。毕竟个人工作之余时间精力有限，需要整理相关文档、调研相应的技术点，更新进度会有些缓慢，请大家理解。
 
-![安卓架构雏形图](http://git.oschina.net/zftlive/zftlive/raw/master/doc/snapshot/Android架构图-曾繁添.jpg "安卓架构雏形图")
+![安卓架构雏形图](https://gitee.com/zftlive/zftlive/blob/master/docs/snapshot/Android-Framework-Desgin.jpg "安卓架构雏形图")
 #如何使用
 
  1. 环境准备：Eclipse Kepler  + ADT23 + Android SDK 4.4.2 (19) + git 
