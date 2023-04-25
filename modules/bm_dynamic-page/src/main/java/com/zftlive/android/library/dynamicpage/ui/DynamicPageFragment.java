@@ -14,7 +14,7 @@ import com.zftlive.android.library.base.templet.AbsViewTemplet;
 import com.zftlive.android.library.base.adapter.IAdapterModel;
 import com.zftlive.android.library.base.ui.BaseFragmentV4;
 import com.zftlive.android.library.imageloader.ToolImage;
-import com.zftlive.android.library.widget.container.SwipeRefreshListview;
+import com.zftlive.android.library.widget.swiperefresh.SwipeRefreshListview;
 import com.zftlive.android.library.dynamicpage.IPageConstant;
 import com.zftlive.android.library.dynamicpage.PageBusinessControl;
 import com.zftlive.android.library.dynamicpage.PageViewTempletBridge;

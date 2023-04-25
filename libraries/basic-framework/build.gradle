@@ -69,8 +69,8 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
 
     // 全部模块共享依赖资源(必须)
-//    compile project(':libraries:common-resource')
-    compile 'com.zftlive.android.library:common-resource:1.0.1'
+    compile project(':libraries:common-resource')
+    //compile 'com.zftlive.android.library:common-resource:1.0.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //内存检测工具(只有debug生效.debug/test无效果，只是为了编译可以通过)

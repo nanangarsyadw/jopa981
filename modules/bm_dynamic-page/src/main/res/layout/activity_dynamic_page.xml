@@ -28,7 +28,7 @@
         android:text="刷新楼层"
         android:visibility="gone" />
 
-    <com.zftlive.android.library.widget.container.SwipeRefreshListview
+    <com.zftlive.android.library.widget.swiperefresh.SwipeRefreshListview
         android:id="@+id/srl_page_container"
         style="@style/Common_Module_CommonListStyle"
         android:layout_width="match_parent"

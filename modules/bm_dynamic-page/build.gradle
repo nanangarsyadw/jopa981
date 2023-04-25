@@ -75,8 +75,8 @@ dependencies {
     compile project(':libraries:basic-framework')
 
     // 特性功能类库-基础自定义控件(可选)
-//    compile project(':libraries:widget')
-    compile 'com.zftlive.android.library:widget:1.0.1'
+    compile project(':libraries:widget')
+    //compile 'com.zftlive.android.library:widget:1.0.1'
     // 特性功能类库-基础工具(可选)
     provided project(':libraries:tools')
     // 特性功能类库-图片异步加载组件(可选)

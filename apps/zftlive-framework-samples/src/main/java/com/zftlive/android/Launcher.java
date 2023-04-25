@@ -19,11 +19,13 @@
 package com.zftlive.android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
+import com.zftlive.android.library.Logger;
 import com.zftlive.android.library.base.ui.CommonActivity;
 import com.zftlive.android.sample.MainActivity;
 
@@ -42,11 +44,12 @@ public class Launcher extends CommonActivity {
 
 	@Override
 	public void initParams(Bundle parms) {
-		
+		Log.d("TAG","Launcher.initParams");
 	}
 
 	@Override
 	public void initView(View view) {
+		Logger.d("TAG","Launcher.initView");
         //隐藏标题栏
 		mWindowTitle.hiddeTitleBar();
 
