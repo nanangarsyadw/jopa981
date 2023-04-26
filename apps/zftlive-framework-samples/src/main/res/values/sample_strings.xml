@@ -46,6 +46,7 @@
     <string name="MPChartActivity">MPChart图表样例</string>
     <string name="RecyclerViewActivity">RecyclerView样例一</string>
     <string name="MainTabActivity">CoordinatorTabLayout样例</string>
+    <string name="ImagePickerActivity">相册+视频选择器</string>
     <!-- Android样例锦集label(结束) -->
 
 
