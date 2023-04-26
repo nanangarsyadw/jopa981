@@ -25,11 +25,9 @@ import com.zftlive.android.library.base.bean.AdapterModelBean;
  */
 public class ImageFileBean extends AdapterModelBean {
 
-  public String title = "";
-
   public String imageURL = "";
 
-  public int id = 0;
+  public String id = "";
 
   public String displayName = "";
 
@@ -41,11 +39,49 @@ public class ImageFileBean extends AdapterModelBean {
 
   public String path = "";
 
+  public String resolution = "";
+
+  public String addDate = "";
+
+  /**
+   * 原图uri
+   */
+  public String originUri;
+
+  /**
+   * 原图path
+   */
+  public String originPath;
+
+  /**
+   * 缩略图uri
+   */
+  public String thumbnailUri;
+
+  /**
+   * 是否视频
+   */
+  public boolean isVideo = false;
+
+  /**
+   * 标题
+   */
+  public String title = "";
+
+  /**
+   * 视频时长 ms
+   */
   public long duration = 0;
 
-  public long size = 0;
+  /**
+   * 视频时长文案
+   */
+  public String durationText = "";
 
-  public String resolution = "";
+  /**
+   * 视频大小 byte
+   */
+  public long size = 0;
 
   public ImageFileBean() {
 

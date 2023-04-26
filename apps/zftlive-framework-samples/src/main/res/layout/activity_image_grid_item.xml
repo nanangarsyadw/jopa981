@@ -19,13 +19,75 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:ellipsize="end"
         android:gravity="left|center_vertical"
-        android:padding="10dp"
+        android:padding="4dp"
         android:singleLine="false"
-        android:text="1:00"
-        android:textColor="@color/anl_white"
-        android:textSize="14sp" />
+        tools:text="XXXXX.mp4"
+        android:textColor="@color/anl_red"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/tv_adddate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:padding="4dp"
+        android:singleLine="false"
+        tools:text="2019-08-13 11:22:39"
+        android:textColor="@color/anl_red"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_adddate"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:padding="4dp"
+        android:singleLine="false"
+        android:textColor="@color/anl_red"
+        tools:text="27MB"
+        android:textSize="11dp" />
+
+
+    <!-- 视频相关-->
+    <RelativeLayout
+        android:id="@+id/rl_video_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:visibility="visible">
+
+        <!-- 视频图标-->
+        <ImageView
+            android:id="@+id/iv_video_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@drawable/common_album_video"
+            android:visibility="visible" />
+
+        <!-- 视频时长-->
+        <TextView
+            android:id="@+id/tv_video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textColor="@color/anl_red"
+            android:textSize="11dp"
+            tools:text="0:15" />
+    </RelativeLayout>
 
 </RelativeLayout>
