@@ -41,6 +41,9 @@ public class ImageFileBean extends AdapterModelBean {
 
   public String resolution = "";
 
+  /**
+   * 添加时间
+   */
   public String addDate = "";
 
   /**

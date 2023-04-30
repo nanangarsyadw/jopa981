@@ -21,7 +21,6 @@ package com.zftlive.android.sample.imagepicker;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -90,9 +89,6 @@ public class ImagePickerActivity extends CommonActivity implements LoaderManager
 	}
 
 	private void initData(){
-//		mMyListViewAdapter.clear();
-//		mMyListViewAdapter.addItem(getLoadMedia());
-
 		// 检测读取、写入权限
 		if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE)
 				== PackageManager.PERMISSION_GRANTED &&
@@ -122,97 +118,6 @@ public class ImagePickerActivity extends CommonActivity implements LoaderManager
 	private void startLoader() {
 		mOperation.showLoading("正在查询数据");
 		mActivity.getSupportLoaderManager().initLoader(0, null, this);
-	}
-
-	public ArrayList getLoadMedia() {
-
-		ArrayList<ImageFileBean> result = new ArrayList<>();
-
-		Cursor cursor = this.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.Media.DEFAULT_SORT_ORDER);
-		try {
-			for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-				int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID)); // id
-				String displayName =cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
-				String album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.ALBUM)); // 专辑
-				String artist = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.ARTIST)); // 艺术家
-				String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)); // 显示名称
-				String mimeType =cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
-				String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)); // 路径
-				long duration = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)); // 时长
-				long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)); // 大小
-				String resolution =cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.RESOLUTION));
-
-				ImageFileBean item = new ImageFileBean();
-				item.id = id+"";
-				item.displayName = displayName;
-				item.album = album;
-				item.artist = artist;
-				item.title = title;
-				item.mimeType = mimeType;
-				item.path = path;
-				item.imageURL = path;
-				item.duration = duration;
-				item.size = size;
-				item.resolution = resolution;
-
-				Logger.d(TAG,"id="+id + " title="+title + " mimeType="+mimeType +" resolution="+resolution+ " path="+path +" duration="+duration + " size="+size);
-
-				result.add(item);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			cursor.close();
-		}
-
-		return result;
-	}
-
-	public static String[] thumbColumns = { MediaStore.Video.Thumbnails.DATA };
-	public static String[] mediaColumns = { MediaStore.Video.Media._ID };
-
-	public static String getThumbnailPathForLocalFile(Activity context, Uri fileUri) {
-
-		long fileId = getFileId(context, fileUri);
-
-		MediaStore.Video.Thumbnails.getThumbnail(context.getContentResolver(),
-				fileId, MediaStore.Video.Thumbnails.MICRO_KIND, null);
-
-		Cursor thumbCursor = null;
-		try {
-
-			thumbCursor = context.managedQuery(
-					MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI,
-					thumbColumns, MediaStore.Video.Thumbnails.VIDEO_ID + " = "
-							+ fileId, null, null);
-
-			if (thumbCursor.moveToFirst()) {
-				String thumbPath = thumbCursor.getString(thumbCursor
-						.getColumnIndex(MediaStore.Video.Thumbnails.DATA));
-
-				return thumbPath;
-			}
-
-		} finally {
-		}
-
-		return "";
-	}
-
-	public static long getFileId(Activity context, Uri fileUri) {
-
-		Cursor cursor = context.managedQuery(fileUri, mediaColumns, null, null,
-				null);
-
-		if (cursor.moveToFirst()) {
-			int columnIndex = cursor
-					.getColumnIndexOrThrow(MediaStore.Video.Media._ID);
-			int id = cursor.getInt(columnIndex);
-
-			return id;
-		}
-
-		return 0;
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
